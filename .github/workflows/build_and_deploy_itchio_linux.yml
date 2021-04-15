@@ -16,7 +16,7 @@ jobs:
         projectPath:
           - ./
         unityVersion:
-          - 2019.3.0f6
+          - 2020.3.2f1
         projectName:
           - SteamLetters
         targetPlatform:
@@ -46,6 +46,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
           CHANNEL: linux
-          ITCH_GAME: steamletterstemporal
+          ITCH_GAME: mcgf2021-mazegeneration
           ITCH_USER: the-solar-moose
           PACKAGE: build
