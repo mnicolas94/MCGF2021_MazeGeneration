@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utils.Runtime.Extensions;
+using Utils;
 
 public class PopUpOnTrigger : MonoBehaviour
 {
@@ -13,7 +13,6 @@ public class PopUpOnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("trigger enter");
         int otherLayer = other.gameObject.layer;
         if (mask.IsLayerInMask(otherLayer)){
             PopUp();
@@ -22,7 +21,6 @@ public class PopUpOnTrigger : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        print("trigger exit");
         int otherLayer = other.gameObject.layer;
         if (mask.IsLayerInMask(otherLayer)){
             PopDown();
