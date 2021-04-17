@@ -18,12 +18,13 @@ jobs:
         unityVersion:
           - 2020.3.2f1
         projectName:
-          - SteamLetters
+          - MCGF21_Maze
         targetPlatform:
           - StandaloneWindows64   # Build a Windows 64-bit standal
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           lfs: true
       - uses: actions/cache@v1.1.0
         with:
@@ -32,7 +33,7 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-      - uses: webbertakken/unity-builder@v0.10
+      - uses: game-ci/unity-builder@v2
         with:
           projectPath: ${{ matrix.projectPath }}
           buildName: ${{ matrix.projectName }}
