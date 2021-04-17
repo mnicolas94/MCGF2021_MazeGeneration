@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utils.Runtime.Extensions
+namespace Utils
 {
     public static class LayerMaskExtensions
     {

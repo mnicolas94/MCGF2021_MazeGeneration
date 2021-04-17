@@ -17,7 +17,7 @@ namespace Animations
             {
                 _initialized = true;
                 _targetTransform = animator.transform;
-                _targetRenderer = animator.GetComponent<SpriteRenderer>();
+                _targetRenderer = animator.GetComponentInChildren<SpriteRenderer>();
             }
 
             if (showing)
