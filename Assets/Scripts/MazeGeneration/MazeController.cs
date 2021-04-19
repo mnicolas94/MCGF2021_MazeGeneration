@@ -4,6 +4,7 @@ using MazeGeneration.MazeDecorators;
 using MazeGeneration.MazeGenerators;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Utils;
 
 namespace MazeGeneration
 {
@@ -14,6 +15,8 @@ namespace MazeGeneration
         [SerializeField] private List<Maze> mazes;
         [SerializeField] private AbstractMazeGenerator generator;
         [SerializeField] private List<AbstractMazeDecorator> decorators;
+
+        [SerializeField] private List<Maze> rooms;
 
         private MazeChunk[][] _mazeChunks;
     
@@ -34,7 +37,7 @@ namespace MazeGeneration
             return go.GetComponentInParent<Maze>();
         }
     
-        public void GenerateMaze(Maze maze, int width, int height, int runes)
+        public void GenerateMaze(Maze maze, int width, int height)
         {
             maze.ClearMaze();
             var generatedMaze = generator.GenerateMaze(width - 2, height - 2);
@@ -130,6 +133,18 @@ namespace MazeGeneration
             }
         }
 
+        private void AddRoom(Maze room)
+        {
+            
+        }
+
+        private Vector2Int GetRandomPosForRoom(Maze room)
+        {
+            var bounds = room.WallSpriteTilemap.RealCellBounds();
+
+            return default;
+        }
+        
         private IEnumerator NotifyMazeGeneration(Maze maze)
         {
             maze.eventMazeChanged?.Invoke();
@@ -144,10 +159,8 @@ namespace MazeGeneration
         {
             foreach (var maze in mazes)
             {
-                GenerateMaze(maze, genWidth, genHeight, 3);
+                GenerateMaze(maze, genWidth, genHeight);
             }
         }
-        
-        
     }
 }

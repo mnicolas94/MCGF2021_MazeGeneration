@@ -60,6 +60,60 @@ namespace MazeGeneration
         {
             wallObjectsTilemap.ClearAllTiles();
         }
+
+        [NaughtyAttributes.Button]
+        public void Center()
+        {
+            floorSpriteTilemap.Center();
+            floorObjectsTilemap.Center();
+            wallSpriteTilemap.Center();
+            wallObjectsTilemap.Center();
+        }
+        
+        [NaughtyAttributes.Button]
+        public void Rotate90()
+        {
+            floorSpriteTilemap.Rotate90();
+            floorObjectsTilemap.Rotate90();
+            wallSpriteTilemap.Rotate90();
+            wallObjectsTilemap.Rotate90();
+        }
+        
+        [NaughtyAttributes.Button]
+        public void Rotate180()
+        {
+            floorSpriteTilemap.Rotate180();
+            floorObjectsTilemap.Rotate180();
+            wallSpriteTilemap.Rotate180();
+            wallObjectsTilemap.Rotate180();
+        }
+        
+        [NaughtyAttributes.Button]
+        public void Rotate270()
+        {
+            floorSpriteTilemap.Rotate270();
+            floorObjectsTilemap.Rotate270();
+            wallSpriteTilemap.Rotate270();
+            wallObjectsTilemap.Rotate270();
+        }
+        
+        [NaughtyAttributes.Button]
+        public void MirrorHorz()
+        {
+            floorSpriteTilemap.MirrorHorizontally();
+            floorObjectsTilemap.MirrorHorizontally();
+            wallSpriteTilemap.MirrorHorizontally();
+            wallObjectsTilemap.MirrorHorizontally();
+        }
+        
+        [NaughtyAttributes.Button]
+        public void MirrorVert()
+        {
+            floorSpriteTilemap.MirrorVertically();
+            floorObjectsTilemap.MirrorVertically();
+            wallSpriteTilemap.MirrorVertically();
+            wallObjectsTilemap.MirrorVertically();
+        }
     
         public void ClearMaze()
         {
