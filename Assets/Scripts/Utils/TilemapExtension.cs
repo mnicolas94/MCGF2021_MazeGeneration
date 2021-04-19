@@ -163,5 +163,131 @@ namespace Utils
             bounds.SetMinMax(min, max);
             return bounds;
         }
+
+        public static void Center(this Tilemap tm)
+        {
+            var cellBounds = tm.RealCellBounds();
+            var tilesPositions = tm.GetTilePositions();
+            
+            int horizontalCenter = (cellBounds.xMin + cellBounds.xMax) / 2;
+            int verticalCenter = (cellBounds.yMin + cellBounds.yMax) / 2;
+            var tiles = new Dictionary<Vector3Int, TileBase>();
+            
+            foreach (var tilePosition in tilesPositions)
+            {
+                tiles.Add(tilePosition, tm.GetTile(tilePosition));
+            }
+            tm.ClearAllTiles();
+            
+            foreach (var tilePosition in tiles.Keys)
+            {
+                var tile = tiles[tilePosition];
+                int newHorizontalPos = tilePosition.x - horizontalCenter;
+                int newVerticalPos = tilePosition.y - verticalCenter;
+                var newTilePosition = new Vector3Int(newHorizontalPos, newVerticalPos, tilePosition.z);
+                
+                tm.SetTile(newTilePosition, tile);
+            }
+        }
+        
+        public static void MirrorHorizontally(this Tilemap tm)
+        {
+            var tilesPositions = tm.GetTilePositions();
+            var tiles = new Dictionary<Vector3Int, TileBase>();
+
+            foreach (var tilePosition in tilesPositions)
+            {
+                tiles.Add(tilePosition, tm.GetTile(tilePosition));
+            }
+            tm.ClearAllTiles();
+
+            foreach (var tilePosition in tiles.Keys)
+            {
+                var tile = tiles[tilePosition];
+                var newTilePosition = new Vector3Int(-tilePosition.x, tilePosition.y, tilePosition.z);
+                
+                tm.SetTile(newTilePosition, tile);
+            }
+        }
+        
+        public static void MirrorVertically(this Tilemap tm)
+        {
+            var tilesPositions = tm.GetTilePositions();
+            var tiles = new Dictionary<Vector3Int, TileBase>();
+
+            foreach (var tilePosition in tilesPositions)
+            {
+                tiles.Add(tilePosition, tm.GetTile(tilePosition));
+            }
+            tm.ClearAllTiles();
+
+            foreach (var tilePosition in tiles.Keys)
+            {
+                var tile = tiles[tilePosition];
+                var newTilePosition = new Vector3Int(tilePosition.x, -tilePosition.y, tilePosition.z);
+                
+                tm.SetTile(newTilePosition, tile);
+            }
+        }
+
+        public static void Rotate90(this Tilemap tm)
+        {
+            var tilesPositions = tm.GetTilePositions();
+            var tiles = new Dictionary<Vector3Int, TileBase>();
+            
+            foreach (var tilePosition in tilesPositions)
+            {
+                tiles.Add(tilePosition, tm.GetTile(tilePosition));
+            }
+            tm.ClearAllTiles();
+            
+            foreach (var tilePosition in tiles.Keys)
+            {
+                var tile = tiles[tilePosition];
+                var newTilePosition = new Vector3Int(tilePosition.y, -tilePosition.x, tilePosition.z);
+                
+                tm.SetTile(newTilePosition, tile);
+            }
+        }
+        
+        public static void Rotate180(this Tilemap tm)
+        {
+            var tilesPositions = tm.GetTilePositions();
+            var tiles = new Dictionary<Vector3Int, TileBase>();
+            
+            foreach (var tilePosition in tilesPositions)
+            {
+                tiles.Add(tilePosition, tm.GetTile(tilePosition));
+            }
+            tm.ClearAllTiles();
+            
+            foreach (var tilePosition in tiles.Keys)
+            {
+                var tile = tiles[tilePosition];
+                var newTilePosition = new Vector3Int(-tilePosition.x, -tilePosition.y, tilePosition.z);
+                
+                tm.SetTile(newTilePosition, tile);
+            }
+        }
+        
+        public static void Rotate270(this Tilemap tm)
+        {
+            var tilesPositions = tm.GetTilePositions();
+            var tiles = new Dictionary<Vector3Int, TileBase>();
+            
+            foreach (var tilePosition in tilesPositions)
+            {
+                tiles.Add(tilePosition, tm.GetTile(tilePosition));
+            }
+            tm.ClearAllTiles();
+            
+            foreach (var tilePosition in tiles.Keys)
+            {
+                var tile = tiles[tilePosition];
+                var newTilePosition = new Vector3Int(-tilePosition.y, tilePosition.x, tilePosition.z);
+                
+                tm.SetTile(newTilePosition, tile);
+            }
+        }
     }
 }
