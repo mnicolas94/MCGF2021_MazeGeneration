@@ -27,6 +27,30 @@ namespace MazeGeneration
 
         public Tilemap WallObjectsTilemap => wallObjectsTilemap;
 
+        public BoundsInt GetBounds()
+        {
+            var floorSpriteBounds = floorSpriteTilemap.RealCellBounds();
+            var floorObjectsBounds = floorObjectsTilemap.RealCellBounds();
+            var wallSpriteBounds = wallSpriteTilemap.RealCellBounds();
+            var wallObjectsBounds = wallObjectsTilemap.RealCellBounds();
+            int xMin = Math.Min(
+                Math.Min(floorSpriteBounds.xMin, floorObjectsBounds.xMin),
+                Math.Min(wallSpriteBounds.xMin, wallObjectsBounds.xMin));
+            int xMax = Math.Max(
+                Math.Max(floorSpriteBounds.xMax, floorObjectsBounds.xMax),
+                Math.Max(wallSpriteBounds.xMax, wallObjectsBounds.xMax));
+            
+            int yMin = Math.Min(
+                Math.Min(floorSpriteBounds.yMin, floorObjectsBounds.yMin),
+                Math.Min(wallSpriteBounds.yMin, wallObjectsBounds.yMin));
+            int yMax = Math.Max(
+                Math.Max(floorSpriteBounds.yMax, floorObjectsBounds.yMax),
+                Math.Max(wallSpriteBounds.yMax, wallObjectsBounds.yMax));
+
+            BoundsInt bounds = new BoundsInt(xMin, yMin, 0, xMax - xMin, yMax - yMin, 1);
+            return bounds;
+        }
+        
         /// <summary>
         /// Remove tiles of objects outside walls and floor.
         /// </summary>
