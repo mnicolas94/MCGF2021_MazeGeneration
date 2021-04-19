@@ -144,6 +144,35 @@ namespace MazeGeneration
 
             return default;
         }
+
+        private void RandomRotationMirroringToMaze(Maze room)
+        {
+            if (Random.value > 0.5f)
+            {
+                room.MirrorHorz();
+            }
+            
+            if (Random.value > 0.5f)
+            {
+                room.MirrorVert();
+            }
+
+            int rotation = Random.Range(0, 4);
+            switch (rotation)
+            {
+                case 1:
+                    room.Rotate90();
+                    break;
+                case 2:
+                    room.Rotate180();
+                    break;
+                case 3:
+                    room.Rotate270();
+                    break;
+                default:
+                    break;
+            }
+        }
         
         private IEnumerator NotifyMazeGeneration(Maze maze)
         {
