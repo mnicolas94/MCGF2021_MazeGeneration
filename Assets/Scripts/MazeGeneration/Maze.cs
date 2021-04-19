@@ -69,7 +69,7 @@ namespace MazeGeneration
             wallObjectsTilemap.ClearAllTiles();
         }
         
-        public void PopulateMazeStructure(
+        public void PopulateWallsAndFloor(
             bool[][] mazeStructure, int width, int height)
         {
             // offsets
