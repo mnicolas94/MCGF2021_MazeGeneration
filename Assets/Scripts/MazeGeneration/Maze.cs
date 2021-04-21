@@ -50,6 +50,39 @@ namespace MazeGeneration
             BoundsInt bounds = new BoundsInt(xMin, yMin, 0, xMax - xMin, yMax - yMin, 1);
             return bounds;
         }
+
+        
+        public void PlaceFloorAtPosition(Vector3Int tilePosition)
+        {
+            RemoveTilesAtPos(tilePosition);
+            floorSpriteTilemap.SetTile(tilePosition, floorSpriteTile);
+        }
+        
+        public void PlaceWallAtPosition(Vector3Int tilePosition)
+        {
+            RemoveTilesAtPos(tilePosition);
+            wallSpriteTilemap.SetTile(tilePosition, wallSpriteTile);
+        }
+        
+        public void PlaceFloorObjectAtPosition(Vector3Int tilePosition, TileBase floorObject)
+        {
+            RemoveTilesAtPos(tilePosition);
+            floorObjectsTilemap.SetTile(tilePosition, floorObject);
+        }
+        
+        public void PlaceWallObjectAtPosition(Vector3Int tilePosition, TileBase wallObject)
+        {
+            RemoveTilesAtPos(tilePosition);
+            wallObjectsTilemap.SetTile(tilePosition, wallObject);
+        }
+        
+        public void RemoveTilesAtPos(Vector3Int tilePosition)
+        {
+            floorSpriteTilemap.SetTile(tilePosition, null);
+            floorObjectsTilemap.SetTile(tilePosition, null);
+            wallSpriteTilemap.SetTile(tilePosition, null);
+            wallObjectsTilemap.SetTile(tilePosition, null);
+        }
         
         /// <summary>
         /// Remove tiles of objects outside walls and floor.
