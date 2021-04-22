@@ -6,6 +6,31 @@ namespace Utils
 {
     public static class TilemapExtension
     {
+        public static int GetTilesCount(this Tilemap tm)
+        {
+            int count = 0;
+            var bounds = tm.cellBounds;
+            var tilePosition = new Vector3Int();
+            for (int i = bounds.xMin; i < bounds.xMax; ++i)
+            {
+                for (int j = bounds.yMin; j < bounds.yMax; j++)
+                {
+                    for (int k = bounds.zMin; k < bounds.zMax; k++)
+                    {
+                        tilePosition.x = i;
+                        tilePosition.y = j;
+                        tilePosition.z = k;
+                        if (tm.HasTile(tilePosition))
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            return count;
+        }
+        
         public static IEnumerable<Vector3Int> GetTilePositions(this Tilemap tm)
         {
             var bounds = tm.cellBounds;
