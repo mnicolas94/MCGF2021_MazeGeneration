@@ -183,26 +183,26 @@ namespace MazeGeneration
             var roomOffset = roomBounds.size / 2;
             var offset = roomOffset + mazeOffset;
             
-            foreach (var floorPositions in room.FloorSpriteTilemap.GetTilePositions())
+            foreach (var floorPositions in room.GetFloorPositions())
             {
                 var offseted = floorPositions + offset;
                 maze.PlaceFloorAtPosition(offseted);
             }
             
-            foreach (var wallPositions in room.WallSpriteTilemap.GetTilePositions())
+            foreach (var wallPositions in room.GetWallPositions())
             {
                 var offseted = wallPositions + offset;
                 maze.PlaceWallAtPosition(offseted);
             }
             
-            foreach (var floorPositions in room.FloorObjectsTilemap.GetTilePositions())
+            foreach (var floorPositions in room.GetFloorObjectsPositions())
             {
                 var offseted = floorPositions + offset;
                 var tile = room.FloorObjectsTilemap.GetTile(floorPositions);
                 maze.PlaceFloorObjectAtPosition(offseted, tile);
             }
             
-            foreach (var wallPositions in room.WallObjectsTilemap.GetTilePositions())
+            foreach (var wallPositions in room.GetWallObjectsPositions())
             {
                 var offseted = wallPositions + offset;
                 var tile = room.WallObjectsTilemap.GetTile(wallPositions);

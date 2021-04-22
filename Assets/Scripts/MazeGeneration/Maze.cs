@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Utils;
@@ -19,6 +22,8 @@ namespace MazeGeneration
         [SerializeField] private TileBase floorSpriteTile;
         [SerializeField] private TileBase wallSpriteTile;
 
+        public Grid Grid => grid;
+
         public Tilemap FloorSpriteTilemap => floorSpriteTilemap;
 
         public Tilemap FloorObjectsTilemap => floorObjectsTilemap;
@@ -33,24 +38,59 @@ namespace MazeGeneration
             var floorObjectsBounds = floorObjectsTilemap.RealCellBounds();
             var wallSpriteBounds = wallSpriteTilemap.RealCellBounds();
             var wallObjectsBounds = wallObjectsTilemap.RealCellBounds();
-            int xMin = Math.Min(
-                Math.Min(floorSpriteBounds.xMin, floorObjectsBounds.xMin),
-                Math.Min(wallSpriteBounds.xMin, wallObjectsBounds.xMin));
-            int xMax = Math.Max(
-                Math.Max(floorSpriteBounds.xMax, floorObjectsBounds.xMax),
-                Math.Max(wallSpriteBounds.xMax, wallObjectsBounds.xMax));
-            
-            int yMin = Math.Min(
-                Math.Min(floorSpriteBounds.yMin, floorObjectsBounds.yMin),
-                Math.Min(wallSpriteBounds.yMin, wallObjectsBounds.yMin));
-            int yMax = Math.Max(
-                Math.Max(floorSpriteBounds.yMax, floorObjectsBounds.yMax),
-                Math.Max(wallSpriteBounds.yMax, wallObjectsBounds.yMax));
 
+            int floorSpriteTilesCount = floorSpriteTilemap.GetTilesCount();
+            int floorObjectsTilesCount = floorObjectsTilemap.GetTilesCount();
+            int wallSpriteTilesCount = wallSpriteTilemap.GetTilesCount();
+            int wallObjectsTilesCount = wallObjectsTilemap.GetTilesCount();
+            
+            int xMin = Int32.MaxValue;
+            xMin = floorSpriteTilesCount  > 0 ? Math.Min(xMin, floorSpriteBounds.xMin) : xMin;
+            xMin = floorObjectsTilesCount > 0 ? Math.Min(xMin, floorObjectsBounds.xMin) : xMin;
+            xMin = wallSpriteTilesCount   > 0 ? Math.Min(xMin, wallSpriteBounds.xMin) : xMin;
+            xMin = wallObjectsTilesCount  > 0 ? Math.Min(xMin, wallObjectsBounds.xMin) : xMin;
+            
+            int xMax = Int32.MinValue;
+            xMax = floorSpriteTilesCount  > 0 ? Math.Max(xMax, floorSpriteBounds.xMax) : xMax;
+            xMax = floorObjectsTilesCount > 0 ? Math.Max(xMax, floorObjectsBounds.xMax) : xMax;
+            xMax = wallSpriteTilesCount   > 0 ? Math.Max(xMax, wallSpriteBounds.xMax) : xMax;
+            xMax = wallObjectsTilesCount  > 0 ? Math.Max(xMax, wallObjectsBounds.xMax) : xMax;
+            
+            int yMin = Int32.MaxValue;
+            yMin = floorSpriteTilesCount  > 0 ? Math.Min(yMin, floorSpriteBounds.yMin) : yMin;
+            yMin = floorObjectsTilesCount > 0 ? Math.Min(yMin, floorObjectsBounds.yMin) : yMin;
+            yMin = wallSpriteTilesCount   > 0 ? Math.Min(yMin, wallSpriteBounds.yMin) : yMin;
+            yMin = wallObjectsTilesCount  > 0 ? Math.Min(yMin, wallObjectsBounds.yMin) : yMin;
+            
+            int yMax = Int32.MinValue;
+            yMax = floorSpriteTilesCount  > 0 ? Math.Max(yMax, floorSpriteBounds.yMax) : yMax;
+            yMax = floorObjectsTilesCount > 0 ? Math.Max(yMax, floorObjectsBounds.yMax) : yMax;
+            yMax = wallSpriteTilesCount   > 0 ? Math.Max(yMax, wallSpriteBounds.yMax) : yMax;
+            yMax = wallObjectsTilesCount  > 0 ? Math.Max(yMax, wallObjectsBounds.yMax) : yMax;
+            
             BoundsInt bounds = new BoundsInt(xMin, yMin, 0, xMax - xMin, yMax - yMin, 1);
             return bounds;
         }
 
+        public IEnumerable<Vector3Int> GetFloorPositions()
+        {
+            return floorSpriteTilemap.GetTilePositions();
+        }
+        
+        public IEnumerable<Vector3Int> GetWallPositions()
+        {
+            return wallSpriteTilemap.GetTilePositions();
+        }
+        
+        public IEnumerable<Vector3Int> GetFloorObjectsPositions()
+        {
+            return floorObjectsTilemap.GetTilePositions();
+        }
+        
+        public IEnumerable<Vector3Int> GetWallObjectsPositions()
+        {
+            return wallObjectsTilemap.GetTilePositions();
+        }
         
         public void PlaceFloorAtPosition(Vector3Int tilePosition)
         {
@@ -82,6 +122,103 @@ namespace MazeGeneration
             floorObjectsTilemap.SetTile(tilePosition, null);
             wallSpriteTilemap.SetTile(tilePosition, null);
             wallObjectsTilemap.SetTile(tilePosition, null);
+        }
+
+        public void MoveTile(Tilemap tm, Vector3Int from, Vector3Int to)
+        {
+            if (tm.HasTile(from) && !tm.HasTile(to))
+            {
+                var tile = tm.GetTile(from);
+//                var instantiatedGameObject = tm.GetInstantiatedObject(from);
+                tm.SetTile(to, tile);
+                tm.SetTile(from, null);
+            }
+        }
+
+        public void MoveTiles(Vector3Int from, Vector3Int to)
+        {
+            MoveTile(floorSpriteTilemap, from, to);
+            MoveTile(floorObjectsTilemap, from, to);
+            MoveTile(wallSpriteTilemap, from, to);
+            MoveTile(wallObjectsTilemap, from, to);
+        }
+
+        public void RepeatHorizontally(int dir)
+        {
+            dir = Mathf.Clamp(dir, -1, 1);
+            var bounds = GetBounds();
+            int columnSource = dir == 1 ? bounds.xMin : bounds.xMax - 1;
+            int columnDestiny = dir == 1 ? bounds.xMax : bounds.xMin - 1;
+
+            var from = new Vector3Int();
+            var to = new Vector3Int();
+            for (int i = bounds.yMin; i < bounds.yMax; i++)
+            {
+                from.x = columnSource;
+                from.y = i;
+                to.x = columnDestiny;
+                to.y = i;
+                MoveTiles(from, to);
+            }
+        }
+        
+        public void RepeatVertically(int dir)
+        {
+            dir = Mathf.Clamp(dir, -1, 1);
+            var bounds = GetBounds();
+            int rowSource = dir == 1 ? bounds.yMin : bounds.yMax - 1;
+            int rowDestiny = dir == 1 ? bounds.yMax : bounds.yMin - 1;
+
+            var from = new Vector3Int();
+            var to = new Vector3Int();
+            for (int i = bounds.xMin; i < bounds.xMax; i++)
+            {
+                from.x = i;
+                from.y = rowSource;
+                to.x = i;
+                to.y = rowDestiny;
+                MoveTiles(from, to);
+            }
+        }
+
+        public void RepeatHorizontally(int dir, int times)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                RepeatHorizontally(dir);
+            }
+        }
+        
+        public void RepeatVertically(int dir, int times)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                RepeatVertically(dir);
+            }
+        }
+
+        [NaughtyAttributes.Button]
+        public void RepeatUp()
+        {
+            RepeatVertically(1);
+        }
+        
+        [NaughtyAttributes.Button]
+        public void RepeatDown()
+        {
+            RepeatVertically(-1);
+        }
+        
+        [NaughtyAttributes.Button]
+        public void RepeatRight()
+        {
+            RepeatHorizontally(1);
+        }
+        
+        [NaughtyAttributes.Button]
+        public void RepeatLeft()
+        {
+            RepeatHorizontally(-1);
         }
         
         /// <summary>
