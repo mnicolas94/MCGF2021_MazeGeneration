@@ -32,6 +32,23 @@ namespace MazeGeneration
 
         public Tilemap WallObjectsTilemap => wallObjectsTilemap;
 
+        public Tilemap GetTileMap(MazeTilemap tilemap)
+        {
+            switch (tilemap)
+            {
+                case MazeTilemap.Floor:
+                    return floorSpriteTilemap;
+                case MazeTilemap.Walls:
+                    return wallSpriteTilemap;
+                case MazeTilemap.FloorObjects:
+                    return floorObjectsTilemap;
+                case MazeTilemap.WallsObjects:
+                    return wallObjectsTilemap;
+                default:
+                    return floorSpriteTilemap;
+            }
+        }
+        
         public BoundsInt GetBounds()
         {
             var floorSpriteBounds = floorSpriteTilemap.RealCellBounds();
@@ -316,14 +333,14 @@ namespace MazeGeneration
             wallSpriteTilemap.ClearAllTiles();
             wallObjectsTilemap.ClearAllTiles();
         }
-        
+
         public void PopulateWallsAndFloor(
             bool[][] mazeStructure, int width, int height)
         {
             // offsets
             int xoffset = -width / 2;
             int yoffset = -height / 2;
-        
+
             // place walls and floor
             Vector3Int tmpPos = Vector3Int.zero;
             for (int i = 0; i < height; i++)
@@ -332,19 +349,26 @@ namespace MazeGeneration
                 {
                     tmpPos.x = j + xoffset;
                     tmpPos.y = i + yoffset;
-                
-                    if (i == 0 || j == 0 || i == height - 1 || j == width - 1)  // edge walls
+
+                    if (i == 0 || j == 0 || i == height - 1 || j == width - 1) // edge walls
                         WallSpriteTilemap.SetTile(tmpPos, wallSpriteTile);
                     else
                     {
                         if (mazeStructure[i - 1][j - 1])
                             FloorSpriteTilemap.SetTile(tmpPos, floorSpriteTile);
                         else
-                            WallSpriteTilemap.SetTile(tmpPos, wallSpriteTile);       
+                            WallSpriteTilemap.SetTile(tmpPos, wallSpriteTile);
                     }
                 }
             }
         }
-
+    }
+    
+    public enum MazeTilemap
+    {
+        Floor,
+        Walls,
+        FloorObjects,
+        WallsObjects,
     }
 }
