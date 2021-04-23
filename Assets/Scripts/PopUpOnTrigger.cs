@@ -6,7 +6,7 @@ using Utils;
 
 public class PopUpOnTrigger : MonoBehaviour
 {
-    private static readonly int HidenStateHash = Animator.StringToHash("hiden");
+    private static readonly int ShowingStateHash = Animator.StringToHash("showing");
     
     [SerializeField] private LayerMask mask;
     [SerializeField] private Animator animator;
@@ -29,11 +29,11 @@ public class PopUpOnTrigger : MonoBehaviour
 
     private void PopUp()
     {
-        animator.SetBool(HidenStateHash, false);
+        animator.SetBool(ShowingStateHash, true);
     }
 
     private void PopDown()
     {
-        animator.SetBool(HidenStateHash, true);
+        animator.SetBool(ShowingStateHash, false);
     }
 }
