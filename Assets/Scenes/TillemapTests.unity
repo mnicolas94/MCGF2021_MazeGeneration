@@ -16220,7 +16220,7 @@ MonoBehaviour:
   detectors:
   - detector: {fileID: 11400000, guid: ba9937808bf565947bcfad6068be7e40, type: 2}
     tile: {fileID: 11400000, guid: cff701b16b498d74fb71f265af2eba09, type: 2}
-    enabled: 0
+    enabled: 1
   - detector: {fileID: 11400000, guid: 82c027fa2cbd10a46a68cd2fbd06acb8, type: 2}
     tile: {fileID: 11400000, guid: 7d9187b19bfaa5a4cb1507e98a33dbd3, type: 2}
     enabled: 1

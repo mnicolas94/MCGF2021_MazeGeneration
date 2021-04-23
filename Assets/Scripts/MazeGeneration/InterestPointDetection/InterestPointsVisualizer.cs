@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 namespace MazeGeneration.InterestPointDetection
 {
-    public class InteresPointsVisualizer : MonoBehaviour
+    public class InterestPointsVisualizer : MonoBehaviour
     {
         [SerializeField] private Maze maze;
         [SerializeField] private Tilemap visualizerTilemap;
