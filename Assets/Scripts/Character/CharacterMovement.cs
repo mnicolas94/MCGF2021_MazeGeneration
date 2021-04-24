@@ -8,7 +8,10 @@ using Vector3 = UnityEngine.Vector3;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] private Transform sprite;
+    public static int SpeedHashId = Animator.StringToHash("speed");
+    
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator animator;
     
     [SerializeField] private float speed;
     
@@ -25,7 +28,18 @@ public class CharacterMovement : MonoBehaviour
         if (!enabled)
             return;
         _rb.velocity = dir.normalized * speed;
-//        if (dir.magnitude > 0.001)
-//            sprite.up = dir;
+
+        if (dir.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        } else if (dir.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
+
+    private void Update()
+    {
+        animator.SetFloat(SpeedHashId, _rb.velocity.magnitude);
     }
 }
