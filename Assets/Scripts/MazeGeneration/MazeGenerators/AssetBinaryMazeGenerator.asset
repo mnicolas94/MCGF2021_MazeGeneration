@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd237947d55401b46ba79ff1649c3be1, type: 3}
-  m_Name: KruskalMazeGenerator
+  m_Script: {fileID: 11500000, guid: 1dba2de85429e2d4f83d279375c8b47a, type: 3}
+  m_Name: AssetBinaryMazeGenerator
   m_EditorClassIdentifier: 
