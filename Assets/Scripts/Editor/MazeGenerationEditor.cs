@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using MazeGeneration;
 using UnityEditor;
 using UnityEngine;
 
-public class MazeGenerationEditor
+namespace Editor
 {
-    [MenuItem("Mazes/GenerateMaze %g")]
-    public static void GenerateMaze()
+    public class MazeGenerationEditor
     {
-        var mazeController = Object.FindObjectOfType<MazeController>();
-        mazeController.GenerateMaze();
-    } 
+        [MenuItem("Mazes/GenerateMaze %g")]
+        public static void GenerateMaze()
+        {
+            var mazeController = Object.FindObjectOfType<MazeController>();
+            mazeController.GenerateMaze();
+        } 
+    }
 }

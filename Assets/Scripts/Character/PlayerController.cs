@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace Character
 {
-    [SerializeField] private CharacterMovement characterMovement;
-    [SerializeField] private Material downMaterial;
+    public class PlayerController : MonoBehaviour
+    {
+        [SerializeField] private CharacterMovement characterMovement;
 
-    [SerializeField] private bool isometricUpGoesLeft;
+        [SerializeField] private bool isometricUpGoesLeft;
     
-    private void FixedUpdate()
-    {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        private void FixedUpdate()
+        {
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
 
-        var dir = new Vector2();
-        int alt = isometricUpGoesLeft ? 1 : -1;
-        dir.x = h - v * alt;
-        dir.y = (h * alt + v) / 2;
+            var dir = new Vector2();
+            int alt = isometricUpGoesLeft ? 1 : -1;
+            dir.x = h - v * alt;
+            dir.y = (h * alt + v) / 2;
         
-        characterMovement.Move(dir);
-    }
-
-    private void Update()
-    {
-        downMaterial.SetVector("_PlayerPos", transform.position);
+            characterMovement.Move(dir);
+        }
     }
 }
