@@ -2,19 +2,16 @@
 using MazeGeneration;
 using UnityEngine;
 
-namespace DefaultNamespace
+public class GenerateMazeOnKeyPress : MonoBehaviour
 {
-    public class GenerateMazeOnKeyPress : MonoBehaviour
-    {
-        [SerializeField] private MazeController mazeController;
-        [SerializeField] private KeyCode key;
+    [SerializeField] private MazeController mazeController;
+    [SerializeField] private KeyCode key;
         
-        private void Update()
+    private void Update()
+    {
+        if (Input.GetKeyDown(key))
         {
-            if (Input.GetKeyDown(key))
-            {
-                mazeController.GenerateMaze();
-            }
+            mazeController.GenerateMaze();
         }
     }
 }

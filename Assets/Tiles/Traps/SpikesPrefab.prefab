@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2948023551319003789}
   - component: {fileID: 2948023551319003788}
+  - component: {fileID: -502656369894691577}
   - component: {fileID: 2948023551319003826}
   - component: {fileID: 2948023551319003791}
   - component: {fileID: 2948023551319003790}
@@ -50,6 +51,77 @@ MonoBehaviour:
   timeDown: 1.5
   timeUp: 1.5
   timeOffset: 0
+--- !u!114 &-502656369894691577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948023551319003827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d869a0fd4ccab85489cfe64af2a438c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1.5
+  animDuration: 0.3
+  popOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1.5
+      inSlope: 0.0029934174
+      outSlope: 0.0029934174
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4249997
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  popInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.0000029194093
+      outSlope: 0.0000029194093
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2041668
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.013166912
+      outSlope: -0.013166912
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17916626
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &2948023551319003826
 Animator:
   serializedVersion: 3
