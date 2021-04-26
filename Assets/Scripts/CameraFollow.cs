@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField] private float speed;
 
-    private void Update()
+    private void LateUpdate()
     {
         MoveTowards();
     }
