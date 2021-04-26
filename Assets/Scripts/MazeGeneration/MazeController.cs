@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using MazeGeneration.MazeDecorators;
 using MazeGeneration.MazeGenerators;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace MazeGeneration
 {
@@ -16,7 +19,7 @@ namespace MazeGeneration
         [SerializeField] private AbstractMazeGenerator generator;
         [SerializeField] private List<AbstractMazeDecorator> decorators;
 
-        [SerializeField] private List<Maze> rooms;
+        [SerializeField] private List<MazeData> rooms;
 
         void Awake()
         {
@@ -39,7 +42,6 @@ namespace MazeGeneration
         {
             maze.ClearMaze();
             var generatedMaze = generator.GenerateMaze(width - 2, height - 2);
-//            AddRoom(generatedMaze, width, height);
             maze.PopulateWallsAndFloor(generatedMaze, width, height);
             
             AddRooms(maze, width, height);
@@ -58,7 +60,7 @@ namespace MazeGeneration
             var mazeWallsBounds = maze.WallSpriteTilemap.RealCellBounds();
             int minXWallBounds = mazeWallsBounds.xMin;
             int minYWallBounds = mazeWallsBounds.yMin;
-            var roomsCopy = new List<Maze>(rooms);
+            var roomsCopy = new List<MazeData>(rooms);
             var quadrants = new List<Vector2Int>
             {
                 new Vector2Int(0, 0),
@@ -77,13 +79,18 @@ namespace MazeGeneration
                 var roomIndex = Random.Range(0, roomsCopy.Count);
                 var quadrantIndex = Random.Range(0, quadrants.Count);
 
-                var room = roomsCopy[roomIndex];
+                var roomData = roomsCopy[roomIndex];
+                var roomPrefab = roomData.maze;
+                var instantiatedRoom = Instantiate(roomPrefab);
                 var quadrant = quadrants[quadrantIndex];
                 roomsCopy.RemoveAt(roomIndex);
                 quadrants.RemoveAt(quadrantIndex);
                 
-                room.Center();
-                RotateAndMirrorRandomly(room);
+                instantiatedRoom.Center();
+                if (roomData.canBeRotated)
+                {
+                    RotateAndMirrorRandomly(instantiatedRoom);
+                }
                 
                 int quadrantWidth = width / 3;
                 int quadrantHeight = height / 3;
@@ -92,8 +99,13 @@ namespace MazeGeneration
                 BoundsInt bounds = new BoundsInt(
                     minXQuadrant, minYQuadrant, 0,
                     quadrantWidth, quadrantHeight, 1);
-                Vector3Int offset = GetRandomPosForRoom(room, bounds);
-                AddRoom(room, offset, maze);
+                Vector3Int offset = GetRandomPosForRoom(instantiatedRoom, bounds);
+                AddRoom(instantiatedRoom, offset, maze);
+#if UNITY_EDITOR
+                DestroyImmediate(instantiatedRoom.gameObject);
+#else
+                Destroy(instantiatedRoom.gameObject);
+#endif
             }
         }
 
@@ -186,13 +198,15 @@ namespace MazeGeneration
             foreach (var floorPositions in room.GetFloorPositions())
             {
                 var offseted = floorPositions + offset;
-                maze.PlaceFloorAtPosition(offseted);
+                var tile = room.FloorSpriteTilemap.GetTile(floorPositions);
+                maze.PlaceFloorAtPosition(offseted, tile);
             }
             
             foreach (var wallPositions in room.GetWallPositions())
             {
                 var offseted = wallPositions + offset;
-                maze.PlaceWallAtPosition(offseted);
+                var tile = room.WallSpriteTilemap.GetTile(wallPositions);
+                maze.PlaceWallAtPosition(offseted, tile);
             }
             
             foreach (var floorPositions in room.GetFloorObjectsPositions())
@@ -230,12 +244,12 @@ namespace MazeGeneration
         {
             if (Random.value > 0.5f)
             {
-                room.MirrorHorz();
+                room.MirrorHorizontally();
             }
             
             if (Random.value > 0.5f)
             {
-                room.MirrorVert();
+                room.MirrorVertically();
             }
 
             int rotation = Random.Range(0, 4);
@@ -272,5 +286,12 @@ namespace MazeGeneration
                 GenerateMaze(maze, genWidth, genHeight);
             }
         }
+    }
+
+    [Serializable]
+    public struct MazeData
+    {
+        public Maze maze;
+        public bool canBeRotated;
     }
 }
