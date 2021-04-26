@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
 namespace Tiles
 {
-    public class RandomWeightedSprite : UnityEngine.MonoBehaviour
+    public class RandomWeightedSprite : MonoBehaviour
     {
         [SerializeField] private Sprite defaultSprite;
         [SerializeField] private List<SpriteWeight> sprites;
