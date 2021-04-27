@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8602061865135027399}
   - component: {fileID: 6618451941491242011}
   m_Layer: 0
-  m_Name: PuzzleLeversFloorTileObject
+  m_Name: PuzzleBloodFloorTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d869a0fd4ccab85489cfe64af2a438c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
   radius: 1.5
   animDuration: 0.3
   popOutCurve:
@@ -143,7 +144,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 867fad4790e825248be3911e023e76e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c301b09f71885d4e97e39da8f1ce559, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
