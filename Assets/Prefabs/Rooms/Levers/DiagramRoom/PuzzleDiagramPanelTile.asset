@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e6f3fbb560bd6041a202ea918fa4f23, type: 3}
-  m_Name: PuzzleLeversFloorTile
+  m_Name: PuzzleDiagramPanelTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: 867fad4790e825248be3911e023e76e2, type: 3}
-  m_DefaultGameObject: {fileID: 8602061865135027405, guid: 4469e80c30f53f54d9aa709d90f8efbb, type: 3}
-  m_DefaultColliderType: 0
+  m_DefaultSprite: {fileID: 21300000, guid: d5efbb916cc3fdc4bbd53e627c51fe93, type: 3}
+  m_DefaultGameObject: {fileID: 8602061865135027405, guid: 9fceb2432b8cdd14ca9501ad84579e61, type: 3}
+  m_DefaultColliderType: 2
   m_TilingRules: []
