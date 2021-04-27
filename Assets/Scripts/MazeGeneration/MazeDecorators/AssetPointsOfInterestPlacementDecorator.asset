@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AssetPointsOfInterestPlacementDecorator
   m_EditorClassIdentifier: 
   detector: {fileID: 11400000, guid: 82c027fa2cbd10a46a68cd2fbd06acb8, type: 2}
-  tilemapToPlace: 2
+  tilemapToPlace: 0
   tile: {fileID: 11400000, guid: bc4a2cafe2461004bb98ce5f455dbdc3, type: 2}
   minCount: 10
   maxCount: 20

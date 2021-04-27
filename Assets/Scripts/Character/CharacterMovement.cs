@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Character
@@ -6,7 +7,9 @@ namespace Character
     public class CharacterMovement : MonoBehaviour
     {
         public static int SpeedHashId = Animator.StringToHash("speed");
-    
+
+        [SerializeField] private CharacterRuntimeData data;
+        
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Animator animator;
     
@@ -38,6 +41,11 @@ namespace Character
         private void Update()
         {
             animator.SetFloat(SpeedHashId, _rb.velocity.magnitude);
+        }
+
+        private void FixedUpdate()
+        {
+            data.SetCharacterPosition(transform.position);
         }
     }
 }
