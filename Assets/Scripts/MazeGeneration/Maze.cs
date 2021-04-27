@@ -12,7 +12,7 @@ namespace MazeGeneration
     {
         public Action eventMazeChanged;
         public Action eventMazePostChanged;
-        
+
         [SerializeField] private Grid grid;
         [SerializeField] private Tilemap floorSpriteTilemap;
         [SerializeField] private Tilemap floorObjectsTilemap;
@@ -109,16 +109,28 @@ namespace MazeGeneration
             return wallObjectsTilemap.GetTilePositions();
         }
         
-        public void PlaceFloorAtPosition(Vector3Int tilePosition)
+        public void PlaceDefaultFloorAtPosition(Vector3Int tilePosition)
         {
             RemoveTilesAtPos(tilePosition);
             floorSpriteTilemap.SetTile(tilePosition, floorSpriteTile);
         }
         
-        public void PlaceWallAtPosition(Vector3Int tilePosition)
+        public void PlaceDefaultWallAtPosition(Vector3Int tilePosition)
         {
             RemoveTilesAtPos(tilePosition);
             wallSpriteTilemap.SetTile(tilePosition, wallSpriteTile);
+        }
+        
+        public void PlaceFloorAtPosition(Vector3Int tilePosition, TileBase floorTile)
+        {
+            RemoveTilesAtPos(tilePosition);
+            floorSpriteTilemap.SetTile(tilePosition, floorTile);
+        }
+        
+        public void PlaceWallAtPosition(Vector3Int tilePosition, TileBase wallTile)
+        {
+            RemoveTilesAtPos(tilePosition);
+            wallSpriteTilemap.SetTile(tilePosition, wallTile);
         }
         
         public void PlaceFloorObjectAtPosition(Vector3Int tilePosition, TileBase floorObject)
@@ -261,6 +273,15 @@ namespace MazeGeneration
         }
 
         [NaughtyAttributes.Button]
+        public void ClearMaze()
+        {
+            floorSpriteTilemap.ClearAllTiles();
+            floorObjectsTilemap.ClearAllTiles();
+            wallSpriteTilemap.ClearAllTiles();
+            wallObjectsTilemap.ClearAllTiles();
+        }
+        
+        [NaughtyAttributes.Button]
         public void ClearFloorObjects()
         {
             floorObjectsTilemap.ClearAllTiles();
@@ -309,7 +330,7 @@ namespace MazeGeneration
         }
         
         [NaughtyAttributes.Button]
-        public void MirrorHorz()
+        public void MirrorHorizontally()
         {
             floorSpriteTilemap.MirrorHorizontally();
             floorObjectsTilemap.MirrorHorizontally();
@@ -318,7 +339,7 @@ namespace MazeGeneration
         }
         
         [NaughtyAttributes.Button]
-        public void MirrorVert()
+        public void MirrorVertically()
         {
             floorSpriteTilemap.MirrorVertically();
             floorObjectsTilemap.MirrorVertically();
@@ -326,14 +347,6 @@ namespace MazeGeneration
             wallObjectsTilemap.MirrorVertically();
         }
     
-        public void ClearMaze()
-        {
-            floorSpriteTilemap.ClearAllTiles();
-            floorObjectsTilemap.ClearAllTiles();
-            wallSpriteTilemap.ClearAllTiles();
-            wallObjectsTilemap.ClearAllTiles();
-        }
-
         public void PopulateWallsAndFloor(
             bool[][] mazeStructure, int width, int height)
         {

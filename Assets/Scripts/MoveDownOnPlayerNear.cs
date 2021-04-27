@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class MoveDownOnPlayerNear : MonoBehaviour
 {
+    [SerializeField] private CharacterRuntimeData characterRuntimeData;
+    
+    [Space]
+    
     [SerializeField] private float radius;
     [SerializeField] private Vector2 playerPositionOffset;
     [SerializeField] private float maxVerticalDisplacement;
 
-    private Transform _player;
     private Vector3 _initialPosition;
     
     private void Start()
     {
-        _player = FindObjectOfType<CharacterMovement>().transform;
         _initialPosition = transform.position;
     }
 
@@ -26,7 +28,7 @@ public class MoveDownOnPlayerNear : MonoBehaviour
         Transform transf = transform;
         var position = transf.position;
         float sqrRadius = radius * radius;
-        var toTarget = _player.position + (Vector3) playerPositionOffset - position;
+        var toTarget = characterRuntimeData.CharacterPosition + (Vector3) playerPositionOffset - position;
         float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
         float radDiff = Mathf.Max(0, sqrRadius - sqrDist);
         float radRatio = radDiff / sqrRadius;

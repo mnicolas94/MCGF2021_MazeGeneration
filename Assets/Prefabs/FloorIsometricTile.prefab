@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d869a0fd4ccab85489cfe64af2a438c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
   radius: 1.5
   animDuration: 0.3
   popOutCurve:
