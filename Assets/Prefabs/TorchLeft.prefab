@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8437207559289120699}
   - component: {fileID: 5712548626333416228}
   - component: {fileID: 5816126835302558680}
-  - component: {fileID: 6126858753813712524}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4124366034824749370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.4, z: 0}
+  m_LocalPosition: {x: -0.25, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7169854146807383952}
@@ -175,22 +174,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6126858753813712524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4124366034824749370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f5557ad6318964cabb548ce6fe6ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
-  radius: 1
-  playerPositionOffset: {x: 0, y: -0.5}
-  maxVerticalDisplacement: 0.25
 --- !u!1 &7169854146807383955
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,8 +183,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7169854146807383952}
+  - component: {fileID: 175674628588374840}
   m_Layer: 0
-  m_Name: Torch
+  m_Name: TorchLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,3 +206,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175674628588374840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7169854146807383955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f5557ad6318964cabb548ce6fe6ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
+  radius: 1
+  playerPositionOffset: {x: 0, y: -0.5}
+  maxVerticalDisplacement: 0.25
