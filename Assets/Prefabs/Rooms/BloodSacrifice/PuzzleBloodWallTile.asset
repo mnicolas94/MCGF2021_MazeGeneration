@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PuzzleBloodWallTile
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: d8926b9acd1e28042a5946e675586f56, type: 3}
-  m_DefaultGameObject: {fileID: 8602061865135027405, guid: 22746ae9127cac844a9c22e9db89a143, type: 3}
+  m_DefaultGameObject: {fileID: 8602061865135027405, guid: 7a8351d2cb4475145b399251341c872f, type: 3}
   m_DefaultColliderType: 2
   m_TilingRules: []

@@ -8,20 +8,18 @@ using Utils;
 
 public class PopUpOnPlayerNear : MonoBehaviour
 {
+    [SerializeField] private CharacterRuntimeData characterRuntimeData;
+    
+    [Space]
+    
     [SerializeField] private float radius;
     [SerializeField] private float animDuration;
     [SerializeField] private AnimationCurve popOutCurve;
     [SerializeField] private AnimationCurve popInCurve;
-
-    private Transform _player;
+    
     private bool _inside;
     private float _timeSinceLastChange;
     
-    private void Start()
-    {
-        _player = FindObjectOfType<CharacterMovement>().transform;
-    }
-
     private void FixedUpdate()
     {
         HandleDistanceToPlayer();
@@ -31,7 +29,7 @@ public class PopUpOnPlayerNear : MonoBehaviour
     private void HandleDistanceToPlayer()
     {
         float sqrRadius = radius * radius;
-        var toTarget = _player.position - transform.position;
+        var toTarget = characterRuntimeData.CharacterPosition - transform.position;
         float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
         bool inside = sqrDist < sqrRadius;
         bool toggle = inside ^ _inside;
