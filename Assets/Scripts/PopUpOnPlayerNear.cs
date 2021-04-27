@@ -12,7 +12,6 @@ public class PopUpOnPlayerNear : MonoBehaviour
     
     [Space]
     
-    [SerializeField] private float radius;
     [SerializeField] private float animDuration;
     [SerializeField] private AnimationCurve popOutCurve;
     [SerializeField] private AnimationCurve popInCurve;
@@ -28,8 +27,10 @@ public class PopUpOnPlayerNear : MonoBehaviour
 
     private void HandleDistanceToPlayer()
     {
+        float radius = characterRuntimeData.LineOfSightRadius;
         float sqrRadius = radius * radius;
-        var toTarget = characterRuntimeData.CharacterPosition - transform.position;
+        var characterOffsetedPosition = characterRuntimeData.CharacterPosition + characterRuntimeData.LineOfSightOffset;
+        var toTarget = characterOffsetedPosition - transform.position;
         float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
         bool inside = sqrDist < sqrRadius;
         bool toggle = inside ^ _inside;
