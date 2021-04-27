@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AssetCharacterRuntimeData
   m_EditorClassIdentifier: 
   lineOfSightRadius: 2
-  characterPositionOffset: {x: 0, y: 0.25, z: 0}
+  lineOfSightOffset: {x: 0, y: 0.25, z: 0}
