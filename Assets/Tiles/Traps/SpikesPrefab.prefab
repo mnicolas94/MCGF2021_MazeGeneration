@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2948023551319003789}
-  - component: {fileID: 2948023551319003788}
-  - component: {fileID: 2948023551319003826}
-  - component: {fileID: 2948023551319003791}
-  - component: {fileID: 2948023551319003790}
+  - component: {fileID: 3733971928940293903}
+  - component: {fileID: 1667018179229882813}
+  - component: {fileID: 4249696471402036221}
+  - component: {fileID: 622605126296279528}
+  - component: {fileID: 9221536162573913604}
   m_Layer: 0
   m_Name: SpikesPrefab
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2948023551319003788
+--- !u!114 &3733971928940293903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,11 +47,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5009e303dc8e24bb216a1b1c9aea81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2948023551319003826}
+  animator: {fileID: 4249696471402036221}
   timeDown: 1.5
   timeUp: 1.5
   timeOffset: 0
---- !u!95 &2948023551319003826
+--- !u!114 &1667018179229882813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948023551319003827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d869a0fd4ccab85489cfe64af2a438c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
+  radius: 1.5
+  animDuration: 0.3
+  popOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1.5
+      inSlope: 0.0029934174
+      outSlope: 0.0029934174
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4249997
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  popInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.0000029194093
+      outSlope: 0.0000029194093
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2041668
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.013166912
+      outSlope: -0.013166912
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17916626
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!95 &4249696471402036221
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -69,7 +142,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!212 &2948023551319003791
+--- !u!212 &622605126296279528
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 12eb13042296ecf46b3e18cb10178367, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,10 +190,10 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2948023551319003790
+--- !u!60 &9221536162573913604
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +206,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
