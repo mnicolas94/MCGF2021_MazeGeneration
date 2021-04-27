@@ -29,7 +29,7 @@ public class PopUpOnPlayerNear : MonoBehaviour
     {
         float radius = characterRuntimeData.LineOfSightRadius;
         float sqrRadius = radius * radius;
-        var characterOffsetedPosition = characterRuntimeData.CharacterPosition + characterRuntimeData.CharacterPositionOffset;
+        var characterOffsetedPosition = characterRuntimeData.CharacterPosition + characterRuntimeData.LineOfSightOffset;
         var toTarget = characterOffsetedPosition - transform.position;
         float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
         bool inside = sqrDist < sqrRadius;
