@@ -1,45 +1,51 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
-public class CharacterMovement : MonoBehaviour
+namespace Character
 {
-    public static int SpeedHashId = Animator.StringToHash("speed");
-    
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Animator animator;
-    
-    [SerializeField] private float speed;
-    
-    public float Speed => speed;
-    private Rigidbody2D _rb;
-
-    private void Awake()
+    public class CharacterMovement : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+        public static int SpeedHashId = Animator.StringToHash("speed");
 
-    public void Move(Vector2 dir)
-    {
-        if (!enabled)
-            return;
-        _rb.velocity = dir.normalized * speed;
+        [SerializeField] private CharacterRuntimeData data;
+        
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Animator animator;
+    
+        [SerializeField] private float speed;
+    
+        public float Speed => speed;
+        private Rigidbody2D _rb;
 
-        if (dir.x < 0)
+        private void Awake()
         {
-            spriteRenderer.flipX = true;
-        } else if (dir.x > 0)
-        {
-            spriteRenderer.flipX = false;
+            _rb = GetComponent<Rigidbody2D>();
         }
-    }
 
-    private void Update()
-    {
-        animator.SetFloat(SpeedHashId, _rb.velocity.magnitude);
+        public void Move(Vector2 dir)
+        {
+            if (!enabled)
+                return;
+            _rb.velocity = dir.normalized * speed;
+
+            if (dir.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            } else if (dir.x > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+
+        private void Update()
+        {
+            animator.SetFloat(SpeedHashId, _rb.velocity.magnitude);
+        }
+
+        private void FixedUpdate()
+        {
+            data.SetCharacterPosition(transform.position);
+        }
     }
 }
