@@ -135,13 +135,11 @@ namespace MazeGeneration
         
         public void PlaceFloorObjectAtPosition(Vector3Int tilePosition, TileBase floorObject)
         {
-            RemoveTilesAtPos(tilePosition);
             floorObjectsTilemap.SetTile(tilePosition, floorObject);
         }
         
         public void PlaceWallObjectAtPosition(Vector3Int tilePosition, TileBase wallObject)
         {
-            RemoveTilesAtPos(tilePosition);
             wallObjectsTilemap.SetTile(tilePosition, wallObject);
         }
         
@@ -296,10 +294,10 @@ namespace MazeGeneration
         [NaughtyAttributes.Button]
         public void Center()
         {
-            floorSpriteTilemap.Center();
-            floorObjectsTilemap.Center();
-            wallSpriteTilemap.Center();
-            wallObjectsTilemap.Center();
+            var offset = wallSpriteTilemap.Center();
+            floorSpriteTilemap.MoveByOffset(offset);
+            floorObjectsTilemap.MoveByOffset(offset);
+            wallObjectsTilemap.MoveByOffset(offset);
         }
         
         [NaughtyAttributes.Button]
