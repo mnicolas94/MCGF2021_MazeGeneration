@@ -189,13 +189,9 @@ namespace Utils
             return bounds;
         }
 
-        public static void Center(this Tilemap tm)
+        public static void MoveByOffset(this Tilemap tm, Vector3Int offset)
         {
-            var cellBounds = tm.RealCellBounds();
             var tilesPositions = tm.GetTilePositions();
-            
-            int horizontalCenter = (cellBounds.xMin + cellBounds.xMax) / 2;
-            int verticalCenter = (cellBounds.yMin + cellBounds.yMax) / 2;
             var tiles = new Dictionary<Vector3Int, TileBase>();
             
             foreach (var tilePosition in tilesPositions)
@@ -207,12 +203,20 @@ namespace Utils
             foreach (var tilePosition in tiles.Keys)
             {
                 var tile = tiles[tilePosition];
-                int newHorizontalPos = tilePosition.x - horizontalCenter;
-                int newVerticalPos = tilePosition.y - verticalCenter;
-                var newTilePosition = new Vector3Int(newHorizontalPos, newVerticalPos, tilePosition.z);
-                
+                var newTilePosition = tilePosition + offset;
                 tm.SetTile(newTilePosition, tile);
             }
+        }
+        
+        public static Vector3Int Center(this Tilemap tm)
+        {
+            var cellBounds = tm.RealCellBounds();
+            int horizontalCenter = (cellBounds.xMin + cellBounds.xMax) / 2;
+            int verticalCenter = (cellBounds.yMin + cellBounds.yMax) / 2;
+            var offset = new Vector3Int(-horizontalCenter, -verticalCenter, 0);
+            tm.MoveByOffset(offset);
+
+            return offset;
         }
         
         public static void MirrorHorizontally(this Tilemap tm)
