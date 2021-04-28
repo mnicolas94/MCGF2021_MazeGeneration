@@ -31,6 +31,7 @@ public class PopUpOnPlayerNear : MonoBehaviour
         float sqrRadius = radius * radius;
         var characterOffsetedPosition = characterRuntimeData.CharacterPosition + characterRuntimeData.LineOfSightOffset;
         var toTarget = characterOffsetedPosition - transform.position;
+        toTarget.y *= characterRuntimeData.HorizontalScale;  // isometric circle, cartesian ellipsis
         float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
         bool inside = sqrDist < sqrRadius;
         bool toggle = inside ^ _inside;
