@@ -15,5 +15,5 @@ MonoBehaviour:
   detector: {fileID: 11400000, guid: 0eff4abacacc30c4d9cd5eea3bc4bec0, type: 2}
   tilemapToPlace: 3
   tile: {fileID: 11400000, guid: 87f9f626de796b442bca8f6dc6a2ce2b, type: 2}
-  minCount: 27
-  maxCount: 33
+  minCount: 30
+  maxCount: 30
