@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9185010094661215163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9185010094661215160}
+  - component: {fileID: 9185010094661215161}
+  m_Layer: 0
+  m_Name: InterestingPointsVisualizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9185010094661215160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185010094661215163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9185010095191335955}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9185010094661215161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185010094661215163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9141473db846b6ac3bb3efeac8d2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maze: {fileID: 0}
+  visualizerTilemap: {fileID: 0}
+  detectors:
+  - detector: {fileID: 11400000, guid: ba9937808bf565947bcfad6068be7e40, type: 2}
+    tile: {fileID: 11400000, guid: cff701b16b498d74fb71f265af2eba09, type: 2}
+    enabled: 0
+  - detector: {fileID: 11400000, guid: 82c027fa2cbd10a46a68cd2fbd06acb8, type: 2}
+    tile: {fileID: 11400000, guid: 7d9187b19bfaa5a4cb1507e98a33dbd3, type: 2}
+    enabled: 1
+  - detector: {fileID: 11400000, guid: e8123af0af1b9ad4a866743a979687f2, type: 2}
+    tile: {fileID: 11400000, guid: 64d62fa4b76e7934a898eb205bae7e46, type: 2}
+    enabled: 1
+--- !u!1 &9185010095191335956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9185010095191335955}
+  - component: {fileID: 9185010095191335954}
+  - component: {fileID: 9185010095191335957}
+  m_Layer: 0
+  m_Name: MazeGeneration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9185010095191335955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185010095191335956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9185010094661215160}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9185010095191335954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185010095191335956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4141e4febc4348b56bebf3fb89d7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazes:
+  - {fileID: 0}
+  generator: {fileID: 11400000, guid: b672820684b2c0f46a1fd8650e59b832, type: 2}
+  decorators:
+  - {fileID: 11400000, guid: f1715dff6a81c074fbdeca3f4fb98091, type: 2}
+  rooms:
+  - maze: {fileID: 5763810731033528453, guid: aba69a1919b05c144ae66055faff13b7, type: 3}
+    canBeRotated: 0
+  - maze: {fileID: 5763810731033528453, guid: ac88b9a71623723499c77d4642934405, type: 3}
+    canBeRotated: 1
+  - maze: {fileID: 9164181585915829681, guid: 7172748e903f0014f9d01dc83fed5ca6, type: 3}
+    canBeRotated: 1
+  - maze: {fileID: 5763810731033528453, guid: 792f0754c6f3ab84e9e756ede4d81c8d, type: 3}
+    canBeRotated: 0
+  - maze: {fileID: 5763810731033528453, guid: 7f83f4accd459af408d8a5034000b750, type: 3}
+    canBeRotated: 0
+  - maze: {fileID: 5763810731033528453, guid: 6bfd4ea88acd2c248aa89cfde86240c2, type: 3}
+    canBeRotated: 0
+  - maze: {fileID: 5763810731033528453, guid: 43c2be92020288e4989ffd21b2f11db9, type: 3}
+    canBeRotated: 0
+  genWidth: 39
+  genHeight: 39
+--- !u!114 &9185010095191335957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185010095191335956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094763caac61431792cb5b56f5b94aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeController: {fileID: 9185010095191335954}
+  key: 32
