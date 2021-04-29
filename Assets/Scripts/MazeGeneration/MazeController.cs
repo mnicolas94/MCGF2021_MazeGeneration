@@ -44,19 +44,20 @@ namespace MazeGeneration
             var generatedMaze = generator.GenerateMaze(width - 2, height - 2);
             maze.PopulateWallsAndFloor(generatedMaze, width, height);
             
-            AddRooms(maze, width, height);
+            var roomsMask = AddRooms(maze, width, height);
         
             // decorate
             foreach (var decorator in decorators)
             {
-                decorator.DecorateMaze(maze);
+                decorator.DecorateMaze(maze, roomsMask);
             }
         
             StartCoroutine(NotifyMazeGeneration(maze));
         }
 
-        private void AddRooms(Maze maze, int width, int height)
+        private List<Vector3Int> AddRooms(Maze maze, int width, int height)
         {
+            List<Vector3Int> mask = new List<Vector3Int>();
             var mazeWallsBounds = maze.WallSpriteTilemap.RealCellBounds();
             int minXWallBounds = mazeWallsBounds.xMin;
             int minYWallBounds = mazeWallsBounds.yMin;
@@ -100,96 +101,18 @@ namespace MazeGeneration
                     minXQuadrant, minYQuadrant, 0,
                     quadrantWidth, quadrantHeight, 1);
                 Vector3Int offset = GetRandomPosForRoom(instantiatedRoom, bounds);
-                AddRoom(instantiatedRoom, offset, maze);
+                AddRoom(instantiatedRoom, offset, maze, mask);
 #if UNITY_EDITOR
                 DestroyImmediate(instantiatedRoom.gameObject);
 #else
                 Destroy(instantiatedRoom.gameObject);
 #endif
             }
+
+            return mask;
         }
 
-        private void AddRoom(bool[][] maze, int mazeWidth, int mazeHeight)
-        {
-            int minRoomWidth = 5;
-            int minRoomHeight = 5;
-            int maxRoomWidth = mazeWidth - 6;
-            int maxRoomHeight = mazeHeight - 6;
-
-            if (maxRoomWidth > minRoomWidth && maxRoomHeight > minRoomHeight)
-            {
-                int roomWidth = Random.Range(minRoomWidth, maxRoomWidth);
-                int roomHeight = Random.Range(minRoomHeight, maxRoomHeight);
-                
-                roomWidth += 1 - roomWidth % 2;  // make sure is an odd number
-                roomHeight += 1 - roomHeight % 2;
-                
-                int minXPos = 2;
-                int minYPos = 2;
-                int maxXPos = mazeWidth - roomWidth - 3;
-                int maxYPos = mazeHeight - roomHeight - 3;
-                int leftPos = Random.Range(minXPos, maxXPos);
-                int bottomPos = Random.Range(minYPos, maxYPos);
-
-                leftPos += 1 - leftPos % 2;  // make sure is an odd number
-                bottomPos += 1 - bottomPos % 2;
-
-                int rightPos = leftPos + roomWidth - 1;
-                int topPos = bottomPos + roomHeight - 1;
-
-                for (int i = leftPos; i <= rightPos; i++)  // construct room
-                {
-                    for (int j = bottomPos; j <= topPos; j++)
-                    {
-                        if (i == leftPos || i == rightPos || j == bottomPos || j == topPos)  // room walls
-                        {
-                            maze[j][i] = false;
-                        }
-                        else  // room floor
-                        {
-                            maze[j][i] = true;
-                        }
-                    }
-                }
-
-                // make sure room does not prevents maze to be fully traversable
-                for (int i = leftPos; i <= rightPos; i++)
-                {
-                    maze[bottomPos - 1][i] = true;
-                    maze[topPos + 1][i] = true;
-                }
-                
-                for (int i = bottomPos; i <= topPos; i++)
-                {
-                    maze[i][leftPos - 1] = true;
-                    maze[i][rightPos + 1] = true;
-                }
-                
-                // open entrances
-                int numberEntrances = Random.Range(1, 5);  // [1,4]
-                var entrancesCoordinate = new List<Vector2Int>
-                {
-                    new Vector2Int(Random.Range(leftPos + 1, rightPos), bottomPos),
-                    new Vector2Int(Random.Range(leftPos + 1, rightPos), topPos),
-                    new Vector2Int(leftPos, Random.Range(bottomPos + 1, topPos)),
-                    new Vector2Int(rightPos, Random.Range(bottomPos + 1, topPos)),
-                };
-
-                while (numberEntrances > 0)
-                {
-                    int randIndex = Random.Range(0, entrancesCoordinate.Count);
-
-                    var entrance = entrancesCoordinate[randIndex];
-                    entrancesCoordinate.RemoveAt(randIndex);
-
-                    maze[entrance.y][entrance.x] = true;
-                    
-                    numberEntrances--;
-                }
-            }
-        }
-
-        private void AddRoom(Maze room, Vector3Int mazeOffset, Maze maze)
+        private void AddRoom(Maze room, Vector3Int mazeOffset, Maze maze, List<Vector3Int> mask)
         {
             var roomBounds = room.GetBounds();
             var roomOffset = roomBounds.size / 2;
@@ -200,6 +123,10 @@ namespace MazeGeneration
                 var offseted = floorPositions + offset;
                 var tile = room.FloorSpriteTilemap.GetTile(floorPositions);
                 maze.PlaceFloorAtPosition(offseted, tile);
+                if (!mask.Contains(offseted))
+                {
+                    mask.Add(offseted);
+                }
             }
             
             foreach (var wallPositions in room.GetWallPositions())
@@ -207,6 +134,10 @@ namespace MazeGeneration
                 var offseted = wallPositions + offset;
                 var tile = room.WallSpriteTilemap.GetTile(wallPositions);
                 maze.PlaceWallAtPosition(offseted, tile);
+                if (!mask.Contains(offseted))
+                {
+                    mask.Add(offseted);
+                }
             }
             
             foreach (var floorPositions in room.GetFloorObjectsPositions())
@@ -214,6 +145,10 @@ namespace MazeGeneration
                 var offseted = floorPositions + offset;
                 var tile = room.FloorObjectsTilemap.GetTile(floorPositions);
                 maze.PlaceFloorObjectAtPosition(offseted, tile);
+                if (!mask.Contains(offseted))
+                {
+                    mask.Add(offseted);
+                }
             }
             
             foreach (var wallPositions in room.GetWallObjectsPositions())
@@ -221,6 +156,10 @@ namespace MazeGeneration
                 var offseted = wallPositions + offset;
                 var tile = room.WallObjectsTilemap.GetTile(wallPositions);
                 maze.PlaceWallObjectAtPosition(offseted, tile);
+                if (!mask.Contains(offseted))
+                {
+                    mask.Add(offseted);
+                }
             }
         }
 
