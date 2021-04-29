@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc00a5c10b044ddb851aa58740349455, type: 3}
   m_Name: AssetTorchRightDecorator
   m_EditorClassIdentifier: 
-  detector: {fileID: 11400000, guid: 0eff4abacacc30c4d9cd5eea3bc4bec0, type: 2}
+  detector: {fileID: 11400000, guid: 731b3286c064c1d4786ac106accb1be3, type: 2}
   tilemapToPlace: 3
   tile: {fileID: 11400000, guid: 87f9f626de796b442bca8f6dc6a2ce2b, type: 2}
-  minCount: 30
-  maxCount: 30
+  minCount: 50
+  maxCount: 50
