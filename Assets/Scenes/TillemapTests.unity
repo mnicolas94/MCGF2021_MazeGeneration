@@ -19766,6 +19766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazecontroller: {fileID: 16575900}
+  maze: {fileID: 716802113}
+  cameraTransform: {fileID: 2031561845}
   playerController: {fileID: 328035120}
   playerRenderer: {fileID: 685251586}
   blackBackgroundCanvas: {fileID: 292187641}
