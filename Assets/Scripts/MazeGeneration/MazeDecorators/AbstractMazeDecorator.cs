@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace MazeGeneration.MazeDecorators
 {
@@ -8,6 +9,6 @@ namespace MazeGeneration.MazeDecorators
         /// Add decorative and environmental objects to a maze
         /// </summary>
         /// <param name="maze"></param> maze to decorate.
-        public abstract void DecorateMaze(Maze maze);
+        public abstract void DecorateMaze(Maze maze, List<Vector3Int> mask);
     }
 }
