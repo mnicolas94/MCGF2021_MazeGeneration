@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
 
     [SerializeField] private MazeController mazecontroller;
+    [SerializeField] private Maze maze;
+
+    [SerializeField] private Transform cameraTransform;
     
     [SerializeField] private PlayerController playerController;
     [SerializeField] private SpriteRenderer playerRenderer;
@@ -76,6 +79,8 @@ public class GameManager : MonoBehaviour
         blackBackgroundCanvas.gameObject.SetActive(false);
         
         // posicionar personaje en suelo (y camara en personaje)
+        var position = NearestFloor(Vector3.zero);
+        SetPlayerAndCameraPositions(position);
         
         // retroalimentación de progreso
         
@@ -98,5 +103,37 @@ public class GameManager : MonoBehaviour
         }
         
         lineOfSightData.SetLineOfSightRadius(losTarget);
+    }
+
+    private Vector3 NearestFloor(Vector3 position)
+    {
+        var floorPositions = maze.GetFloorPositions();
+
+        float minSqrDist = Mathf.Infinity;
+        Vector3 nearestPosition = Vector3.zero;
+        foreach (var pos in floorPositions)
+        {
+            var worldPosition = maze.Grid.CellToWorld(pos);
+
+            var dif = worldPosition - position;
+            float sqrDist = dif.x * dif.x + dif.y * dif.y;
+            if (sqrDist < minSqrDist)
+            {
+                minSqrDist = sqrDist;
+                nearestPosition = worldPosition;
+            }
+        }
+
+        return nearestPosition;
+    }
+
+    private void SetPlayerAndCameraPositions(Vector3 position)
+    {
+        float playerPosZ = playerController.transform.position.z;
+        float cameraPosZ = cameraTransform.position.z;
+        position.z = playerPosZ;
+        playerController.transform.position = position;
+        position.z = cameraPosZ;
+        cameraTransform.position = position;
     }
 }
