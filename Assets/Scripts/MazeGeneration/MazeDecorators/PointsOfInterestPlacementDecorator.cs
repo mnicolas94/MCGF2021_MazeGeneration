@@ -1,4 +1,5 @@
-﻿using MazeGeneration.InterestPointDetection;
+﻿using System.Collections.Generic;
+using MazeGeneration.InterestPointDetection;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,7 +14,7 @@ namespace MazeGeneration.MazeDecorators
         [SerializeField] private int minCount;
         [SerializeField] private int maxCount;
         
-        public override void DecorateMaze(Maze maze)
+        public override void DecorateMaze(Maze maze, List<Vector3Int> mask)
         {
             var points = detector.GetInterestingPoints(maze);
             int count = Random.Range(minCount, maxCount + 1);
@@ -25,10 +26,12 @@ namespace MazeGeneration.MazeDecorators
                 int pointIndex = Random.Range(0, points.Count);
                 var point = points[pointIndex];
                 points.RemoveAt(pointIndex);
-                
-                tilemap.SetTile(point, tile);
 
-                count--;
+                if (!mask.Contains(point))
+                {
+                    tilemap.SetTile(point, tile);
+                    count--;
+                }
             }
         }
     }
