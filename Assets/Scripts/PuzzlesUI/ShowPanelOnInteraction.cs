@@ -20,6 +20,7 @@ namespace PuzzlesUI
         private bool _moving;
         private void Start()
         {
+            panel.gameObject.SetActive(true);
             _originalPosition = panel.localPosition;
             float panelHalfWidth = panel.sizeDelta.y / 2;
             float canvasHalfHeight = canvas.renderingDisplaySize.y;

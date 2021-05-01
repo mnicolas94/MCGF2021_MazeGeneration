@@ -8,13 +8,7 @@ using Utils;
 
 public class PopUpOnPlayerNear : MonoBehaviour
 {
-    [SerializeField] private CharacterRuntimeData characterRuntimeData;
-    
-    [Space]
-    
-    [SerializeField] private float animDuration;
-    [SerializeField] private AnimationCurve popOutCurve;
-    [SerializeField] private AnimationCurve popInCurve;
+    [SerializeField] private LineOfSightData lineOfSightData;
     
     private bool _inside;
     private float _timeSinceLastChange;
@@ -27,11 +21,11 @@ public class PopUpOnPlayerNear : MonoBehaviour
 
     private void HandleDistanceToPlayer()
     {
-        float radius = characterRuntimeData.LineOfSightRadius;
+        float radius = lineOfSightData.LineOfSightRadius;
         float sqrRadius = radius * radius;
-        var characterOffsetedPosition = characterRuntimeData.CharacterPosition + characterRuntimeData.LineOfSightOffset;
+        var characterOffsetedPosition = lineOfSightData.CharacterPosition + lineOfSightData.LineOfSightOffset;
         var toTarget = characterOffsetedPosition - transform.position;
-        toTarget.y *= characterRuntimeData.HorizontalScale;  // isometric circle, cartesian ellipsis
+        toTarget.y *= lineOfSightData.HorizontalScale;  // isometric circle, cartesian ellipsis
         float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
         bool inside = sqrDist < sqrRadius;
         bool toggle = inside ^ _inside;
@@ -50,10 +44,10 @@ public class PopUpOnPlayerNear : MonoBehaviour
     private void SetScale()
     {
         float timeDiff = Time.time - _timeSinceLastChange;
-        float normTime = timeDiff / animDuration;
+        float normTime = timeDiff / lineOfSightData.AnimDuration;
         normTime = Mathf.Clamp01(normTime);
 
-        var curve = _inside ? popOutCurve : popInCurve;
+        var curve = _inside ? lineOfSightData.PopOutCurve : lineOfSightData.PopInCurve;
         float value = curve.Evaluate(normTime);
         
         var scale = transform.localScale;
