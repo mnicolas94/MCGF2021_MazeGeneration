@@ -7,6 +7,8 @@ namespace PuzzlesUI
 {
     public class ShowPanelOnInteraction : MonoBehaviour
     {
+        public Action eventShowed;
+        
         [SerializeField] private RectTransform panel;
         [SerializeField] private Canvas canvas;
         [Range(0.0f, 1.0f)]
@@ -43,6 +45,7 @@ namespace PuzzlesUI
             _targetPosition = _originalPosition;
             if (!_moving)
                 StartCoroutine(MoveToTarget());
+            eventShowed?.Invoke();
         }
         
         [NaughtyAttributes.Button]
