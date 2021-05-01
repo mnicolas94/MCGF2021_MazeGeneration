@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas blackBackgroundCanvas;
     [SerializeField] private int blackBackgroundSortingOrder;
     
-    [SerializeField] private CharacterRuntimeData lineOfSightData;
+    [SerializeField] private LineOfSightData lineOfSightData;
     [Range(0.0f, 1.0f)] [SerializeField] private float lineOfSightLerpSpeed;
     
     

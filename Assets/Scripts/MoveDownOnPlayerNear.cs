@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MoveDownOnPlayerNear : MonoBehaviour
 {
-    [SerializeField] private CharacterRuntimeData characterRuntimeData;
+    [SerializeField] private LineOfSightData characterRuntimeData;
     
     [Space]
     

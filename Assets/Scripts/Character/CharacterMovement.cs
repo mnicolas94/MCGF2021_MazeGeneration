@@ -8,7 +8,7 @@ namespace Character
     {
         public static int SpeedHashId = Animator.StringToHash("speed");
 
-        [SerializeField] private CharacterRuntimeData data;
+        [SerializeField] private LineOfSightData data;
         
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Animator animator;
