@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace PuzzlesUI.LeversPuzzle
+namespace Puzzles.LeversPuzzle
 {
     public class LeversPuzzleDiagram : MonoBehaviour
     {
