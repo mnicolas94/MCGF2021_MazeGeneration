@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace PuzzlesUI.NumbersPuzzle
+namespace Puzzles.NumbersPuzzle
 {
     public class NumbersPuzzleDiagram : MonoBehaviour
     {

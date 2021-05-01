@@ -12,5 +12,13 @@ namespace Editor
             var mazeController = Object.FindObjectOfType<MazeController>();
             mazeController.GenerateMaze();
         } 
+        
+        [MenuItem("Mazes/GenerateMazeWithPuzzles #&g")]
+        public static void GenerateMazeWithPuzzles()
+        {
+            var gameManager = Object.FindObjectOfType<GameManager>();
+            gameManager.GenerateMazeWithNewPuzzles();
+        }
     }
+     
 }

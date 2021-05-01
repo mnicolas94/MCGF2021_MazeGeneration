@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PuzzlesUI.LeversPuzzle
+namespace Puzzles.LeversPuzzle
 {
     public class Lever : MonoBehaviour
     {
