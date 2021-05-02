@@ -45,66 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d869a0fd4ccab85489cfe64af2a438c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
-  radius: 1.5
-  animDuration: 0.3
-  popOutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 1.5
-      inSlope: 0.0029934174
-      outSlope: 0.0029934174
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.4249997
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  popInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0.0000029194093
-      outSlope: 0.0000029194093
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.2041668
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -0.013166912
-      outSlope: -0.013166912
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.17916626
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  lineOfSightData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
 --- !u!114 &1134137280185652191
 MonoBehaviour:
   m_ObjectHideFlags: 0
