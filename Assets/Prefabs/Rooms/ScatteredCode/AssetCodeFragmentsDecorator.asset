@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc00a5c10b044ddb851aa58740349455, type: 3}
-  m_Name: AssetSpikesDecorator
+  m_Name: AssetCodeFragmentsDecorator
   m_EditorClassIdentifier: 
-  detector: {fileID: 11400000, guid: 82c027fa2cbd10a46a68cd2fbd06acb8, type: 2}
+  detector: {fileID: 11400000, guid: 21a5e4e52c1130a4e81ffa9b25c65f03, type: 2}
   tilemapToPlace: 2
-  tile: {fileID: 11400000, guid: bc4a2cafe2461004bb98ce5f455dbdc3, type: 2}
-  minCount: 20
-  maxCount: 40
+  tile: {fileID: 11400000, guid: 7245df1f60240484ab05e446263f3d2c, type: 2}
+  minCount: 4
+  maxCount: 4
