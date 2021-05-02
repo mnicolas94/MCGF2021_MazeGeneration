@@ -23,7 +23,17 @@ namespace MazeGeneration
         
         private List<AbstractMazeDecorator> _alternativeDecorators;
 
-        public List<AbstractMazeDecorator> AlternativeDecorators => _alternativeDecorators;
+        public List<AbstractMazeDecorator> AlternativeDecorators
+        {
+            get
+            {
+                if (_alternativeDecorators == null)
+                {
+                    _alternativeDecorators = new List<AbstractMazeDecorator>();
+                }
+                return _alternativeDecorators;
+            }
+        }
 
         void Awake()
         {
@@ -56,7 +66,7 @@ namespace MazeGeneration
                 decorator.DecorateMaze(maze, roomsMask);
             }
             
-            foreach (var decorator in _alternativeDecorators)
+            foreach (var decorator in AlternativeDecorators)
             {
                 decorator.DecorateMaze(maze, roomsMask);
             }
