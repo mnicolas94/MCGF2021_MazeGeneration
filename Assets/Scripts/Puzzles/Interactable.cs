@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace PuzzlesUI
+namespace Puzzles
 {
     public class Interactable : MonoBehaviour
     {
