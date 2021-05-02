@@ -9,6 +9,8 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public Action eventNewLevelStarted;
+    
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
@@ -32,7 +34,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int puzzlesPerLevel;
 
     private List<PuzzleData> _lastLevelPuzzles;
-    
+    private List<PuzzleData> LastLevelPuzzles
+    {
+        get
+        {
+            if (_lastLevelPuzzles == null)
+            {
+                _lastLevelPuzzles = new List<PuzzleData>();
+            }
+            return _lastLevelPuzzles;
+        }
+    }
+
     public Maze Maze => maze;
 
     private void Awake()
@@ -44,8 +57,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-        _lastLevelPuzzles = new List<PuzzleData>();
     }
 
     private void Start()
@@ -74,13 +85,15 @@ public class GameManager : MonoBehaviour
         // selección de items
         
         
+        // 2nd phase
+        eventNewLevelStarted?.Invoke();
+        
         // hide maze
         int playerSortingOrder = playerRenderer.sortingOrder;
         playerRenderer.sortingOrder = blackBackgroundSortingOrder;
         blackBackgroundCanvas.gameObject.SetActive(true);
 
         // generar maze
-        // seleccionar puzzles y ponerselos al maze controller
         GenerateMazeWithNewPuzzles();
 
         yield return null;
@@ -176,10 +189,10 @@ public class GameManager : MonoBehaviour
 
     public void GenerateMazeWithNewPuzzles()
     {
-        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, _lastLevelPuzzles);
+        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, LastLevelPuzzles);
         var rooms = new List<MazeData>();
         mazeController.AlternativeDecorators.Clear();
-        _lastLevelPuzzles.Clear();
+        LastLevelPuzzles.Clear();
         foreach (var puzzle in puzzlesToAdd)
         {
             foreach (var roomData in puzzle.RoomsData)
@@ -192,7 +205,7 @@ public class GameManager : MonoBehaviour
                 mazeController.AlternativeDecorators.Add(decorator);
             }
             
-            _lastLevelPuzzles.Add(puzzle);
+            LastLevelPuzzles.Add(puzzle);
         }
         
         mazeController.GenerateMaze(rooms);
