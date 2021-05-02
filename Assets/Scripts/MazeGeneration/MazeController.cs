@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -18,8 +18,22 @@ namespace MazeGeneration
         [SerializeField] private List<Maze> mazes;
         [SerializeField] private AbstractMazeGenerator generator;
         [SerializeField] private List<AbstractMazeDecorator> decorators;
-
+        
         [SerializeField] private List<MazeData> rooms;
+        
+        private List<AbstractMazeDecorator> _alternativeDecorators;
+
+        public List<AbstractMazeDecorator> AlternativeDecorators
+        {
+            get
+            {
+                if (_alternativeDecorators == null)
+                {
+                    _alternativeDecorators = new List<AbstractMazeDecorator>();
+                }
+                return _alternativeDecorators;
+            }
+        }
 
         void Awake()
         {
@@ -38,16 +52,21 @@ namespace MazeGeneration
             return go.GetComponentInParent<Maze>();
         }
     
-        public void GenerateMaze(Maze maze, int width, int height)
+        public void GenerateMaze(Maze maze, int width, int height, List<MazeData> roomsToAdd)
         {
             maze.ClearMaze();
             var generatedMaze = generator.GenerateMaze(width - 2, height - 2);
             maze.PopulateWallsAndFloor(generatedMaze, width, height);
             
-            var roomsMask = AddRooms(maze, width, height);
+            var roomsMask = AddRooms(maze, width, height, roomsToAdd);
         
             // decorate
             foreach (var decorator in decorators)
+            {
+                decorator.DecorateMaze(maze, roomsMask);
+            }
+            
+            foreach (var decorator in AlternativeDecorators)
             {
                 decorator.DecorateMaze(maze, roomsMask);
             }
@@ -55,13 +74,13 @@ namespace MazeGeneration
             StartCoroutine(NotifyMazeGeneration(maze));
         }
 
-        private List<Vector3Int> AddRooms(Maze maze, int width, int height)
+        private List<Vector3Int> AddRooms(Maze maze, int width, int height, List<MazeData> roomsToAdd)
         {
             List<Vector3Int> mask = new List<Vector3Int>();
             var mazeWallsBounds = maze.WallSpriteTilemap.RealCellBounds();
             int minXWallBounds = mazeWallsBounds.xMin;
             int minYWallBounds = mazeWallsBounds.yMin;
-            var roomsCopy = new List<MazeData>(rooms);
+            var roomsCopy = new List<MazeData>(roomsToAdd);
             var quadrants = new List<Vector2Int>
             {
                 new Vector2Int(0, 0),
@@ -222,7 +241,15 @@ namespace MazeGeneration
         {
             foreach (var maze in mazes)
             {
-                GenerateMaze(maze, genWidth, genHeight);
+                GenerateMaze(maze, genWidth, genHeight, rooms);
+            }
+        }
+        
+        public void GenerateMaze(List<MazeData> roomsToAdd)
+        {
+            foreach (var maze in mazes)
+            {
+                GenerateMaze(maze, genWidth, genHeight, roomsToAdd);
             }
         }
     }

@@ -21,7 +21,7 @@ namespace MazeGeneration.MazeDecorators
 
             var tilemap = maze.GetTileMap(tilemapToPlace);
             
-            while (count >= 0 && points.Count > 0)
+            while (count > 0 && points.Count > 0)
             {
                 int pointIndex = Random.Range(0, points.Count);
                 var point = points[pointIndex];
