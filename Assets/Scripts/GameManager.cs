@@ -98,13 +98,12 @@ public class GameManager : MonoBehaviour
 
         yield return null;
         
+        // posicionar cámara encima de personaje
+        SetCameraToPlayerPosition();
+        
         // show maze
         playerRenderer.sortingOrder = playerSortingOrder;
         blackBackgroundCanvas.gameObject.SetActive(false);
-        
-        // posicionar personaje en suelo (y camara en personaje)
-        var position = NearestFloor(Vector3.zero);
-        SetPlayerAndCameraPositions(position);
         
         // retroalimentación de progreso
         
@@ -129,36 +128,12 @@ public class GameManager : MonoBehaviour
         lineOfSightData.SetLineOfSightRadius(losTarget);
     }
 
-    private Vector3 NearestFloor(Vector3 position)
+    private void SetCameraToPlayerPosition()
     {
-        var floorPositions = maze.GetFloorPositions();
-
-        float minSqrDist = Mathf.Infinity;
-        Vector3 nearestPosition = Vector3.zero;
-        foreach (var pos in floorPositions)
-        {
-            var worldPosition = maze.Grid.CellToWorld(pos);
-
-            var dif = worldPosition - position;
-            float sqrDist = dif.x * dif.x + dif.y * dif.y;
-            if (sqrDist < minSqrDist)
-            {
-                minSqrDist = sqrDist;
-                nearestPosition = worldPosition;
-            }
-        }
-
-        return nearestPosition;
-    }
-
-    private void SetPlayerAndCameraPositions(Vector3 position)
-    {
-        float playerPosZ = playerController.transform.position.z;
         float cameraPosZ = cameraTransform.position.z;
-        position.z = playerPosZ;
-        playerController.transform.position = position;
-        position.z = cameraPosZ;
-        cameraTransform.position = position;
+        var playerPos = playerController.transform.position;
+        playerPos.z = cameraPosZ;
+        cameraTransform.position = playerPos;
     }
 
     private List<PuzzleData> GetRandomPuzzles(int count, List<PuzzleData> except)
@@ -187,9 +162,8 @@ public class GameManager : MonoBehaviour
         return ret;
     }
 
-    public void GenerateMazeWithNewPuzzles()
+    private List<MazeData> AddPuzzlesToMaze(List<PuzzleData> puzzlesToAdd)
     {
-        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, LastLevelPuzzles);
         var rooms = new List<MazeData>();
         mazeController.AlternativeDecorators.Clear();
         LastLevelPuzzles.Clear();
@@ -207,7 +181,33 @@ public class GameManager : MonoBehaviour
             
             LastLevelPuzzles.Add(puzzle);
         }
-        
+
+        return rooms;
+    }
+    
+    public void GenerateMazeWithNewPuzzles()
+    {
+        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, LastLevelPuzzles);
+        var rooms = AddPuzzlesToMaze(puzzlesToAdd);
         mazeController.GenerateMaze(rooms);
+    }
+    
+    public void GenerateMazeWithPuzzleIndex(int index=-1)
+    {
+        if (index == -1)
+        {
+            GenerateMazeWithNewPuzzles();
+        }
+        else
+        {
+            var puzzle = puzzles[index];
+            var puzzlesToAdd = new List<PuzzleData>()
+            {
+                puzzle
+            };
+            var rooms = AddPuzzlesToMaze(puzzlesToAdd);
+            var centerQuadrant = new List<Vector2Int> { Vector2Int.one };
+            mazeController.GenerateMaze(rooms, centerQuadrant);
+        }
     }
 }
