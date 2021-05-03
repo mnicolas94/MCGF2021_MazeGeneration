@@ -2,7 +2,8 @@
     "name": "com.thesolarmoose.mazegeneration.editor",
     "rootNamespace": "",
     "references": [
-        "GUID:17c9b436c446b80478c10c981341ad0d"
+        "GUID:17c9b436c446b80478c10c981341ad0d",
+        "GUID:3de88c88fbbb8f944b9210d496af9762"
     ],
     "includePlatforms": [
         "Editor"
