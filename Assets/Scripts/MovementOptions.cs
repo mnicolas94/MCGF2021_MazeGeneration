@@ -13,7 +13,6 @@ public class MovementOptions : ScriptableObject
 
     public MovementType movementType;
     
-
     public Vector2 GetTransformedMovementDirection(float x, float y)
     {
         switch (movementType)

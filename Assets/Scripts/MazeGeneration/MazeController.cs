@@ -1,12 +1,10 @@
 ﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using MazeGeneration.MazeDecorators;
+ using MazeGeneration.MazeDecorators;
 using MazeGeneration.MazeGenerators;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using Utils;
+ using Utils;
 using Random = UnityEngine.Random;
 
 namespace MazeGeneration
