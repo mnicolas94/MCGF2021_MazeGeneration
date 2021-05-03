@@ -162,9 +162,8 @@ public class GameManager : MonoBehaviour
         return ret;
     }
 
-    public void GenerateMazeWithNewPuzzles()
+    private List<MazeData> AddPuzzlesToMaze(List<PuzzleData> puzzlesToAdd)
     {
-        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, LastLevelPuzzles);
         var rooms = new List<MazeData>();
         mazeController.AlternativeDecorators.Clear();
         LastLevelPuzzles.Clear();
@@ -182,7 +181,33 @@ public class GameManager : MonoBehaviour
             
             LastLevelPuzzles.Add(puzzle);
         }
-        
+
+        return rooms;
+    }
+    
+    public void GenerateMazeWithNewPuzzles()
+    {
+        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, LastLevelPuzzles);
+        var rooms = AddPuzzlesToMaze(puzzlesToAdd);
         mazeController.GenerateMaze(rooms);
+    }
+    
+    public void GenerateMazeWithPuzzleIndex(int index=-1)
+    {
+        if (index == -1)
+        {
+            GenerateMazeWithNewPuzzles();
+        }
+        else
+        {
+            var puzzle = puzzles[index];
+            var puzzlesToAdd = new List<PuzzleData>()
+            {
+                puzzle
+            };
+            var rooms = AddPuzzlesToMaze(puzzlesToAdd);
+            var centerQuadrant = new List<Vector2Int> { Vector2Int.one };
+            mazeController.GenerateMaze(rooms, centerQuadrant);
+        }
     }
 }
