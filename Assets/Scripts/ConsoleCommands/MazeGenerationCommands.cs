@@ -2,7 +2,7 @@
 using MazeGeneration;
 using UnityEngine;
 
-namespace Editor.ConsoleCommands
+namespace ConsoleCommands
 {
     public class MazeGenerationCommands
     {
