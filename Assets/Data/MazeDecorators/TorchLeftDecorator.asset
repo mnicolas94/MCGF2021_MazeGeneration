@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc00a5c10b044ddb851aa58740349455, type: 3}
-  m_Name: AssetTorchRightDecorator
+  m_Name: TorchLeftDecorator
   m_EditorClassIdentifier: 
-  detector: {fileID: 11400000, guid: 731b3286c064c1d4786ac106accb1be3, type: 2}
+  detector: {fileID: 11400000, guid: c45d43e920afc644fb933601c8c5c28a, type: 2}
   tilemapToPlace: 3
-  tile: {fileID: 11400000, guid: 87f9f626de796b442bca8f6dc6a2ce2b, type: 2}
+  tile: {fileID: 11400000, guid: 3376a13bfe37a2045a85eb11a0b57c6b, type: 2}
   minCount: 50
   maxCount: 50

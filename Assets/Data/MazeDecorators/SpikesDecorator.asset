@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc00a5c10b044ddb851aa58740349455, type: 3}
-  m_Name: AssetSpikesDecorator
+  m_Name: SpikesDecorator
   m_EditorClassIdentifier: 
   detector: {fileID: 11400000, guid: 82c027fa2cbd10a46a68cd2fbd06acb8, type: 2}
   tilemapToPlace: 2
