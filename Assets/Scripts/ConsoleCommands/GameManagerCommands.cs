@@ -1,7 +1,6 @@
 ﻿using IngameDebugConsole;
-using UnityEngine;
 
-namespace Editor.ConsoleCommands
+namespace ConsoleCommands
 {
     public class GameManagerCommands
     {
