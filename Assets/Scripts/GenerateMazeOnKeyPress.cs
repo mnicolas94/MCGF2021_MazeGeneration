@@ -1,5 +1,4 @@
-﻿using System;
-using MazeGeneration;
+﻿using MazeGeneration;
 using UnityEngine;
 
 public class GenerateMazeOnKeyPress : MonoBehaviour
