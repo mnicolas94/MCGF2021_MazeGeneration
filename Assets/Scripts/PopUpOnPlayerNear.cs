@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Character;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using Utils;
 
 public class PopUpOnPlayerNear : MonoBehaviour
 {
