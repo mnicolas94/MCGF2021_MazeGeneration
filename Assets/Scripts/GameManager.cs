@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     public Maze Maze => maze;
 
+    public LineOfSightData LineOfSightData => lineOfSightData;
+
     private void Awake()
     {
         if (_instance == null)

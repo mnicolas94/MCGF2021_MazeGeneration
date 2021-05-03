@@ -1,24 +1,21 @@
-﻿using System.Runtime.InteropServices;
-using Character;
-using IngameDebugConsole;
-using UnityEditor;
+﻿using IngameDebugConsole;
 using UnityEngine;
 
-namespace Editor.ConsoleCommands
+namespace ConsoleCommands
 {
     public class LineOfSightCommands
     {
         [ConsoleMethod("maze.los_radius", "Log the line of sight radius")]
         public static void GetLineOfSightRadius()
         {
-            var lineOfSightData = AssetDatabase.LoadAssetAtPath<LineOfSightData>("Assets/Data/LineOfSightData.asset");
+            var lineOfSightData = GameManager.Instance.LineOfSightData;
             Debug.Log($"LoS = {lineOfSightData.LineOfSightRadius}");
         }
         
         [ConsoleMethod("maze.los_radius", "Set the line of sight radius")]
         public static void GetLineOfSightRadius(float los)
         {
-            var lineOfSightData = AssetDatabase.LoadAssetAtPath<LineOfSightData>("Assets/Data/LineOfSightData.asset");
+            var lineOfSightData = GameManager.Instance.LineOfSightData;
             lineOfSightData.SetLineOfSightRadius(los);
         }
     }

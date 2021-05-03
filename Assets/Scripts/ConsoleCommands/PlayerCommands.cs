@@ -1,8 +1,7 @@
 ﻿using IngameDebugConsole;
-using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Editor.ConsoleCommands
+namespace ConsoleCommands
 {
     public class PlayerCommands
     {
