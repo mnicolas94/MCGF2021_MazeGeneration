@@ -46,19 +46,14 @@ namespace MazeGeneration
                 Destroy(gameObject);
             }
         }
-
-        public Maze GetMazeParent(GameObject go)
-        {
-            return go.GetComponentInParent<Maze>();
-        }
     
-        public void GenerateMaze(Maze maze, int width, int height, List<MazeData> roomsToAdd)
+        public void GenerateMaze(Maze maze, int width, int height, List<MazeData> roomsToAdd, List<Vector2Int> quadrants)
         {
             maze.ClearMaze();
             var generatedMaze = generator.GenerateMaze(width - 2, height - 2);
             maze.PopulateWallsAndFloor(generatedMaze, width, height);
             
-            var roomsMask = AddRooms(maze, width, height, roomsToAdd);
+            var roomsMask = AddRooms(maze, width, height, roomsToAdd, quadrants);
         
             // decorate
             foreach (var decorator in decorators)
@@ -74,25 +69,13 @@ namespace MazeGeneration
             StartCoroutine(NotifyMazeGeneration(maze));
         }
 
-        private List<Vector3Int> AddRooms(Maze maze, int width, int height, List<MazeData> roomsToAdd)
+        private List<Vector3Int> AddRooms(Maze maze, int width, int height, List<MazeData> roomsToAdd, List<Vector2Int> quadrants)
         {
             List<Vector3Int> mask = new List<Vector3Int>();
             var mazeWallsBounds = maze.WallSpriteTilemap.RealCellBounds();
             int minXWallBounds = mazeWallsBounds.xMin;
             int minYWallBounds = mazeWallsBounds.yMin;
             var roomsCopy = new List<MazeData>(roomsToAdd);
-            var quadrants = new List<Vector2Int>
-            {
-                new Vector2Int(0, 0),
-                new Vector2Int(0, 1),
-                new Vector2Int(0, 2),
-                new Vector2Int(1, 0),
-                //new Vector2Int(1, 1),
-                new Vector2Int(1, 2),
-                new Vector2Int(2, 0),
-                new Vector2Int(2, 1),
-                new Vector2Int(2, 2),
-            };
             
             while (roomsCopy.Count > 0 && quadrants.Count > 0)
             {
@@ -241,7 +224,7 @@ namespace MazeGeneration
         {
             foreach (var maze in mazes)
             {
-                GenerateMaze(maze, genWidth, genHeight, rooms);
+                GenerateMaze(maze, genWidth, genHeight, rooms, GetDefaultQuadrants());
             }
         }
         
@@ -249,8 +232,33 @@ namespace MazeGeneration
         {
             foreach (var maze in mazes)
             {
-                GenerateMaze(maze, genWidth, genHeight, roomsToAdd);
+                GenerateMaze(maze, genWidth, genHeight, roomsToAdd, GetDefaultQuadrants());
             }
+        }
+        
+        public void GenerateMaze(List<MazeData> roomsToAdd, List<Vector2Int> quadrants)
+        {
+            foreach (var maze in mazes)
+            {
+                GenerateMaze(maze, genWidth, genHeight, roomsToAdd, quadrants);
+            }
+        }
+
+        private List<Vector2Int> GetDefaultQuadrants()
+        {
+            var quadrants = new List<Vector2Int>
+            {
+                new Vector2Int(0, 0),
+                new Vector2Int(0, 1),
+                new Vector2Int(0, 2),
+                new Vector2Int(1, 0),
+                //new Vector2Int(1, 1),
+                new Vector2Int(1, 2),
+                new Vector2Int(2, 0),
+                new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
+            };
+            return quadrants;
         }
     }
 
