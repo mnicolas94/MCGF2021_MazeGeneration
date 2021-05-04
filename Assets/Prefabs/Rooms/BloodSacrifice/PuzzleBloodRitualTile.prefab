@@ -193,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7965122237503790864, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_text
-      value: Perform a <color=#FF0000>Blood Sacrifice </color> (loose 1HP) [E]
+      value: Make a <color=#FF0000>Blood Sacrifice </color> (loose 1HP) [E]
       objectReference: {fileID: 0}
     - target: {fileID: 7965122237503790864, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_fontSize
