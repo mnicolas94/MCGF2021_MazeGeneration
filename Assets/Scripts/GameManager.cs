@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 
     public LineOfSightData LineOfSightData => lineOfSightData;
 
+    public PlayerController PlayerController => playerController;
+
     private void Awake()
     {
         if (_instance == null)
