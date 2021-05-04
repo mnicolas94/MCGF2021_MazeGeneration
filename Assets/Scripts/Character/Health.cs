@@ -16,6 +16,8 @@ namespace Character
 
         public int CurrentHealth => _currentHealth;
 
+        public int MaxHealth => stats.MaxHealth;
+
         public bool Invulnerable => invulnerable;
 
         public void SetInvulnerable(bool inv)
