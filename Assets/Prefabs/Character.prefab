@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1154921311917661898}
   - component: {fileID: 1154921311917661908}
   - component: {fileID: 7012275619885074385}
+  - component: {fileID: 2002551460787166478}
   - component: {fileID: 1154921311917661896}
   - component: {fileID: 1154921311917661899}
   - component: {fileID: 1154921311917661909}
@@ -131,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c2bbca08b9caaf43a9025017dfc1560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
   spriteRenderer: {fileID: 1154921311562377702}
   animator: {fileID: 1154921311917661896}
   speed: 2
@@ -162,6 +162,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: ce66689c7efefaf499180b9c9f7477cb, type: 2}
+  invulnerable: 0
+--- !u!114 &2002551460787166478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154921311917661903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ce40c6c0bcb8c4da209a564c0ded1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  losData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
+  characterTransform: {fileID: 1154921311917661897}
 --- !u!95 &1154921311917661896
 Animator:
   serializedVersion: 3

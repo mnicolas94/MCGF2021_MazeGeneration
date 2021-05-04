@@ -18,21 +18,43 @@ public class MovementOptions : ScriptableObject
         switch (movementType)
         {
             case MovementType.Cartesian:
-                return new Vector2(x, y);
+                return GetCartesianTransformation(x, y);
             case MovementType.IsometricUpLeft:
-                var dirLeft = new Vector2();
-                dirLeft.x = x - y;
-                dirLeft.y = (x + y) / 2;
-                return dirLeft;
+                return GetIsometricUpLeftTransformation(x, y);
             case MovementType.IsometricUpRight:
-                var dirRight = new Vector2();
-                dirRight.x = x + y;
-                dirRight.y = (-x + y) / 2;
-                return dirRight;
+                return GetIsometricUpRightTransformation(x, y);
             case MovementType.Hybrid:
-                return new Vector2(x, y / 2);
+                return GetHybridTransformation(x, y);
             default:
-                return new Vector2(x, y);
+                return GetCartesianTransformation(x, y);
         }
+    }
+
+    public static Vector2 GetCartesianTransformation(float x, float y)
+    {
+        return new Vector2(x, y);
+    }
+
+    public static Vector2 GetIsometricUpLeftTransformation(float x, float y)
+    {
+        return new Vector2
+        {
+            x = x - y,
+            y = (x + y) / 2
+        };
+    }
+    
+    public static Vector2 GetIsometricUpRightTransformation(float x, float y)
+    {
+        return new Vector2
+        {
+            x = x + y,
+            y = (-x + y) / 2
+        };
+    }
+    
+    public static Vector2 GetHybridTransformation(float x, float y)
+    {
+        return new Vector2(x, y / 2);
     }
 }

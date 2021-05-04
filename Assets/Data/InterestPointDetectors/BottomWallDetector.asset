@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e53efcfac14aa4a4f697c4d964bcbf, type: 3}
-  m_Name: AssetLeftMostEquidistantWalls
+  m_Script: {fileID: 11500000, guid: 947a74cc74da41f4920ddda4ec76a06d, type: 3}
+  m_Name: BottomWallDetector
   m_EditorClassIdentifier: 
-  detector: {fileID: 11400000, guid: f81d44821ccc6af4187a7f7522a35537, type: 2}
-  selectionCount: 50
