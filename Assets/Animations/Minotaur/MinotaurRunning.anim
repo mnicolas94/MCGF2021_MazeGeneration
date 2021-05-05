@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Running
+  m_Name: MinotaurRunning
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,12 +21,10 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 1ad2d67668540334ca90b4905a6ffb84, type: 3}
-    - time: 0.25
+    - time: 0.33333334
       value: {fileID: 21300000, guid: 4348c07752f2baf41b037e3351afd44e, type: 3}
-    - time: 0.5
+    - time: 0.6666667
       value: {fileID: 21300000, guid: 7199aca7f165033489b716c99a3fa76b, type: 3}
-    - time: 0.75
-      value: {fileID: 21300000, guid: 4955c4e97a48c00428e4224e26b44ad2, type: 3}
     - time: 1
       value: {fileID: 21300000, guid: 1ad2d67668540334ca90b4905a6ffb84, type: 3}
     attribute: m_Sprite
@@ -51,7 +49,6 @@ AnimationClip:
     - {fileID: 21300000, guid: 1ad2d67668540334ca90b4905a6ffb84, type: 3}
     - {fileID: 21300000, guid: 4348c07752f2baf41b037e3351afd44e, type: 3}
     - {fileID: 21300000, guid: 7199aca7f165033489b716c99a3fa76b, type: 3}
-    - {fileID: 21300000, guid: 4955c4e97a48c00428e4224e26b44ad2, type: 3}
     - {fileID: 21300000, guid: 1ad2d67668540334ca90b4905a6ffb84, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
