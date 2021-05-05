@@ -21924,7 +21924,7 @@ MonoBehaviour:
   - detector: {fileID: 11400000, guid: f81d44821ccc6af4187a7f7522a35537, type: 2}
     tile: {fileID: 11400000, guid: dd528a7c7bf5b1f499530801dffaed5f, type: 2}
     enabled: 0
-  - detector: {fileID: 11400000, guid: bd366de436ef186439aee3eef8bbb5ff, type: 2}
+  - detector: {fileID: 0}
     tile: {fileID: 11400000, guid: 604a47fe18a0f704999ff934f89f705b, type: 2}
     enabled: 1
 --- !u!1 &608879176
@@ -25786,11 +25786,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1154921311917661897, guid: e6f6698cb12ff1042bb9999a6176a83f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.18
+      value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 1154921311917661897, guid: e6f6698cb12ff1042bb9999a6176a83f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: 6.24
       objectReference: {fileID: 0}
     - target: {fileID: 1154921311917661897, guid: e6f6698cb12ff1042bb9999a6176a83f, type: 3}
       propertyPath: m_LocalPosition.z

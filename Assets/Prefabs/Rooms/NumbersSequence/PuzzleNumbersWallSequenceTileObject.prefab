@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2841543305110212941
 RectTransform:
   m_ObjectHideFlags: 0
@@ -141,10 +141,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4685
+  m_text: 4685123
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -445927032717951022, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7058610407184203240
@@ -336,10 +336,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8602061865135027404}
+  - component: {fileID: 8136053755326607310}
   - component: {fileID: 8602061865135027399}
   - component: {fileID: -5308514840442765024}
   - component: {fileID: 2474952191852286851}
-  - component: {fileID: 8136053755326607310}
   m_Layer: 0
   m_Name: PuzzleNumbersWallSequenceTileObject
   m_TagString: Untagged
@@ -363,6 +363,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8136053755326607310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8602061865135027405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38050d7f0fb24deb900aeed227452c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 4887913632536824513}
+  interactable: {fileID: 6017875795705261751}
 --- !u!114 &8602061865135027399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,9 +406,6 @@ MonoBehaviour:
   radius: 1
   playerPositionOffset: {x: 0, y: -0.5}
   maxVerticalDisplacement: 0.25
-  spriteRenderer: {fileID: 2474952191852286851}
-  downSortOrder: 0
-  upSortOrder: 1
 --- !u!212 &2474952191852286851
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -446,19 +457,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8136053755326607310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602061865135027405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38050d7f0fb24deb900aeed227452c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 4887913632536824513}
 --- !u!1001 &2947023311713319249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -537,3 +535,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3389241425771280967, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
   m_PrefabInstance: {fileID: 2947023311713319249}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6017875795705261751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8891834304848025574, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
+  m_PrefabInstance: {fileID: 2947023311713319249}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42365e1bc03225488a4758043137a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

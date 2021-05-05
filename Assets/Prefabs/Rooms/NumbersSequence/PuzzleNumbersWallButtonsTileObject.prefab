@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "1234567\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
   m_sharedMaterial: {fileID: -445927032717951022, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -512,8 +512,8 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 2
   m_RegexValue: 
-  m_GlobalPointSize: 80
-  m_CharacterLimit: 4
+  m_GlobalPointSize: 45
+  m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -632,9 +632,6 @@ MonoBehaviour:
   radius: 1
   playerPositionOffset: {x: 0, y: -0.5}
   maxVerticalDisplacement: 0.25
-  spriteRenderer: {fileID: 2474952191852286851}
-  downSortOrder: 0
-  upSortOrder: 1
 --- !u!212 &2474952191852286851
 SpriteRenderer:
   m_ObjectHideFlags: 0
