@@ -160,7 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f5557ad6318964cabb548ce6fe6ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
+  lineOfSightData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
   radius: 1
   playerPositionOffset: {x: 0, y: -0.5}
   maxVerticalDisplacement: 0.25
+  spriteRenderer: {fileID: 5712548626333416228}
+  downSortOrder: 0
+  upSortOrder: 1
