@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c9cd17284b4b719cba57f770233a46, type: 3}
   m_Name: LineOfSightData
   m_EditorClassIdentifier: 
-  lineOfSightRadius: 20
+  lineOfSightRadius: 2
   horizontalScale: 1.5
   lineOfSightOffset: {x: 0, y: 0.25, z: 0}
   animDuration: 0.3
