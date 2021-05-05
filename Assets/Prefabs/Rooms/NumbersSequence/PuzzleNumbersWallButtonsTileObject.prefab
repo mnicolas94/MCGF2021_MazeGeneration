@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "1234567\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
   m_sharedMaterial: {fileID: -445927032717951022, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -286,7 +286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0235, y: -25.70601}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 337.7454, y: 166.6536}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5277610811200573439
@@ -512,8 +512,8 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 2
   m_RegexValue: 
-  m_GlobalPointSize: 80
-  m_CharacterLimit: 4
+  m_GlobalPointSize: 45
+  m_CharacterLimit: 7
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f5557ad6318964cabb548ce6fe6ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRuntimeData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
+  lineOfSightData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
   radius: 1
   playerPositionOffset: {x: 0, y: -0.5}
   maxVerticalDisplacement: 0.25
