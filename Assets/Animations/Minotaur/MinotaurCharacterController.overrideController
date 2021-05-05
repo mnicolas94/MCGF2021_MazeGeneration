@@ -9,7 +9,7 @@ AnimatorOverrideController:
   m_Name: MinotaurCharacterController
   m_Controller: {fileID: 9100000, guid: 07e5def767646684cabc5b9a8a4bace3, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: b0da5be661892b14a83fd1aa6373ec58, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: ffd795621609f394d8f460cad61e8544, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: ead1e629ab1488c43b97f88d0a4656bb, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 2542cd90686bc474fb8186d1442c70a2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ffd795621609f394d8f460cad61e8544, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b0da5be661892b14a83fd1aa6373ec58, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2542cd90686bc474fb8186d1442c70a2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ead1e629ab1488c43b97f88d0a4656bb, type: 2}

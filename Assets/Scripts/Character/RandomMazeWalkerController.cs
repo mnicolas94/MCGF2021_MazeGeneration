@@ -24,6 +24,7 @@ namespace Character
         {
             _maze = GameManager.Instance.Maze;
             _path = new List<Vector3Int>();
+            _moveToPosition = transform.position;
             ComputeNextPath();
         }
 
@@ -62,9 +63,9 @@ namespace Character
 
         private void ComputeNextPath()
         {
-            var currentPosition = GetCurrentTilePosition();
-            var target = GetTargetPosition();
-            MazePaths.GetDfsPath(_maze.FloorSpriteTilemap, _path, currentPosition, target);
+            var from = _maze.Grid.WorldToCell(_moveToPosition);
+            var to = GetTargetPosition(from);
+            MazePaths.GetDfsPath(_maze.FloorSpriteTilemap, _path, from, to);
             _moveToPosition = transform.position;
             NextMovePosition();
         }
@@ -82,12 +83,10 @@ namespace Character
             return tilePosition;
         }
         
-        private Vector3Int GetTargetPosition()
+        private Vector3Int GetTargetPosition(Vector3Int initialPosition)
         {
-            var currentPosition = GetCurrentTilePosition();
-
             var position = _maze.FloorSpriteTilemap.GetRandomTilePosition();
-            while (position == currentPosition)
+            while (position == initialPosition)
             {
                 position = _maze.FloorSpriteTilemap.GetRandomTilePosition();
             }

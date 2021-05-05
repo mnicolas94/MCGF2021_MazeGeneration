@@ -15,6 +15,11 @@ namespace MazeGeneration
             var toVisitList = new LinkedList<(Vector3Int, int)>();
             toVisitList.AddFirst((from, 0));
             
+            if (!maze.HasTile(from))
+            {
+                Debug.Log("!!FROM not in MAZE!!!!!");
+            }
+            
             while (toVisitList.Count > 0)
             {
                 (var checkPosition, int count) = toVisitList.First.Value;
