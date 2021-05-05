@@ -318,5 +318,13 @@ namespace Utils
                 tm.SetTile(newTilePosition, tile);
             }
         }
+
+        public static Vector3Int GetRandomTilePosition(this Tilemap tm)
+        {
+            var positions = new List<Vector3Int>(tm.GetTilePositions());
+            int randomIndex = Random.Range(0, positions.Count);
+            var tilePosition = positions[randomIndex];
+            return tilePosition;
+        }
     }
 }

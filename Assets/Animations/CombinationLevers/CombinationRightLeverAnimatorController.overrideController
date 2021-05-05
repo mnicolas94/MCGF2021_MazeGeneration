@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CombinationRightLeverAnimatorController
+  m_Controller: {fileID: 9100000, guid: 6403344fb528a3e43b785ebfa42d90c0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d6ed957de3ffcf1498538c3a644411fa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3c46865526fcc0846977951899a7028f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 53c7866b058df20478336f0b339f3e94, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5aca01896b3b3c544b88f3e05f662806, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 02e0492841984fa459c13d57fd035049, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: aaf34492256aff14aa3d0e475ea1f5d1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b6645a2c182e9a24fb831117b145a3fd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ee43b326db1b7ce45898467865857ef1, type: 2}
