@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Collections.Generic;
 using MazeGeneration;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,7 +6,7 @@ using Utils;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-namespace Character
+namespace Character.Controllers
 {
     public class RandomMazeWalkerController : MonoBehaviour
     {

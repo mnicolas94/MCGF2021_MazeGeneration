@@ -1,5 +1,6 @@
 ﻿using System;
 using Character;
+using UI;
 using UnityEngine;
 
 namespace Puzzles.BloodSacrifice

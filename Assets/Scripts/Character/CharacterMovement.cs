@@ -34,10 +34,16 @@ namespace Character
                 spriteRenderer.flipX = false;
             }
         }
+        
+        public void Stop()
+        {
+            Move(Vector2.zero);
+        }
 
         private void Update()
         {
             animator.SetFloat(SpeedHashId, _rb.velocity.magnitude);
         }
+
     }
 }

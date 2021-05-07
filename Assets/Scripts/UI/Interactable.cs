@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using Utils;
 
-namespace Puzzles
+namespace UI
 {
     public class Interactable : MonoBehaviour
     {
