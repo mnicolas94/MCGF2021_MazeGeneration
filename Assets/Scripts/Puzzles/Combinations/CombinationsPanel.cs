@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Puzzles.LeversPuzzle;
+using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,7 +10,7 @@ namespace Puzzles.Combinations
     public class CombinationsPanel : MonoBehaviour
     {
         [SerializeField] private Interactable interactable;
-        [SerializeField] private ShowPanelOnInteraction panel;
+        [SerializeField] private ShowHidePanel panel;
 
         [SerializeField] private CombinationButton button1;
         [SerializeField] private CombinationButton button2;
@@ -75,15 +76,20 @@ namespace Puzzles.Combinations
 
             if (_buttonsPressOrder.Count == 3)  // all pressed
             {
-                var combination = new Vector3Int(
-                    _buttonsPressOrder[0],
-                    _buttonsPressOrder[1],
-                    _buttonsPressOrder[2]
-                    );
-                CloseAllLevers();
-                OpenLever(combination);
-                panel.HidePanel();
+                Invoke(nameof(OnAllButtonsPressed), 0.3f);
             }
+        }
+
+        private void OnAllButtonsPressed()
+        {
+            var combination = new Vector3Int(
+                _buttonsPressOrder[0],
+                _buttonsPressOrder[1],
+                _buttonsPressOrder[2]
+            );
+            CloseAllLevers();
+            OpenLever(combination);
+            panel.HidePanel();
         }
 
         private void ResetButtons()

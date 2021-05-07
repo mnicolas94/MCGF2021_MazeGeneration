@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
+using UI;
 using UnityEngine;
 
 namespace Puzzles.NumbersPuzzle
@@ -7,7 +8,7 @@ namespace Puzzles.NumbersPuzzle
     public class NumbersPuzzleInput : MonoBehaviour
     {
         [SerializeField] private TMP_InputField inputField;
-        [SerializeField] private ShowPanelOnInteraction panel;
+        [SerializeField] private ShowHidePanel panel;
 
         private NumbersPuzzleDiagram _diagram;
 
