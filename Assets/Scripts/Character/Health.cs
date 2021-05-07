@@ -1,4 +1,5 @@
 ﻿using System;
+using Character.Data;
 using UnityEngine;
 
 namespace Character
@@ -19,6 +20,8 @@ namespace Character
         public int MaxHealth => stats.MaxHealth;
 
         public bool Invulnerable => invulnerable;
+
+        public bool IsDead => _currentHealth <= 0;
 
         public void SetInvulnerable(bool inv)
         {

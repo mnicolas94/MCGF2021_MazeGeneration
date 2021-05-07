@@ -325,8 +325,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 2841543305110212941}
   canvas: {fileID: 9131505722242245176}
-  lerpSpeed: 0.08
+  upLerpSpeed: 0.1
+  downLerpSpeed: 0.1
+  arriveConditionThreshold: 3
   cancelAxis: Cancel
+  cancellable: 1
 --- !u!1 &8602061865135027405
 GameObject:
   m_ObjectHideFlags: 0

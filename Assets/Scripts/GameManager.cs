@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Battles;
 using Character;
+using Character.Controllers;
 using MazeGeneration;
 using Puzzles;
 using UnityEngine;
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     
     private static GameManager _instance;
     public static GameManager Instance => _instance;
+
+    [SerializeField] private BattleControllerUi battleController;
 
     [SerializeField] private MazeController mazeController;
     [SerializeField] private Maze maze;
@@ -51,6 +55,8 @@ public class GameManager : MonoBehaviour
     public LineOfSightData LineOfSightData => lineOfSightData;
 
     public PlayerController PlayerController => playerController;
+
+    public BattleControllerUi BattleController => battleController;
 
     private void Awake()
     {

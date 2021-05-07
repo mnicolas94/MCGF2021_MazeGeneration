@@ -115,8 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 6741882037671196554}
   canvas: {fileID: 313397613744588031}
-  lerpSpeed: 0.08
+  upLerpSpeed: 0.1
+  downLerpSpeed: 0.1
+  arriveConditionThreshold: 3
   cancelAxis: Cancel
+  cancellable: 1
 --- !u!1 &2025757604380872494
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,9 +583,6 @@ MonoBehaviour:
   radius: 1
   playerPositionOffset: {x: 0, y: -0.5}
   maxVerticalDisplacement: 0.25
-  spriteRenderer: {fileID: 2474952191852286851}
-  downSortOrder: 0
-  upSortOrder: 1
 --- !u!212 &2474952191852286851
 SpriteRenderer:
   m_ObjectHideFlags: 0
