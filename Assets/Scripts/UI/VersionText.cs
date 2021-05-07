@@ -16,7 +16,7 @@ namespace UI
         [NaughtyAttributes.Button]
         private void SetText()
         {
-            text.text = $"Build {GetProjectVersion()}";
+            text.text = $"Version {GetProjectVersion()}";
         }
         
         private string GetProjectVersion()

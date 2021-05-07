@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using UI;
 using UnityEngine;
 
 namespace Puzzles.LeversPuzzle
 {
     public class LeversPuzzleLevers : MonoBehaviour
     {
-        [SerializeField] private ShowPanelOnInteraction panel;
+        [SerializeField] private ShowHidePanel panel;
         
         [SerializeField] private Lever lever1;
         [SerializeField] private Lever lever2;

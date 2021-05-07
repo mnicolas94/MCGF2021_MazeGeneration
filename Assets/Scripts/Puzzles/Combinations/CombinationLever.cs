@@ -1,6 +1,7 @@
 ﻿using System;
 using Puzzles.LeversPuzzle;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ namespace Puzzles.Combinations
         public Action eventLeverStateChanged;
         
         [SerializeField] private Interactable interactable;
-        [SerializeField] private ShowPanelOnInteraction panel;
+        [SerializeField] private ShowHidePanel panel;
         [SerializeField] private TextMeshProUGUI numberText;
         
         [SerializeField] private Animator wallAnimator;

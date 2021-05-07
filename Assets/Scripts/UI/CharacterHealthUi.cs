@@ -8,9 +8,17 @@ namespace UI
     public class CharacterHealthUi : MonoBehaviour
     {
         [SerializeField] private Health characterHealth;
+        
+        [Space]
+        
         [SerializeField] private GameObject heartPrefab;
         [SerializeField] private GameObject heartlessPrefab;
         [SerializeField] private RectTransform heartsContainer;
+
+        public void SetCharacterHealth(Health health)
+        {
+            characterHealth = health;
+        }
         
         private IEnumerator Start()
         {

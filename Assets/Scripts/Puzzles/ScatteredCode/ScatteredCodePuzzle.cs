@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Items;
 using TMPro;
+using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ namespace Puzzles.ScatteredCode
     public class ScatteredCodePuzzle : MonoBehaviour
     {
         [SerializeField] private TMP_InputField inputField;
-        [SerializeField] private ShowPanelOnInteraction panel;
+        [SerializeField] private ShowHidePanel panel;
 
         [Space] [SerializeField] private Inventory inventory;
         [SerializeField] private Items.ScatteredCode scatteredCodeItem;

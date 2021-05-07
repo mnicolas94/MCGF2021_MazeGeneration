@@ -2,18 +2,23 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Puzzles
+namespace UI
 {
-    public class ShowPanelOnInteraction : MonoBehaviour
+    public class ShowHidePanel : MonoBehaviour
     {
         public Action eventShowed;
         
         [SerializeField] private RectTransform panel;
         [SerializeField] private Canvas canvas;
         [Range(0.0f, 1.0f)]
-        [SerializeField] private float lerpSpeed;
+        [SerializeField] private float upLerpSpeed;
+        [Range(0.0f, 1.0f)]
+        [SerializeField] private float downLerpSpeed;
+
+        [SerializeField] private float arriveConditionThreshold;
 
         [SerializeField] private string cancelAxis;
+        [SerializeField] private bool cancellable;
 
         private Vector3 _originalPosition;
         private Vector3 _hidePosition;
@@ -32,9 +37,12 @@ namespace Puzzles
 
         private void Update()
         {
-            if (Input.GetAxisRaw(cancelAxis) > 0E-5)
+            if (cancellable)
             {
-                HidePanel();
+                if (Input.GetButtonDown(cancelAxis))
+                {
+                    HidePanel();
+                }
             }
         }
 
@@ -43,7 +51,7 @@ namespace Puzzles
         {
             _targetPosition = _originalPosition;
             if (!_moving)
-                StartCoroutine(MoveToTarget());
+                StartCoroutine(MoveToTarget(upLerpSpeed));
             eventShowed?.Invoke();
         }
         
@@ -52,13 +60,13 @@ namespace Puzzles
         {
             _targetPosition = _hidePosition;
             if (!_moving)
-                StartCoroutine(MoveToTarget());
+                StartCoroutine(MoveToTarget(downLerpSpeed));
         }
 
-        private IEnumerator MoveToTarget()
+        private IEnumerator MoveToTarget(float lerpSpeed)
         {
             _moving = true;
-            while ((panel.localPosition - _targetPosition).magnitude > 0E-3)
+            while ((panel.localPosition - _targetPosition).magnitude > arriveConditionThreshold)
             {
                 panel.localPosition = Vector3.Lerp(panel.localPosition, _targetPosition, lerpSpeed);
                 yield return null;
