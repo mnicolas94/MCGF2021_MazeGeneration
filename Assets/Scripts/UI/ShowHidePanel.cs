@@ -23,6 +23,7 @@ namespace UI
         private Vector3 _originalPosition;
         private Vector3 _hidePosition;
         private Vector3 _targetPosition;
+        private float _targetLerpSpeed;
         private bool _moving;
         private void Start()
         {
@@ -50,8 +51,9 @@ namespace UI
         public void ShowPanel()
         {
             _targetPosition = _originalPosition;
+            _targetLerpSpeed = upLerpSpeed;
             if (!_moving)
-                StartCoroutine(MoveToTarget(upLerpSpeed));
+                StartCoroutine(MoveToTarget());
             eventShowed?.Invoke();
         }
         
@@ -59,16 +61,17 @@ namespace UI
         public void HidePanel()
         {
             _targetPosition = _hidePosition;
+            _targetLerpSpeed = downLerpSpeed;
             if (!_moving)
-                StartCoroutine(MoveToTarget(downLerpSpeed));
+                StartCoroutine(MoveToTarget());
         }
 
-        private IEnumerator MoveToTarget(float lerpSpeed)
+        private IEnumerator MoveToTarget()
         {
             _moving = true;
             while ((panel.localPosition - _targetPosition).magnitude > arriveConditionThreshold)
             {
-                panel.localPosition = Vector3.Lerp(panel.localPosition, _targetPosition, lerpSpeed);
+                panel.localPosition = Vector3.Lerp(panel.localPosition, _targetPosition, _targetLerpSpeed);
                 yield return null;
             }
 
