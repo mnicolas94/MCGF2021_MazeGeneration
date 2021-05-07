@@ -2,7 +2,7 @@
 
 namespace Character
 {
-    [CreateAssetMenu(fileName = "CharacterRuntimeData", menuName = "Character/CharacterRuntimeData", order = 0)]
+    [CreateAssetMenu(fileName = "LineOfSightData", menuName = "LoS/LineOfSightData", order = 0)]
     public class LineOfSightData : ScriptableObject
     {
         private Vector3 _characterPosition;

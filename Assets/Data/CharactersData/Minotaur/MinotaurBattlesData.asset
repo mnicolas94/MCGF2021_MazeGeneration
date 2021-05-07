@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6357d150d2400d9f8f28c2aaad9d73, type: 3}
+  m_Name: MinotaurBattlesData
+  m_EditorClassIdentifier: 
+  battleSprite: {fileID: 21300000, guid: 4955c4e97a48c00428e4224e26b44ad2, type: 3}
+  nameColor: {r: 1, g: 0.1726008, b: 0, a: 1}
+  startBattleDialogues:
+  - I will destroy you human!!!
+  - ROOOAAAAAARRRRRR!
+  attacks:
+  - chanceWeight: 0.9
+    attack: {fileID: 11400000, guid: 5b8dfe74d147b924f91e9a37dfef18d2, type: 2}
+  - chanceWeight: 0.1
+    attack: {fileID: 11400000, guid: 6be6649ff26331e40ace42cdece448fd, type: 2}

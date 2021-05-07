@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Character;
+using Character.Controllers;
 using UnityEngine;
 
 namespace MazeGeneration.InterestPointDetection
