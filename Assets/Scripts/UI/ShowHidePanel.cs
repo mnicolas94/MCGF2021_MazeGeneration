@@ -2,22 +2,28 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Puzzles
+namespace UI
 {
-    public class ShowPanelOnInteraction : MonoBehaviour
+    public class ShowHidePanel : MonoBehaviour
     {
         public Action eventShowed;
         
         [SerializeField] private RectTransform panel;
         [SerializeField] private Canvas canvas;
         [Range(0.0f, 1.0f)]
-        [SerializeField] private float lerpSpeed;
+        [SerializeField] private float upLerpSpeed;
+        [Range(0.0f, 1.0f)]
+        [SerializeField] private float downLerpSpeed;
+
+        [SerializeField] private float arriveConditionThreshold;
 
         [SerializeField] private string cancelAxis;
+        [SerializeField] private bool cancellable;
 
         private Vector3 _originalPosition;
         private Vector3 _hidePosition;
         private Vector3 _targetPosition;
+        private float _targetLerpSpeed;
         private bool _moving;
         private void Start()
         {
@@ -32,9 +38,12 @@ namespace Puzzles
 
         private void Update()
         {
-            if (Input.GetAxisRaw(cancelAxis) > 0E-5)
+            if (cancellable)
             {
-                HidePanel();
+                if (Input.GetButtonDown(cancelAxis))
+                {
+                    HidePanel();
+                }
             }
         }
 
@@ -42,6 +51,7 @@ namespace Puzzles
         public void ShowPanel()
         {
             _targetPosition = _originalPosition;
+            _targetLerpSpeed = upLerpSpeed;
             if (!_moving)
                 StartCoroutine(MoveToTarget());
             eventShowed?.Invoke();
@@ -51,6 +61,7 @@ namespace Puzzles
         public void HidePanel()
         {
             _targetPosition = _hidePosition;
+            _targetLerpSpeed = downLerpSpeed;
             if (!_moving)
                 StartCoroutine(MoveToTarget());
         }
@@ -58,9 +69,9 @@ namespace Puzzles
         private IEnumerator MoveToTarget()
         {
             _moving = true;
-            while ((panel.localPosition - _targetPosition).magnitude > 0E-3)
+            while ((panel.localPosition - _targetPosition).magnitude > arriveConditionThreshold)
             {
-                panel.localPosition = Vector3.Lerp(panel.localPosition, _targetPosition, lerpSpeed);
+                panel.localPosition = Vector3.Lerp(panel.localPosition, _targetPosition, _targetLerpSpeed);
                 yield return null;
             }
 

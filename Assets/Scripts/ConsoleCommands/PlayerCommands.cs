@@ -1,4 +1,5 @@
-﻿using IngameDebugConsole;
+﻿using Character;
+using IngameDebugConsole;
 using UnityEngine.Tilemaps;
 
 namespace ConsoleCommands
@@ -10,6 +11,8 @@ namespace ConsoleCommands
         {
             var wallsCollider = GameManager.Instance.Maze.WallSpriteTilemap.GetComponent<TilemapCollider2D>();
             wallsCollider.enabled = !enable;
+            var playerHealth = GameManager.Instance.PlayerController.GetComponent<Health>();
+            playerHealth.SetInvulnerable(enable);
         }
     }
 }

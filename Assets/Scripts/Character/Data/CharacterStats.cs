@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Character
+namespace Character.Data
 {
     [CreateAssetMenu(fileName = "CharacterStats", menuName = "Stats/CharacterStats")]
     public class CharacterStats : ScriptableObject
@@ -10,11 +10,10 @@ namespace Character
         
         [SerializeField] private int maxHealth;
         
-        [Range(0.0f, 1.0f)]
-        [SerializeField] private float attackChance;
+        [SerializeField] [Range(0.0f, 1.0f)] private float firstHitChance;
+        [SerializeField] [Range(0.0f, 1.0f)] private float hitChance;
 
         public int MaxHealth => maxHealth;
-
         public void SetMaxHealth(int newMax)
         {
             int oldMax = maxHealth;
@@ -25,6 +24,9 @@ namespace Character
                 eventMaxHealthChanged?.Invoke(oldMax, newMax);
             }
         }
-        
+
+        public float FirstHitChance => firstHitChance;
+
+        public float HitChance => hitChance;
     }
 }
