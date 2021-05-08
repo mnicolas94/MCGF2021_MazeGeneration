@@ -20,8 +20,12 @@ namespace Items
             bool alreadyInInventory = items.Contains(item);
             if (!alreadyInInventory)
             {
-                items.Add(item);
-                eventItemAdded?.Invoke(item);
+                if (!item.Consumable)
+                {
+                    items.Add(item);
+                    eventItemAdded?.Invoke(item);
+                }
+                item.ApplyEffectOnPickUp();
             }
         }
         
@@ -42,6 +46,11 @@ namespace Items
             {
                 eventItemUpdated?.Invoke(item);
             }
+        }
+
+        public void Clear()
+        {
+            items.Clear();
         }
     }
 }

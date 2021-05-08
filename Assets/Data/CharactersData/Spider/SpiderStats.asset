@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44e326b43874ccba41576bc04fe4b86, type: 3}
   m_Name: SpiderStats
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 1
   firstHitChance: 0.5
   hitChance: 0.5

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Items
+namespace Items.Implementations
 {
     [CreateAssetMenu(fileName = "ScatteredCode", menuName = "Items/ScatteredCode", order = 0)]
     public class ScatteredCode : Item

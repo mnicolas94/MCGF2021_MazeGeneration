@@ -9,11 +9,15 @@ namespace Character.Data
         public Action<int, int> eventMaxHealthChanged;
         
         [SerializeField] private int maxHealth;
-        
         [SerializeField] [Range(0.0f, 1.0f)] private float firstHitChance;
         [SerializeField] [Range(0.0f, 1.0f)] private float hitChance;
 
         public int MaxHealth => maxHealth;
+
+        public float FirstHitChance => firstHitChance;
+
+        public float HitChance => hitChance;
+
         public void SetMaxHealth(int newMax)
         {
             int oldMax = maxHealth;
@@ -24,9 +28,17 @@ namespace Character.Data
                 eventMaxHealthChanged?.Invoke(oldMax, newMax);
             }
         }
+        
+        public void SetHitChance(float chance)
+        {
+            hitChance = chance;
+        }
 
-        public float FirstHitChance => firstHitChance;
-
-        public float HitChance => hitChance;
+        public void CopyFrom(CharacterStats otherStats)
+        {
+            maxHealth = otherStats.maxHealth;
+            firstHitChance = otherStats.firstHitChance;
+            hitChance = otherStats.hitChance;
+        }
     }
 }
