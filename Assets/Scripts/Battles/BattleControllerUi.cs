@@ -38,7 +38,6 @@ namespace Battles
         private void Start()
         {
             _controller = new BattleController();
-//            canvas.SetActive(false);
             panel.HidePanel();
         }
 

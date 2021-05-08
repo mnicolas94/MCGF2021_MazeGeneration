@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Items
 {
@@ -8,6 +9,11 @@ namespace Items
         [SerializeField] private RectTransform itemsContainer;
 
         [SerializeField] private ItemBehaviour itemBehaviourPrefab;
+
+        private void Awake()
+        {
+            inventory.Clear();
+        }
 
         private void Start()
         {
