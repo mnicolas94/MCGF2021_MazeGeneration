@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Battles;
 using Character;
 using Character.Controllers;
+using Items;
 using MazeGeneration;
 using Puzzles;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
 
     [SerializeField] private BattleControllerUi battleController;
+    [SerializeField] private ItemSelectionsUi itemSelectionPanel;
 
     [SerializeField] private MazeController mazeController;
     [SerializeField] private Maze maze;
@@ -50,6 +52,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private float _currentLineOfSightRadius;
+
     public Maze Maze => maze;
 
     public LineOfSightData LineOfSightData => lineOfSightData;
@@ -77,10 +81,10 @@ public class GameManager : MonoBehaviour
     [NaughtyAttributes.Button]
     public void NotifyPuzzleSolved()
     {
-        StartCoroutine(LevelTransitionFirstPhase());
+        StartCoroutine(FinishLevelCoroutine());
     }
 
-    private IEnumerator LevelTransitionFirstPhase()
+    private IEnumerator FinishLevelCoroutine()
     {
         // desabilitar input
         playerController.enabled = false;
@@ -89,12 +93,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         
         // animación reducir LoS
-        float currentLineOfSightRadius = lineOfSightData.LineOfSightRadius;
-        yield return LerpLineOfSightToTargetValue(0);
+        _currentLineOfSightRadius = lineOfSightData.LineOfSightRadius;
+        yield return LerpLineOfSightToTargetValue(0, lineOfSightLerpSpeed);
         
         // selección de items
-        
-        
+        itemSelectionPanel.ShowItemSelectionPanel();
+        itemSelectionPanel.eventItemSelectionFinished = null;
+        itemSelectionPanel.eventItemSelectionFinished += StartSecondPhaseLevelTransition;
+    }
+
+    private IEnumerator StartLevelCoroutine()
+    {
         // 2nd phase
         eventNewLevelStarted?.Invoke();
         
@@ -118,18 +127,23 @@ public class GameManager : MonoBehaviour
         // retroalimentación de progreso
         
         // animación aumentar LoS
-        yield return LerpLineOfSightToTargetValue(currentLineOfSightRadius);
+        yield return LerpLineOfSightToTargetValue(_currentLineOfSightRadius, lineOfSightLerpSpeed);
 
         // habilitar input
         playerController.enabled = true;
     }
+    
+    private void StartSecondPhaseLevelTransition()
+    {
+        StartCoroutine(StartLevelCoroutine());
+    }
 
-    private IEnumerator LerpLineOfSightToTargetValue(float losTarget)
+    private IEnumerator LerpLineOfSightToTargetValue(float losTarget, float lerpSpeed)
     {
         float dif = Mathf.Abs(lineOfSightData.LineOfSightRadius - losTarget);
         while (dif > 1E-3)
         {
-            float lerpValue = Mathf.Lerp(lineOfSightData.LineOfSightRadius, losTarget, lineOfSightLerpSpeed);
+            float lerpValue = Mathf.Lerp(lineOfSightData.LineOfSightRadius, losTarget, lerpSpeed);
             lineOfSightData.SetLineOfSightRadius(lerpValue);
             dif = Mathf.Abs(lineOfSightData.LineOfSightRadius - losTarget);
             yield return null;

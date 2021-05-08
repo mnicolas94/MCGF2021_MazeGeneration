@@ -14,5 +14,12 @@ namespace ConsoleCommands
             var playerHealth = GameManager.Instance.PlayerController.GetComponent<Health>();
             playerHealth.SetInvulnerable(enable);
         }
+        
+        [ConsoleMethod("maze.player.max_heal", "Heals the player")]
+        public static void MaxHeal()
+        {
+            var playerHealth = GameManager.Instance.PlayerController.GetComponent<Health>();
+            playerHealth.Heal(playerHealth.MaxHealth);
+        }
     }
 }

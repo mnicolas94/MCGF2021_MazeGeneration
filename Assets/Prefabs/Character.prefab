@@ -190,7 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b6f9f3c8bf4eddb925a122a4f93d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: 11b46f5935b327f4799666475548eb39, type: 2}
+  runtimeCharacterData: {fileID: 11400000, guid: 11b46f5935b327f4799666475548eb39, type: 2}
+  persistentCharacterStatistics: {fileID: 11400000, guid: 7def635c1c967e2488350f2a1d7a20ff, type: 2}
   characterHealth: {fileID: 7012275619885074385}
 --- !u!95 &1154921311917661896
 Animator:

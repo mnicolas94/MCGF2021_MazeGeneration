@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ScatteredCode
   m_EditorClassIdentifier: 
   uiSprite: {fileID: 0}
-  itemName: Scatterede Code
+  itemName: Scattered Code
   description: Code spread through the maze in pieces of papers
+  consumable: 0
   uiText: 0000
