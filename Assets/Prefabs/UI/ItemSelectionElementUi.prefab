@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3110955807538104654}
   - component: {fileID: 6137522774062928637}
   m_Layer: 0
-  m_Name: Item
+  m_Name: ItemSelectionElementUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

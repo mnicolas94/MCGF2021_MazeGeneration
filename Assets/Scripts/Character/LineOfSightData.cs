@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Character
 {
@@ -8,6 +9,7 @@ namespace Character
         private Vector3 _characterPosition;
         
         [SerializeField] private float lineOfSightRadius;
+        private float _lineOfSightRadiusRuntime;
         [SerializeField] private float horizontalScale;
         [SerializeField] private Vector3 lineOfSightOffset;
         
@@ -17,7 +19,7 @@ namespace Character
         
         public Vector3 CharacterPosition => _characterPosition;
 
-        public float LineOfSightRadius => lineOfSightRadius;
+        public float LineOfSightRadius => _lineOfSightRadiusRuntime;
 
         public Vector3 LineOfSightOffset => lineOfSightOffset;
 
@@ -36,7 +38,12 @@ namespace Character
 
         public void SetLineOfSightRadius(float los)
         {
-            lineOfSightRadius = los;
+            _lineOfSightRadiusRuntime = los;
+        }
+
+        private void OnEnable()
+        {
+            _lineOfSightRadiusRuntime = lineOfSightRadius;
         }
     }
 }
