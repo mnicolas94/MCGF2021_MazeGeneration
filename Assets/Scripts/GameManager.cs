@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
+    [SerializeField] private bool initLevelOnStart;
+
     [SerializeField] private BattleControllerUi battleController;
     [SerializeField] private ItemSelectionsUi itemSelectionPanel;
 
@@ -76,35 +78,23 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         blackBackgroundCanvas.gameObject.SetActive(false);
-    }
+        itemSelectionPanel.eventItemSelectionFinished += StartLevel;
 
-    [NaughtyAttributes.Button]
-    public void NotifyPuzzleSolved()
-    {
-        StartCoroutine(FinishLevelCoroutine());
-    }
-
-    private IEnumerator FinishLevelCoroutine()
-    {
-        // desabilitar input
-        playerController.enabled = false;
-        
-        // wait some time e.g. 1 sec
-        yield return new WaitForSeconds(1);
-        
-        // animación reducir LoS
         _currentLineOfSightRadius = lineOfSightData.LineOfSightRadius;
-        yield return LerpLineOfSightToTargetValue(0, lineOfSightLerpSpeed);
-        
-        // selección de items
-        itemSelectionPanel.ShowItemSelectionPanel();
-        itemSelectionPanel.eventItemSelectionFinished = null;
-        itemSelectionPanel.eventItemSelectionFinished += StartSecondPhaseLevelTransition;
-    }
 
+        if (initLevelOnStart)
+        {
+            StartLevel();
+        }
+    }
+    
+    private void StartLevel()
+    {
+        StartCoroutine(StartLevelCoroutine());
+    }
+    
     private IEnumerator StartLevelCoroutine()
     {
-        // 2nd phase
         eventNewLevelStarted?.Invoke();
         
         // hide maze
@@ -127,15 +117,38 @@ public class GameManager : MonoBehaviour
         // retroalimentación de progreso
         
         // animación aumentar LoS
+        yield return LerpLineOfSightToTargetValue(0, 1);  // make sure LoS radius is 0
         yield return LerpLineOfSightToTargetValue(_currentLineOfSightRadius, lineOfSightLerpSpeed);
 
         // habilitar input
         playerController.enabled = true;
     }
     
-    private void StartSecondPhaseLevelTransition()
+    [NaughtyAttributes.Button]
+    public void NotifyPuzzleSolved()
     {
-        StartCoroutine(StartLevelCoroutine());
+        FinishLevel();
+    }
+
+    private void FinishLevel()
+    {
+        StartCoroutine(FinishLevelCoroutine());
+    }
+    
+    private IEnumerator FinishLevelCoroutine()
+    {
+        // desabilitar input
+        playerController.enabled = false;
+        
+        // wait some time e.g. 1 sec
+        yield return new WaitForSeconds(1);
+        
+        // animación reducir LoS
+        _currentLineOfSightRadius = lineOfSightData.LineOfSightRadius;
+        yield return LerpLineOfSightToTargetValue(0, lineOfSightLerpSpeed);
+        
+        // selección de items
+        itemSelectionPanel.ShowItemSelectionPanel();
     }
 
     private IEnumerator LerpLineOfSightToTargetValue(float losTarget, float lerpSpeed)

@@ -11,10 +11,7 @@ namespace Utils
         
         private void Awake()
         {
-//            foreach (var obj in objectsToReset)
-//            {
-//                obj.("Reset", 0f);
-//            }
+            
         }
     }
 }
