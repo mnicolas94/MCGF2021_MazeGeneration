@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 8106215494680314700}
+  spriteRenderer: {fileID: 6618451941491242011}
+  skeletonWithoutKey: {fileID: 21300000, guid: 7095e3af12b525642b0c7090b9b10855, type: 3}
 --- !u!114 &8602061865135027399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +102,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7095e3af12b525642b0c7090b9b10855, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de8fd35419f0e504caad3efdeeeb3080, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
