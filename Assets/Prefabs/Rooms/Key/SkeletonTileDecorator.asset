@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc00a5c10b044ddb851aa58740349455, type: 3}
   m_Name: SkeletonTileDecorator
   m_EditorClassIdentifier: 
-  detector: {fileID: 0}
+  detector: {fileID: 11400000, guid: 21a5e4e52c1130a4e81ffa9b25c65f03, type: 2}
   tilemapToPlace: 0
-  tile: {fileID: 0}
-  minCount: 0
-  maxCount: 0
+  tile: {fileID: 11400000, guid: 3d1285bd8aaa5c045b7fb547bdf8d903, type: 2}
+  minCount: 1
+  maxCount: 1

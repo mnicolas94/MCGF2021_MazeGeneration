@@ -9,6 +9,8 @@ namespace Puzzles.Key
         public Action eventInteracted;
         
         [SerializeField] private Interactable interactable;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Sprite skeletonWithoutKey;
 
         private void Start()
         {
@@ -18,6 +20,8 @@ namespace Puzzles.Key
         private void OnInteraction()
         {
             eventInteracted?.Invoke();
+            spriteRenderer.sprite = skeletonWithoutKey;
+            interactable.gameObject.SetActive(false);
         }
     }
 }
