@@ -14,7 +14,7 @@ namespace Puzzles.ScatteredCode
         [SerializeField] private ShowHidePanel panel;
 
         [Space] [SerializeField] private Inventory inventory;
-        [SerializeField] private Items.Implementations.ScatteredCode scatteredCodeItem;
+        [SerializeField] private Items.Implementations.DoNothingItem scatteredCodeItem;
         [SerializeField] private List<Sprite> fragmentsItemSprites;
 
         private string _generatedCode;
