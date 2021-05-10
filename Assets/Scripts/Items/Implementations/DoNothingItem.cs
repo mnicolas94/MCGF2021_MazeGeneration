@@ -2,8 +2,8 @@
 
 namespace Items.Implementations
 {
-    [CreateAssetMenu(fileName = "ScatteredCode", menuName = "Items/ScatteredCode", order = 0)]
-    public class ScatteredCode : Item
+    [CreateAssetMenu(fileName = "DoNothingItem", menuName = "Items/DoNothingItem", order = 0)]
+    public class DoNothingItem : Item
     {
         public override void ApplyEffectOnPickUp()
         {
