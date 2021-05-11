@@ -22,7 +22,7 @@ namespace ConsoleCommands
         [ConsoleMethod("maze.restart_level", "Restarts the level")]
         public static void RestartLevel()
         {
-            GameManager.Instance.NotifyPuzzleSolved();
+            GameManager.Instance.RestartLevel();
         }
     }
 }

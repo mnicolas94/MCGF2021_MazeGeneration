@@ -10,6 +10,10 @@ namespace Puzzles.King
 {
     public class King : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private DialogueSequence kingDialogue;
         [SerializeField] private Interactable interactable;
         
@@ -45,7 +49,7 @@ namespace Puzzles.King
         
         private void OnMinotaurDead()
         {
-            var coroutine = WaitForBattleToEnd(GameManager.Instance.NotifyPuzzleSolved);
+            var coroutine = WaitForBattleToEnd(() => GameManager.Instance.NotifyPuzzleSolved(puzzle));
             StartCoroutine(coroutine);
         }
 

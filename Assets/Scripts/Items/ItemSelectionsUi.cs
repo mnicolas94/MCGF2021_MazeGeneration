@@ -8,8 +8,6 @@ namespace Items
 {
     public class ItemSelectionsUi : MonoBehaviour
     {
-        public Action eventItemSelectionFinished;
-        
         [SerializeField] private RectTransform itemsContainer;
         [SerializeField] private ItemSelectionElementUi itemPrefab;
         [SerializeField] private ShowHidePanel panel;
@@ -18,8 +16,13 @@ namespace Items
         [SerializeField] private Inventory inventory;
         [SerializeField] private int itemsToSelect;
 
+        private bool _selectingItems;
+
+        public bool SelectingItems => _selectingItems;
+
         public void ShowItemSelectionPanel()
         {
+            _selectingItems = true;
             panel.ShowPanel();
             PopulatePanel();
         }
@@ -27,6 +30,7 @@ namespace Items
         public void HideItemSelectionPanel()
         {
             panel.HidePanel();
+            _selectingItems = false;
         }
 
         private void PopulatePanel()
@@ -47,7 +51,6 @@ namespace Items
         {
             inventory.AddItem(item);
             HideItemSelectionPanel();
-            eventItemSelectionFinished?.Invoke();
         }
 
         private void ClearPanel()

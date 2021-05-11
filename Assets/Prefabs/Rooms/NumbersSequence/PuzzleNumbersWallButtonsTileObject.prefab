@@ -604,6 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb018acdfc0d4a8c89478c2919b16bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: e9080dbc6a49287468e8197a79e40a13, type: 2}
   inputField: {fileID: 668856873494395847}
   panel: {fileID: 4805850498728119132}
 --- !u!114 &8602061865135027399

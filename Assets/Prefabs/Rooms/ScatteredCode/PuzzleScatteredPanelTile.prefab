@@ -484,6 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a413d37c48844de69bb67d0c85741e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: aa910fb891e335544b33021274a3386d, type: 2}
   inputField: {fileID: 5878251118525534673}
   panel: {fileID: 1903387014915760458}
   inventory: {fileID: 11400000, guid: c764c5f3546d4fb448a38bba528fe0ed, type: 2}
