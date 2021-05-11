@@ -15,4 +15,5 @@ MonoBehaviour:
   roomsData:
   - maze: {fileID: 5763810731033528453, guid: 51df2320e06727f4488fc05932f7722b, type: 3}
     canBeRotated: 0
-  decorators: []
+  decorators:
+  - {fileID: 11400000, guid: 0d1e5958b70040a40bc6f43cc13bb5f4, type: 2}

@@ -14,20 +14,29 @@ namespace Items
         [SerializeField] private List<Item> items;
 
         public List<Item> Items => new List<Item>(items);  // returns a copy
+
+        public bool HasItem(Item item)
+        {
+            return items.Contains(item);
+        }
         
         public void AddItem(Item item)
         {
-            bool alreadyInInventory = items.Contains(item);
+            bool alreadyInInventory = HasItem(item);
             if (!alreadyInInventory)
             {
-                items.Add(item);
-                eventItemAdded?.Invoke(item);
+                if (!item.Consumable)
+                {
+                    items.Add(item);
+                    eventItemAdded?.Invoke(item);
+                }
+                item.ApplyEffectOnPickUp();
             }
         }
         
         public void RemoveItem(Item item)
         {
-            bool inInventory = items.Contains(item);
+            bool inInventory = HasItem(item);
             if (inInventory)
             {
                 items.Remove(item);
@@ -37,11 +46,16 @@ namespace Items
 
         public void UpdateItem(Item item)
         {
-            bool inInventory = items.Contains(item);
+            bool inInventory = HasItem(item);
             if (inInventory)
             {
                 eventItemUpdated?.Invoke(item);
             }
+        }
+
+        public void Clear()
+        {
+            items.Clear();
         }
     }
 }

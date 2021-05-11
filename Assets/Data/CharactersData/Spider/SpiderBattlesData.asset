@@ -16,7 +16,7 @@ MonoBehaviour:
   nameColor: {r: 0.4223243, g: 1, b: 0, a: 1}
   startBattleDialogues:
   - ...
-  - '*Nothing, spiders don''t talk*'
+  - <Nothing, spiders don't talk>
   attacks:
   - chanceWeight: 1
     attack: {fileID: 11400000, guid: b4aa760324b42a24c985447b328b14d3, type: 2}

@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015def7cbd22408ab8da26d1de8bc17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: 61aa969c9f399dc41b25964dc9a0dd9c, type: 2}
   frequencies:
   - note: 0
     freq: 261.6

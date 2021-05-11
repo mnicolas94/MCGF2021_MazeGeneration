@@ -234,6 +234,22 @@ namespace MazeGeneration
             }
         }
         
+        public void GenerateMaze(int mazeWidth, int mazeHeight, List<MazeData> roomsToAdd)
+        {
+            foreach (var maze in mazes)
+            {
+                GenerateMaze(maze, mazeWidth, mazeHeight, roomsToAdd, GetDefaultQuadrants());
+            }
+        }
+        
+        public void GenerateMaze(int mazeWidth, int mazeHeight, List<MazeData> roomsToAdd, List<Vector2Int> quadrants)
+        {
+            foreach (var maze in mazes)
+            {
+                GenerateMaze(maze, mazeWidth, mazeHeight, roomsToAdd, quadrants);
+            }
+        }
+        
         public void GenerateMaze(List<MazeData> roomsToAdd, List<Vector2Int> quadrants)
         {
             foreach (var maze in mazes)
