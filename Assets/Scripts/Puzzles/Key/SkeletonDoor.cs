@@ -31,6 +31,7 @@ namespace Puzzles.Key
         {
             if (inventory.HasItem(keyItem))
             {
+                inventory.RemoveItem(keyItem);
                 GameManager.Instance.NotifyPuzzleSolved();
             }
             else
