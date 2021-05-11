@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de27d6fd9b64d8fbf8436b075fe25b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: 02350e8128012d04f8a8c046defaa2a8, type: 2}
   interactable: {fileID: 5946629102927675687}
   damage: 1
 --- !u!114 &8602061865135027399

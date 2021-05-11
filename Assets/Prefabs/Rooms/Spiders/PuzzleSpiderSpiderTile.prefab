@@ -339,9 +339,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8602061865135027404}
+  - component: {fileID: 2539622665444790570}
   - component: {fileID: 8602061865135027399}
   - component: {fileID: 6618451941491242011}
-  - component: {fileID: 2539622665444790570}
   m_Layer: 0
   m_Name: PuzzleSpiderSpiderTile
   m_TagString: Untagged
@@ -365,6 +365,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2539622665444790570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8602061865135027405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1939166e59574c57a9dab60216179195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: 9ef42da7fa92e3a41ac960cb09cb5246, type: 2}
+  spidersTag: Spider
+  timeAfterBattleToNotifyPuzzleSolved: 0.5
 --- !u!114 &8602061865135027399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,20 +444,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2539622665444790570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602061865135027405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1939166e59574c57a9dab60216179195, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spidersTag: Spider
-  timeAfterBattleToNotifyPuzzleSolved: 0.5
 --- !u!1001 &7538368913652386340
 PrefabInstance:
   m_ObjectHideFlags: 0

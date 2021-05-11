@@ -98,7 +98,7 @@ namespace Battles
             ShowBattleStartMessage(playerData, enemyData);
         }
 
-        private void EndBattle()
+        public void EndBattle()
         {
             // ocultar canvas
             HideBlackBackground();

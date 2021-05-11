@@ -7,6 +7,10 @@ namespace Puzzles.Spiders
 {
     public class SpidersPuzzleController : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private string spidersTag;
         [SerializeField] private float timeAfterBattleToNotifyPuzzleSolved;
         
@@ -32,7 +36,7 @@ namespace Puzzles.Spiders
 
             if (IsPuzzleSolved())
             {
-                var coroutine = WaitForBattleToEnd(GameManager.Instance.NotifyPuzzleSolved);
+                var coroutine = WaitForBattleToEnd(() => GameManager.Instance.NotifyPuzzleSolved(puzzle));
                 StartCoroutine(coroutine);
             }
         }
