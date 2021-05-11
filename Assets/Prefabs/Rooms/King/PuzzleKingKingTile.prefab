@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761aac1375634ca4aa8bc88b11498694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: 653fece48b9fc7747ac9a3893c5e3640, type: 2}
   kingDialogue: {fileID: 0}
   interactable: {fileID: 1625048468290195759}
   timeAfterBattleToNotifyPuzzleSolved: 0.5
