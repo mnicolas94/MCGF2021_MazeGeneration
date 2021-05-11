@@ -6,6 +6,10 @@ namespace Puzzles.LeversPuzzle
 {
     public class LeversPuzzleLevers : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private ShowHidePanel panel;
         
         [SerializeField] private Lever lever1;
@@ -34,7 +38,7 @@ namespace Puzzles.LeversPuzzle
             if (codeIsRight && _diagram.InteractedAtLeastOnce)
             {
                 panel.HidePanel();
-                GameManager.Instance.NotifyPuzzleSolved();
+                GameManager.Instance.NotifyPuzzleSolved(puzzle);
             }
         }
 

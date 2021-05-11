@@ -711,6 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08841f2588be40f8aae03761d1297dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: c477f34ea461d69468d78f620a20c776, type: 2}
   interactable: {fileID: 8950713412738848636}
   panel: {fileID: 5495970564054760697}
   button1: {fileID: 9120117827396321120}

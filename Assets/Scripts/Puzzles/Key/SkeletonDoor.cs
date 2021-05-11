@@ -9,6 +9,10 @@ namespace Puzzles.Key
 {
     public class SkeletonDoor : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private DoNothingItem keyItem;
         [SerializeField] private Inventory inventory;
         [SerializeField] private Interactable doorInteractable;
@@ -18,6 +22,7 @@ namespace Puzzles.Key
 
         private IEnumerator Start()
         {
+            GameManager.Instance.eventFinishedLevel += OnLevelFinished;
             doorInteractable.eventInteracted.AddListener(OnInteractedWithDoor);
             doorInteractable.eventLeavedInteractionArea.AddListener(messagePanel.HidePanel);
             
@@ -31,7 +36,8 @@ namespace Puzzles.Key
         {
             if (inventory.HasItem(keyItem))
             {
-                GameManager.Instance.NotifyPuzzleSolved();
+                inventory.RemoveItem(keyItem);
+                GameManager.Instance.NotifyPuzzleSolved(puzzle);
             }
             else
             {
@@ -42,6 +48,11 @@ namespace Puzzles.Key
         private void OnInteractedWithSkeleton()
         {
             inventory.AddItem(keyItem);
+        }
+
+        private void OnLevelFinished()
+        {
+            inventory.RemoveItem(keyItem);
         }
     }
 }

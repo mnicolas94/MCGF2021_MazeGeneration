@@ -9,6 +9,10 @@ namespace Puzzles.Combinations
 {
     public class CombinationsPanel : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private Interactable interactable;
         [SerializeField] private ShowHidePanel panel;
 
@@ -178,7 +182,7 @@ namespace Puzzles.Combinations
         private void NotifyPuzzleSolved()
         {
             CloseAllLeversPanels();
-            GameManager.Instance.NotifyPuzzleSolved();
+            GameManager.Instance.NotifyPuzzleSolved(puzzle);
         }
     }
 }
