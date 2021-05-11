@@ -7,6 +7,10 @@ namespace Puzzles.NumbersPuzzle
 {
     public class NumbersPuzzleInput : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private ShowHidePanel panel;
 
@@ -26,7 +30,7 @@ namespace Puzzles.NumbersPuzzle
             if (text == _diagram.GeneratedSequence)
             {
                 panel.HidePanel();
-                GameManager.Instance.NotifyPuzzleSolved();
+                GameManager.Instance.NotifyPuzzleSolved(puzzle);
             }
         }
 

@@ -788,6 +788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be90d352850466b850c0e60a67c79bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzle: {fileID: 11400000, guid: 8deafda4165c99248b535d1020dfde49, type: 2}
   panel: {fileID: 7577399045027590184}
   lever1: {fileID: 4036978413584708885}
   lever2: {fileID: 8319628024136640420}

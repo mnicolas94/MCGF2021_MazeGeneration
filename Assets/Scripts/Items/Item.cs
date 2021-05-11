@@ -7,6 +7,7 @@ namespace Items
         [SerializeField] private Sprite uiSprite;
         [SerializeField] private string itemName;
         [SerializeField] private string description;
+        [SerializeField] private bool consumable;
 
         [Space]
         
@@ -17,6 +18,8 @@ namespace Items
         public string ItemName => itemName;
 
         public string Description => description;
+
+        public bool Consumable => consumable;
 
         public string UiText => uiText;
 

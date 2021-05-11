@@ -9,6 +9,10 @@ namespace Puzzles.Musical
 {
     public class MusicalPuzzlePanel : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private List<NoteFrequency> frequencies;
         [SerializeField] private List<NoteSprite> sprites;
 
@@ -85,7 +89,7 @@ namespace Puzzles.Musical
             bool solved = CheckPuzzleSolved();
             if (solved)
             {
-                GameManager.Instance.NotifyPuzzleSolved();
+                GameManager.Instance.NotifyPuzzleSolved(puzzle);
             }
         }
 

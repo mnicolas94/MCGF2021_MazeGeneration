@@ -7,6 +7,10 @@ namespace Puzzles.BloodSacrifice
 {
     public class BloodSacrifice : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private Interactable interactable;
         [SerializeField] private int damage;
         
@@ -20,7 +24,7 @@ namespace Puzzles.BloodSacrifice
             interactable.gameObject.SetActive(false);
             var health = GameManager.Instance.PlayerController.GetComponent<Health>();
             health.DoDamage(damage);
-            GameManager.Instance.NotifyPuzzleSolved();
+            GameManager.Instance.NotifyPuzzleSolved(puzzle);
         }
     }
 }

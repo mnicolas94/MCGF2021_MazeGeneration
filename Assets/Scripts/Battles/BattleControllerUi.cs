@@ -38,7 +38,6 @@ namespace Battles
         private void Start()
         {
             _controller = new BattleController();
-//            canvas.SetActive(false);
             panel.HidePanel();
         }
 
@@ -99,7 +98,7 @@ namespace Battles
             ShowBattleStartMessage(playerData, enemyData);
         }
 
-        private void EndBattle()
+        public void EndBattle()
         {
             // ocultar canvas
             HideBlackBackground();

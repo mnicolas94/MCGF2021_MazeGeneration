@@ -10,11 +10,15 @@ namespace Puzzles.ScatteredCode
 {
     public class ScatteredCodePuzzle : MonoBehaviour
     {
+        [SerializeField] private PuzzleData puzzle;
+        
+        [Space]
+        
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private ShowHidePanel panel;
 
         [Space] [SerializeField] private Inventory inventory;
-        [SerializeField] private Items.ScatteredCode scatteredCodeItem;
+        [SerializeField] private Items.Implementations.DoNothingItem scatteredCodeItem;
         [SerializeField] private List<Sprite> fragmentsItemSprites;
 
         private string _generatedCode;
@@ -28,7 +32,7 @@ namespace Puzzles.ScatteredCode
 
             _generatedCode = GenerateCode();
 
-            GameManager.Instance.eventNewLevelStarted += OnNewLevelStarted;
+            GameManager.Instance.eventFinishedLevel += OnFinishedLevel;
 
             yield return null;  // wait one frame for decorator to spawn fragments
 
@@ -40,7 +44,7 @@ namespace Puzzles.ScatteredCode
             }
         }
 
-        private void OnNewLevelStarted()
+        private void OnFinishedLevel()
         {
             inventory.RemoveItem(scatteredCodeItem);
         }
@@ -71,7 +75,7 @@ namespace Puzzles.ScatteredCode
             if (text == _generatedCode && AllFragmentsPickedUp())
             {
                 panel.HidePanel();
-                GameManager.Instance.NotifyPuzzleSolved();
+                GameManager.Instance.NotifyPuzzleSolved(puzzle);
             }
         }
         
