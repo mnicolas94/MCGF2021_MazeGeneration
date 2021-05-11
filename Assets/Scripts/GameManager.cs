@@ -38,8 +38,11 @@ public class GameManager : MonoBehaviour
 
     [Space]
     
+    [SerializeField] private List<LevelData> levels;
     [SerializeField] private List<PuzzleData> puzzles;
     [SerializeField] private int puzzlesPerLevel;
+
+    [SerializeField] private int currentLevel;
 
     private List<PuzzleData> _lastLevelPuzzles;
     private List<PuzzleData> LastLevelPuzzles
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
 
         if (initLevelOnStart)
         {
+            currentLevel = 0;
             StartLevel();
         }
     }
@@ -137,6 +141,8 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator FinishLevelCoroutine()
     {
+        currentLevel++;
+
         // desabilitar input
         playerController.enabled = false;
         
@@ -173,9 +179,8 @@ public class GameManager : MonoBehaviour
         cameraTransform.position = playerPos;
     }
 
-    private List<PuzzleData> GetRandomPuzzles(int count, List<PuzzleData> except)
+    private List<PuzzleData> GetRandomPuzzles(int count, List<PuzzleData> puzzlesAvailable, List<PuzzleData> except)
     {
-        List<PuzzleData> puzzlesAvailable = new List<PuzzleData>(puzzles);
         List<PuzzleData> ret = new List<PuzzleData>();
         
         foreach (var exc in except)
@@ -224,9 +229,13 @@ public class GameManager : MonoBehaviour
     
     public void GenerateMazeWithNewPuzzles()
     {
-        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, LastLevelPuzzles);
+        int currentLevelIndex = Math.Min(currentLevel, levels.Count - 1);
+        var currentLevelData = levels[currentLevelIndex];
+        var availablePuzzles = new List<PuzzleData>(currentLevelData.Puzzles);
+        var puzzlesToAdd = GetRandomPuzzles(puzzlesPerLevel, availablePuzzles, LastLevelPuzzles);
         var rooms = AddPuzzlesToMaze(puzzlesToAdd);
-        mazeController.GenerateMaze(rooms);
+        var quadrants = new List<Vector2Int>(currentLevelData.Quadrants);
+        mazeController.GenerateMaze(currentLevelData.MazeWidth, currentLevelData.MazeHeight, rooms, quadrants);
     }
     
     public void GenerateMazeWithPuzzleIndex(int index=-1)
@@ -238,12 +247,16 @@ public class GameManager : MonoBehaviour
         else
         {
             var puzzle = puzzles[index];
-            var puzzlesToAdd = new List<PuzzleData>()
+            var puzzlesToAdd = new List<PuzzleData>
             {
                 puzzle
             };
             var rooms = AddPuzzlesToMaze(puzzlesToAdd);
-            var centerQuadrant = new List<Vector2Int> { Vector2Int.one };
+            var centerQuadrant = new List<Vector2Int>
+            {
+                Vector2Int.one,
+                Vector2Int.one + Vector2Int.left
+            };
             mazeController.GenerateMaze(rooms, centerQuadrant);
         }
     }
