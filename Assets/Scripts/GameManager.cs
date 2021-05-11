@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     public BattleControllerUi BattleController => battleController;
 
+    public int CurrentLevel => currentLevel;
+
     private void Awake()
     {
         if (_instance == null)
