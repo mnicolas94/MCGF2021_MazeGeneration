@@ -23994,7 +23994,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa910fb891e335544b33021274a3386d, type: 2}
   - {fileID: 11400000, guid: 9ef42da7fa92e3a41ac960cb09cb5246, type: 2}
   puzzlesPerLevel: 3
-  currentLevel: 0
+  currentLevel: 5
 --- !u!4 &733591320
 Transform:
   m_ObjectHideFlags: 0
@@ -28339,11 +28339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1154921311917661897, guid: e6f6698cb12ff1042bb9999a6176a83f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.92
       objectReference: {fileID: 0}
     - target: {fileID: 1154921311917661897, guid: e6f6698cb12ff1042bb9999a6176a83f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.92
       objectReference: {fileID: 0}
     - target: {fileID: 1154921311917661897, guid: e6f6698cb12ff1042bb9999a6176a83f, type: 3}
       propertyPath: m_LocalPosition.z

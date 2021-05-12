@@ -132,6 +132,17 @@ public class GameManager : MonoBehaviour
             }));
         }
     }
+
+    public void NotifyPuzzleSolved(PuzzleData solvedPuzzle, float delayTime)
+    {
+        StartCoroutine(NotifyPuzzleSolvedDelayCoroutine(solvedPuzzle, delayTime));
+    }
+
+    private IEnumerator NotifyPuzzleSolvedDelayCoroutine(PuzzleData solvedPuzzle, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        NotifyPuzzleSolved(solvedPuzzle);
+    }
     
     public void RestartLevel()
     {

@@ -136,7 +136,9 @@ namespace Puzzles.Combinations
                 HandleLeversOrderSize();
                 if (IsPuzzleSolved())
                 {
-                    Invoke(nameof(NotifyPuzzleSolved), 0.2f);
+                    float delayTime = 0.4f;
+                    Invoke(nameof(CloseAllLeversPanels), delayTime);
+                    GameManager.Instance.NotifyPuzzleSolved(puzzle, delayTime);
                 }
             }
             else
@@ -177,12 +179,6 @@ namespace Puzzles.Combinations
             }
 
             return true;
-        }
-
-        private void NotifyPuzzleSolved()
-        {
-            CloseAllLeversPanels();
-            GameManager.Instance.NotifyPuzzleSolved(puzzle);
         }
     }
 }
