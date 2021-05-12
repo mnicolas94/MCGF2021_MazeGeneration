@@ -30,5 +30,10 @@ namespace Puzzles.LeversPuzzle
             
             eventLeverStateChanged?.Invoke();
         }
+
+        public void Disable()
+        {
+            leverButton.interactable = false;
+        }
     }
 }

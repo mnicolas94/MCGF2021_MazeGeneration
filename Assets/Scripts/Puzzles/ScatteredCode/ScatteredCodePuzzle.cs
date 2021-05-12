@@ -74,8 +74,9 @@ namespace Puzzles.ScatteredCode
         {
             if (text == _generatedCode && AllFragmentsPickedUp())
             {
-                panel.HidePanel();
-                GameManager.Instance.NotifyPuzzleSolved(puzzle);
+                float delayTime = 0.4f;
+                panel.HidePanel(delayTime);
+                GameManager.Instance.NotifyPuzzleSolved(puzzle, delayTime);
             }
         }
         
