@@ -8,6 +8,7 @@ namespace UI
     public class ShowHidePanel : MonoBehaviour
     {
         public Action eventShowed;
+        public Action eventHiden;
         
         [SerializeField] private RectTransform panel;
         [SerializeField] private Canvas canvas;
@@ -64,6 +65,7 @@ namespace UI
             _targetLerpSpeed = downLerpSpeed;
             if (!_moving)
                 StartCoroutine(MoveToTarget(false));
+            eventHiden?.Invoke();
         }
         
         public void HidePanel(float time)

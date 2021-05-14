@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CharacterBattlesData
   m_EditorClassIdentifier: 
   battleSprite: {fileID: 21300000, guid: d3523be567bb5634488314903a780eb0, type: 3}
-  nameColor: {r: 0, g: 0.6152477, b: 1, a: 1}
+  nameColor: {r: 0, g: 0.3332994, b: 1, a: 1}
   startBattleDialogues:
   - Bla bla bla
   attacks:

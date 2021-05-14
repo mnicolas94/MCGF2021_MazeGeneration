@@ -494,6 +494,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d717337b92b0e3a44a175ae12d97393b, type: 3}
   - {fileID: 21300000, guid: 81fd9d3ddb2828740a298ecd4eb0a25f, type: 3}
   - {fileID: 21300000, guid: 0ed0b6907d63ef841b5c73029d1ea6b8, type: 3}
+  interactionDialogue: {fileID: 11400000, guid: 9d335c53d96b71b4fa0b8636055a2628, type: 2}
 --- !u!114 &8602061865135027399
 MonoBehaviour:
   m_ObjectHideFlags: 0

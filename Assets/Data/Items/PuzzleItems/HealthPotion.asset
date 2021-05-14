@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiSprite: {fileID: 21300000, guid: 2c4eac607a0151a4faa6942fa8822cf3, type: 3}
   itemName: MedKit
-  description: Heal 1 HP
+  description: Heal 2 HP
   consumable: 1
   uiText: 
-  health: 1
+  health: 2

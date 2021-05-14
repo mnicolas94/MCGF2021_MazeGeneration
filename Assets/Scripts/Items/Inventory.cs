@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Items
@@ -14,6 +15,13 @@ namespace Items
         [SerializeField] private List<Item> items;
 
         public List<Item> Items => new List<Item>(items);  // returns a copy
+
+        public void ClearEvents()
+        {
+            eventItemAdded = null;
+            eventItemRemoved = null;
+            eventItemUpdated = null;
+        }
 
         public bool HasItem(Item item)
         {
