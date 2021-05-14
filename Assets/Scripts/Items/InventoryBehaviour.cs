@@ -17,6 +17,7 @@ namespace Items
 
         private void Start()
         {
+            inventory.ClearEvents();
             inventory.eventItemAdded += AddItemToUi;
             inventory.eventItemRemoved += RemoveItemToUi;
             inventory.eventItemUpdated += UpdateUi;

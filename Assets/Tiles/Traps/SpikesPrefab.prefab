@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6000895280288804713}
   - component: {fileID: 8388489068677942417}
+  - component: {fileID: 7209833512406392464}
   - component: {fileID: 1823043789373651030}
   - component: {fileID: 1218255206388588263}
   - component: {fileID: 2970437366659468277}
@@ -50,6 +51,22 @@ MonoBehaviour:
   timeDown: 1.5
   timeUp: 1.5
   timeOffset: 0
+--- !u!114 &7209833512406392464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495031230859738631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4841fde6ff0647a8b06a0e2176fe6800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 1
 --- !u!95 &1823043789373651030
 Animator:
   serializedVersion: 3
@@ -145,10 +162,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.22}
-      - {x: 0.45, y: 0}
-      - {x: 0, y: -0.22}
-      - {x: -0.45, y: 0}
+    - - {x: 0, y: 0.15}
+      - {x: 0.3, y: 0}
+      - {x: 0, y: -0.15}
+      - {x: -0.3, y: 0}
 --- !u!1 &2948023551319003827
 GameObject:
   m_ObjectHideFlags: 0
