@@ -1,4 +1,5 @@
-﻿using Character;
+﻿using System;
+using Character;
 using UnityEngine;
 
 namespace Items.Implementations

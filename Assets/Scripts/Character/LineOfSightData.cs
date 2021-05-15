@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Character
 {
     [CreateAssetMenu(fileName = "LineOfSightData", menuName = "LoS/LineOfSightData", order = 0)]
-    public class LineOfSightData : ScriptableObject
+    public class LineOfSightData : ResetableScriptableObject
     {
         private Vector3 _characterPosition;
         
         [SerializeField] private float lineOfSightRadius;
+        private float _maxLineOfSightRadius;
         private float _lineOfSightRadiusRuntime;
         [SerializeField] private float horizontalScale;
         [SerializeField] private Vector3 lineOfSightOffset;
@@ -20,6 +23,8 @@ namespace Character
         public Vector3 CharacterPosition => _characterPosition;
 
         public float LineOfSightRadius => _lineOfSightRadiusRuntime;
+        
+        public float MaxLineOfSightRadius => _maxLineOfSightRadius;
 
         public Vector3 LineOfSightOffset => lineOfSightOffset;
 
@@ -40,15 +45,29 @@ namespace Character
         {
             _lineOfSightRadiusRuntime = los;
         }
-
-        private void OnEnable()
+        
+        public void SetMaxLineOfSightRadius(float los)
         {
-            ResetRuntimeData();
+            _maxLineOfSightRadius = los;
         }
 
-        public void ResetRuntimeData()
+        public override void ResetData()
         {
+            _maxLineOfSightRadius = lineOfSightRadius;
             _lineOfSightRadiusRuntime = lineOfSightRadius;
+        }
+
+        public bool IsInsideRadius(Vector3 position)
+        {
+            float radius = LineOfSightRadius;
+            float sqrRadius = radius * radius;
+            var characterOffsetedPosition = CharacterPosition + LineOfSightOffset;
+            var toTarget = characterOffsetedPosition - position;
+            toTarget.y *= HorizontalScale;  // isometric circle, cartesian ellipsis
+            float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
+            bool inside = sqrDist < sqrRadius;
+
+            return inside;
         }
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716fa2d4d15d41ec8e4d1ba381d6febe, type: 3}
+  m_Name: Kitty eyes
+  m_EditorClassIdentifier: 
+  uiSprite: {fileID: 21300000, guid: 2243c31c84bbe944db04c9fed61f441b, type: 3}
+  itemName: Kitty eyes
+  description: The best eyes to see in darkness. +1 LoS
+  consumable: 0
+  uiText: 
+  losData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
+  losAmount: 1

@@ -6,10 +6,11 @@ namespace Character
 {
     public class Health : MonoBehaviour
     {
+        public Action<int, int> eventMaxHealthChanged;
         public Action<int> eventDamaged;
         public Action<int> eventHealed;
         public Action eventDied;
-        
+  
         [SerializeField] private CharacterStats stats;
         [SerializeField] private bool invulnerable;
 
@@ -31,11 +32,13 @@ namespace Character
         private void Start()
         {
             _currentHealth = stats.MaxHealth;
-            stats.eventMaxHealthChanged += OnMaxHealthChanged;
         }
 
-        private void OnMaxHealthChanged(int oldMax, int newMax)
+        public void SetMaxHealth(int newMax)
         {
+            int oldMax = stats.MaxHealth;
+            stats.SetMaxHealth(newMax);
+
             int difference = newMax - oldMax;
             
             if (difference > 0)
@@ -45,6 +48,11 @@ namespace Character
             else
             {
                 _currentHealth = Math.Min(_currentHealth, newMax);
+            }
+            
+            if (oldMax != newMax)
+            {
+                eventMaxHealthChanged?.Invoke(oldMax, newMax);
             }
         }
         
