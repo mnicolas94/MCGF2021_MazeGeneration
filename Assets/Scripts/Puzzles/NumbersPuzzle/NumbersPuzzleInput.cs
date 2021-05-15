@@ -29,11 +29,13 @@ namespace Puzzles.NumbersPuzzle
         {
             if (text == _diagram.GeneratedSequence)
             {
-                panel.HidePanel();
-                GameManager.Instance.NotifyPuzzleSolved(puzzle);
+                inputField.interactable = false;
+                float delay = 0.4f;
+                panel.HidePanel(delay);
+                GameManager.Instance.NotifyPuzzleSolved(puzzle, delay);
             }
         }
-
+        
         private void SetInputFocus()
         {
             inputField.Select();

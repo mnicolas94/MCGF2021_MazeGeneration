@@ -269,7 +269,7 @@ namespace Battles
 
         private string GetCharacterNameString(CharacterData character)
         {
-            Color nameColor = character.BattlesData.NameColor;
+            Color nameColor = character.NameColor;
             string characterName = $"<color=#{ColorUtility.ToHtmlStringRGB(nameColor)}>{character.CharacterName}</color>";
             return characterName;
         }

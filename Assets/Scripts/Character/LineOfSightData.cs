@@ -43,6 +43,11 @@ namespace Character
 
         private void OnEnable()
         {
+            ResetRuntimeData();
+        }
+
+        public void ResetRuntimeData()
+        {
             _lineOfSightRadiusRuntime = lineOfSightRadius;
         }
     }

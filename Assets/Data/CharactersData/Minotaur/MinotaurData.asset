@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: MinotaurData
   m_EditorClassIdentifier: 
   characterName: Minotaur
+  nameColor: {r: 0.8396226, g: 0.015642887, b: 0, a: 1}
   statistics: {fileID: 11400000, guid: 55898dc4715a4c0468570b8b2f053e3c, type: 2}
   battlesData: {fileID: 11400000, guid: aae69430e47e3ee4cb268e3ab25af55f, type: 2}

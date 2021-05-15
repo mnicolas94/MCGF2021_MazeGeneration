@@ -4,16 +4,24 @@ using System.Collections.Generic;
 using Battles;
 using Character;
 using Character.Controllers;
+using Dialogues.UI;
 using Items;
 using MazeGeneration;
 using Puzzles;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     public Action eventNewLevelStarted;
     public Action eventFinishedLevel;
+
+    public Action eventGameStarted;
+    public Action eventGameCompleted;
+    public Action eventGameLoosed;
+    public Action<PuzzleData> eventPuzzleSolved;
+    public Action eventRestartedByTimeout;
     
     private static GameManager _instance;
     public static GameManager Instance => _instance;
@@ -29,6 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private Health playerHealth;
     [SerializeField] private CharacterMovement playerMovement;
     [SerializeField] private SpriteRenderer playerRenderer;
 
@@ -37,6 +46,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private LineOfSightData lineOfSightData;
     [Range(0.0f, 1.0f)] [SerializeField] private float lineOfSightLerpSpeed;
+
+    [SerializeField] private DialoguePanel dialoguePanel;
 
     [Space]
     
@@ -69,6 +80,10 @@ public class GameManager : MonoBehaviour
 
     public BattleControllerUi BattleController => battleController;
 
+    public int CurrentLevel => currentLevel;
+
+    public DialoguePanel DialoguePanel => dialoguePanel;
+
     private void Awake()
     {
         if (_instance == null)
@@ -82,14 +97,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        blackBackgroundCanvas.gameObject.SetActive(false);
+        playerHealth.eventDied += LooseGame;
+        blackBackgroundCanvas.gameObject.SetActive(true);
 
+        lineOfSightData.ResetRuntimeData();
         _currentLineOfSightRadius = lineOfSightData.LineOfSightRadius;
 
         if (initLevelOnStart)
         {
-            currentLevel = 0;
-            StartLevel();
+            StartGame();
         }
     }
 
@@ -100,10 +116,43 @@ public class GameManager : MonoBehaviour
             yield return coroutine;
         }
     }
-    
-    private void StartLevel()
+
+    private IEnumerator ActionCoroutine(Action action)
     {
-        StartCoroutine(StartLevelCoroutine());
+        yield return null;
+        
+        action?.Invoke();
+    }
+
+    private IEnumerator WaitTimeCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+    
+    private void StartGame()
+    {
+        currentLevel = 0;
+        StartCoroutine(CoroutineSequence(new List<IEnumerator>
+        {
+            ActionCoroutine(eventGameStarted),
+            StartLevelCoroutine(),
+        }));
+    }
+
+    private void LooseGame()
+    {
+        StartCoroutine(CoroutineSequence(new List<IEnumerator>
+        {
+            WaitForBattleCoroutine(),
+            FinishLevelCoroutine(),
+            ActionCoroutine(eventGameLoosed),
+            WaitTimeCoroutine(3),
+//            ActionCoroutine(StartGame),
+            ActionCoroutine(() =>
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }),
+        }));
     }
     
     public void NotifyPuzzleSolved(PuzzleData solvedPuzzle)
@@ -117,6 +166,7 @@ public class GameManager : MonoBehaviour
             {
                 FinishLevelCoroutine(),
                 // diálogo final
+                ActionCoroutine(eventGameCompleted)
             }));
             print("me gané el juego");
         }
@@ -126,9 +176,21 @@ public class GameManager : MonoBehaviour
             {
                 FinishLevelCoroutine(),
                 SelectItemsCoroutine(),
+                ActionCoroutine(() => eventPuzzleSolved?.Invoke(solvedPuzzle)),
                 StartLevelCoroutine()
             }));
         }
+    }
+
+    public void NotifyPuzzleSolved(PuzzleData solvedPuzzle, float delayTime)
+    {
+        StartCoroutine(NotifyPuzzleSolvedDelayCoroutine(solvedPuzzle, delayTime));
+    }
+
+    private IEnumerator NotifyPuzzleSolvedDelayCoroutine(PuzzleData solvedPuzzle, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        NotifyPuzzleSolved(solvedPuzzle);
     }
     
     public void RestartLevel()
@@ -141,6 +203,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(CoroutineSequence(new List<IEnumerator>
         {
             FinishLevelCoroutine(),
+            ActionCoroutine(eventRestartedByTimeout),
             StartLevelCoroutine()
         }));
     }
@@ -177,6 +240,7 @@ public class GameManager : MonoBehaviour
 
         // habilitar input
         playerController.enabled = true;
+        playerHealth.SetInvulnerable(false);
         eventNewLevelStarted?.Invoke();
     }
     
@@ -187,6 +251,7 @@ public class GameManager : MonoBehaviour
         // desabilitar input
         playerMovement.Stop();
         playerController.enabled = false;
+        playerHealth.SetInvulnerable(true);
         
         // wait some time e.g. 1 sec
         yield return new WaitForSeconds(1);
@@ -202,6 +267,14 @@ public class GameManager : MonoBehaviour
         itemSelectionPanel.ShowItemSelectionPanel();
 
         while (itemSelectionPanel.SelectingItems)  // wait for item selection
+        {
+            yield return null;
+        }
+    }
+
+    private IEnumerator WaitForBattleCoroutine()
+    {
+        while (battleController.IsRunningBattle)
         {
             yield return null;
         }

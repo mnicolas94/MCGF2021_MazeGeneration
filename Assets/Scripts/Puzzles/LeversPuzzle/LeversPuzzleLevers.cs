@@ -33,15 +33,21 @@ namespace Puzzles.LeversPuzzle
 
         private void OnLeverStateChanged()
         {
-            bool codeIsRight = CheckCode();
-
-            if (codeIsRight && _diagram.InteractedAtLeastOnce)
+            if (IsPuzzleSolved())
             {
-                panel.HidePanel();
-                GameManager.Instance.NotifyPuzzleSolved(puzzle);
+                DisableAllLevers();
+                float delayTime = 0.4f;
+                panel.HidePanel(delayTime);
+                GameManager.Instance.NotifyPuzzleSolved(puzzle, delayTime);
             }
         }
 
+        private bool IsPuzzleSolved()
+        {
+            bool codeIsRight = CheckCode();
+            return codeIsRight && _diagram.InteractedAtLeastOnce;
+        }
+        
         private bool CheckCode()
         {
             var code = _diagram.CodeGenerated;
@@ -55,5 +61,14 @@ namespace Puzzles.LeversPuzzle
 
             return codeIsRight;
         }
+
+        public void DisableAllLevers()
+        {
+            lever1.Disable();
+            lever2.Disable();
+            lever3.Disable();
+            lever4.Disable();
+        }
+
     }
 }
