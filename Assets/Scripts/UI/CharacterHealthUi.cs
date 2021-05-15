@@ -24,6 +24,7 @@ namespace UI
         {
             characterHealth.eventDamaged += _ => UpdateUi();
             characterHealth.eventHealed += _ => UpdateUi();
+            characterHealth.eventMaxHealthChanged += (x, y) => UpdateUi();
             
             yield return null;
             

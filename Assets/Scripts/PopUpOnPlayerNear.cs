@@ -16,13 +16,7 @@ public class PopUpOnPlayerNear : MonoBehaviour
 
     private void HandleDistanceToPlayer()
     {
-        float radius = lineOfSightData.LineOfSightRadius;
-        float sqrRadius = radius * radius;
-        var characterOffsetedPosition = lineOfSightData.CharacterPosition + lineOfSightData.LineOfSightOffset;
-        var toTarget = characterOffsetedPosition - transform.position;
-        toTarget.y *= lineOfSightData.HorizontalScale;  // isometric circle, cartesian ellipsis
-        float sqrDist = toTarget.x * toTarget.x + toTarget.y * toTarget.y;
-        bool inside = sqrDist < sqrRadius;
+        bool inside = lineOfSightData.IsInsideRadius(transform.position);
         bool toggle = inside ^ _inside;
         if (toggle)
         {

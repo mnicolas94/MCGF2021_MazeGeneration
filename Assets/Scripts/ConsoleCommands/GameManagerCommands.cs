@@ -24,5 +24,11 @@ namespace ConsoleCommands
         {
             GameManager.Instance.RestartLevel();
         }
+        
+        [ConsoleMethod("maze.level_solve", "Solves the level")]
+        public static void SolveLevel()
+        {
+            GameManager.Instance.NotifyPuzzleSolved(null);
+        }
     }
 }
