@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Dialogues;
 using Items;
 using TMPro;
 using UI;
@@ -18,8 +19,10 @@ namespace Puzzles.ScatteredCode
         [SerializeField] private ShowHidePanel panel;
 
         [Space] [SerializeField] private Inventory inventory;
-        [SerializeField] private Items.Implementations.DoNothingItem scatteredCodeItem;
+        [SerializeField] private Item scatteredCodeItem;
         [SerializeField] private List<Sprite> fragmentsItemSprites;
+
+        [SerializeField] private DialogueSequenceBase interactionDialogue;
 
         private string _generatedCode;
         private CodeFragment[] _codeFragments;
@@ -29,6 +32,7 @@ namespace Puzzles.ScatteredCode
         {
             inputField.onValueChanged.AddListener(OnTextChanged);
             panel.eventShowed += SetInputFocus;
+            panel.eventHiden += ShowInteractionDialogue;
 
             _generatedCode = GenerateCode();
 
@@ -74,14 +78,20 @@ namespace Puzzles.ScatteredCode
         {
             if (text == _generatedCode && AllFragmentsPickedUp())
             {
-                panel.HidePanel();
-                GameManager.Instance.NotifyPuzzleSolved(puzzle);
+                float delayTime = 0.4f;
+                panel.HidePanel(delayTime);
+                GameManager.Instance.NotifyPuzzleSolved(puzzle, delayTime);
             }
         }
         
         private void SetInputFocus()
         {
             inputField.Select();
+        }
+
+        private void ShowInteractionDialogue()
+        {
+            GameManager.Instance.DialoguePanel.PushDialogueSequence(interactionDialogue);
         }
 
         private string GenerateCode()

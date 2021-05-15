@@ -14,7 +14,7 @@ namespace Puzzles.King
         
         [Space]
         
-        [SerializeField] private DialogueSequence kingDialogue;
+        [SerializeField] private DialogueSequenceBase kingDialogue;
         [SerializeField] private Interactable interactable;
         
         [SerializeField] private float timeAfterBattleToNotifyPuzzleSolved;
@@ -38,6 +38,7 @@ namespace Puzzles.King
         {
             interactable.gameObject.SetActive(false);
             // push dialogue
+            GameManager.Instance.DialoguePanel.PushDialogueSequence(kingDialogue);
             
             // wait for dialogue and then open door
             var door = FindObjectOfType<KingWallDoor>();

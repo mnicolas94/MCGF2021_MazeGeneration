@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using Dialogues;
+using Dialogues.UI;
 using Items;
 using Items.Implementations;
 using UI;
@@ -10,13 +12,11 @@ namespace Puzzles.Key
     public class SkeletonDoor : MonoBehaviour
     {
         [SerializeField] private PuzzleData puzzle;
-        
-        [Space]
-        
-        [SerializeField] private DoNothingItem keyItem;
+
+        [Space] [SerializeField] private DialogueSequenceBase interactionDialogue;
+        [SerializeField] private Item keyItem;
         [SerializeField] private Inventory inventory;
         [SerializeField] private Interactable doorInteractable;
-        [SerializeField] private ShowHidePanel messagePanel;
         
         private SkeletonKey _skeletonKey;
 
@@ -24,7 +24,6 @@ namespace Puzzles.Key
         {
             GameManager.Instance.eventFinishedLevel += OnLevelFinished;
             doorInteractable.eventInteracted.AddListener(OnInteractedWithDoor);
-            doorInteractable.eventLeavedInteractionArea.AddListener(messagePanel.HidePanel);
             
             yield return null;
 
@@ -41,7 +40,7 @@ namespace Puzzles.Key
             }
             else
             {
-                messagePanel.ShowPanel();
+                GameManager.Instance.DialoguePanel.PushDialogueSequence(interactionDialogue);
             }
         }
 

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI
 {
     public class ShowHidePanel : MonoBehaviour
     {
         public Action eventShowed;
+        public Action eventHiden;
         
         [SerializeField] private RectTransform panel;
         [SerializeField] private Canvas canvas;
@@ -27,7 +29,6 @@ namespace UI
         private bool _moving;
         private void Start()
         {
-            panel.gameObject.SetActive(true);
             _originalPosition = panel.localPosition;
             float panelHalfWidth = panel.sizeDelta.y / 2;
             float canvasHalfHeight = canvas.renderingDisplaySize.y;
@@ -53,7 +54,7 @@ namespace UI
             _targetPosition = _originalPosition;
             _targetLerpSpeed = upLerpSpeed;
             if (!_moving)
-                StartCoroutine(MoveToTarget());
+                StartCoroutine(MoveToTarget(true));
             eventShowed?.Invoke();
         }
         
@@ -63,12 +64,25 @@ namespace UI
             _targetPosition = _hidePosition;
             _targetLerpSpeed = downLerpSpeed;
             if (!_moving)
-                StartCoroutine(MoveToTarget());
+                StartCoroutine(MoveToTarget(false));
+            eventHiden?.Invoke();
+        }
+        
+        public void HidePanel(float time)
+        {
+            Invoke(nameof(HidePanel), time);
         }
 
-        private IEnumerator MoveToTarget()
+        private IEnumerator MoveToTarget(bool finalActiveState)
         {
             _moving = true;
+
+            if (finalActiveState)
+            {
+                panel.gameObject.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(gameObject);
+            }
+            
             while ((panel.localPosition - _targetPosition).magnitude > arriveConditionThreshold)
             {
                 panel.localPosition = Vector3.Lerp(panel.localPosition, _targetPosition, _targetLerpSpeed);
@@ -76,6 +90,12 @@ namespace UI
             }
 
             panel.localPosition = _targetPosition;
+            
+            if (!finalActiveState)
+            {
+                panel.gameObject.SetActive(false);
+            }
+            
             _moving = false;
         }
     }

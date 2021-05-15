@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzle: {fileID: 11400000, guid: 653fece48b9fc7747ac9a3893c5e3640, type: 2}
-  kingDialogue: {fileID: 0}
+  kingDialogue: {fileID: 11400000, guid: b7a1b94b9338f9e4c9716beda7630b04, type: 2}
   interactable: {fileID: 1625048468290195759}
   timeAfterBattleToNotifyPuzzleSolved: 0.5
   minotaurTag: Minotaur
