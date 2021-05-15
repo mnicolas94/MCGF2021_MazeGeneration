@@ -50,7 +50,10 @@ public class MazeTransitionsDialoguesController : MonoBehaviour
     private void ShowSolvedPuzzleDialogue(PuzzleData puzzle)
     {
         var dialogue = GetSolvedPuzzleDialogue(puzzle);
-        ShowDialogue(dialogue);
+        if (dialogue != null)
+        {
+            ShowDialogue(dialogue);
+        }
     }
 }
 

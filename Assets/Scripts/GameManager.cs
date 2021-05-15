@@ -70,8 +70,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private float _currentLineOfSightRadius;
-
     public Maze Maze => maze;
 
     public LineOfSightData LineOfSightData => lineOfSightData;
@@ -99,9 +97,6 @@ public class GameManager : MonoBehaviour
     {
         playerHealth.eventDied += LooseGame;
         blackBackgroundCanvas.gameObject.SetActive(true);
-
-        lineOfSightData.ResetRuntimeData();
-        _currentLineOfSightRadius = lineOfSightData.LineOfSightRadius;
 
         if (initLevelOnStart)
         {
@@ -237,7 +232,7 @@ public class GameManager : MonoBehaviour
         // retroalimentación de progreso
         
         // animación aumentar LoS
-        yield return LerpLineOfSightToTargetValue(_currentLineOfSightRadius, lineOfSightLerpSpeed);
+        yield return LerpLineOfSightToTargetValue(lineOfSightData.MaxLineOfSightRadius, lineOfSightLerpSpeed);
 
         // habilitar input
         playerController.enabled = true;
@@ -258,7 +253,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         
         // animación reducir LoS
-        _currentLineOfSightRadius = lineOfSightData.LineOfSightRadius;
         yield return LerpLineOfSightToTargetValue(0, lineOfSightLerpSpeed);
     }
 

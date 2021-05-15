@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Character.Data
 {
     [CreateAssetMenu(fileName = "CharacterStats", menuName = "Stats/CharacterStats")]
-    public class CharacterStats : ScriptableObject
+    public class CharacterStats : ResetableScriptableObject
     {
         public Action<int, int> eventMaxHealthChanged;
         
@@ -22,13 +22,7 @@ namespace Character.Data
 
         public void SetMaxHealth(int newMax)
         {
-            int oldMax = _maxHealthRuntime;
             _maxHealthRuntime = newMax;
-
-            if (oldMax != newMax)
-            {
-                eventMaxHealthChanged?.Invoke(oldMax, newMax);
-            }
         }
         
         public void SetHitChance(float chance)
@@ -36,7 +30,7 @@ namespace Character.Data
             _hitChanceRuntime = chance;
         }
 
-        public void OnEnable()
+        public override void ResetData()
         {
             _maxHealthRuntime = maxHealth;
             _hitChanceRuntime = hitChance;

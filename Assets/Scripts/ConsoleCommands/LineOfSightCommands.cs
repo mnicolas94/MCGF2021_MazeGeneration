@@ -16,6 +16,7 @@ namespace ConsoleCommands
         public static void GetLineOfSightRadius(float los)
         {
             var lineOfSightData = GameManager.Instance.LineOfSightData;
+            lineOfSightData.SetMaxLineOfSightRadius(los);
             lineOfSightData.SetLineOfSightRadius(los);
         }
     }
