@@ -7,11 +7,14 @@ namespace Utils
 {
     public class DataReseter : MonoBehaviour
     {
-        [SerializeField] private List<ScriptableObject> objectsToReset;
+        [SerializeField] private List<ResetableScriptableObject> resetables;
         
         private void Awake()
         {
-            
+            foreach (var resetable in resetables)
+            {
+                resetable.ResetData();
+            }
         }
     }
 }

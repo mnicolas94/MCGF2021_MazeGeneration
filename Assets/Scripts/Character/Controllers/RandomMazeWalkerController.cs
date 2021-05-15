@@ -75,7 +75,7 @@ namespace Character.Controllers
 
             if (!_maze.FloorSpriteTilemap.HasTile(tilePosition))  // sometimes the wrong tile position is provided
             {
-                tilePosition = GetNearestAdjacentTile(_maze.FloorSpriteTilemap, position, tilePosition);
+                tilePosition = _maze.FloorSpriteTilemap.GetNearestAdjacentTile(position, tilePosition);
             }
             
             return tilePosition;
@@ -90,39 +90,6 @@ namespace Character.Controllers
             }
             
             return position;
-        }
-
-        private Vector3Int GetNearestAdjacentTile(Tilemap tilemap, Vector3 position, Vector3Int tilePosition)
-        {
-            Vector3Int pos = Vector3Int.zero;
-
-            var nearestTile = tilePosition;
-            float minDistance = Mathf.Infinity;
-            
-            for (int i = -1; i < 1; i++)
-            {
-                for (int j = -1; j < 1; j++)
-                {
-                    if (i != 0 || j != 0)
-                    {
-                        pos.x = tilePosition.x + i;
-                        pos.y = tilePosition.y + j;
-
-                        if (tilemap.HasTile(pos))
-                        {
-                            var worldTilePosition = tilemap.CellToWorld(pos);
-                            float dist = Vector3.Distance(position, worldTilePosition);
-                            if (dist < minDistance)
-                            {
-                                minDistance = dist;
-                                nearestTile = pos;
-                            }
-                        }
-                    }
-                }
-            }
-
-            return nearestTile;
         }
     }
 }
