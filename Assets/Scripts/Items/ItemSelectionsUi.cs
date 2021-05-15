@@ -29,8 +29,9 @@ namespace Items
 
         public void HideItemSelectionPanel()
         {
-            panel.HidePanel();
             _selectingItems = false;
+            panel.HidePanel();
+            Invoke(nameof(ClearPanel), 0.5f);
         }
 
         private void PopulatePanel()
@@ -49,8 +50,11 @@ namespace Items
 
         private void AddItemToInventory(Item item)
         {
-            inventory.AddItem(item);
-            HideItemSelectionPanel();
+            if (_selectingItems)
+            {
+                inventory.AddItem(item);
+                HideItemSelectionPanel();
+            }
         }
 
         private void ClearPanel()

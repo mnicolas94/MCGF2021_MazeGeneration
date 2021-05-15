@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3757511575641376655
 RectTransform:
   m_ObjectHideFlags: 0
@@ -379,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzle: {fileID: 11400000, guid: 4f03796a154f356428ef5c0db124ed85, type: 2}
+  interactionDialogue: {fileID: 11400000, guid: 0194866eecf05b248be0732680dfbb19, type: 2}
   keyItem: {fileID: 11400000, guid: d383aa0fe4e1b1f498396bd1dcc3a2e3, type: 2}
   inventory: {fileID: 11400000, guid: c764c5f3546d4fb448a38bba528fe0ed, type: 2}
   doorInteractable: {fileID: 7414236578977264694}
-  messagePanel: {fileID: 3757511575641375226}
 --- !u!114 &8602061865135027399
 MonoBehaviour:
   m_ObjectHideFlags: 0

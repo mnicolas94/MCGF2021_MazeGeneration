@@ -9,7 +9,6 @@ namespace Character.Data
     public class CharacterBattlesData : ScriptableObject
     {
         [SerializeField] private Sprite battleSprite;
-        [SerializeField] private Color nameColor;
 
         [Space]
         
@@ -17,8 +16,6 @@ namespace Character.Data
         [SerializeField] private List<AttackChance> attacks;
 
         public Sprite BattleSprite => battleSprite;
-
-        public Color NameColor => nameColor;
 
         public string GetRandomStartDialogue()
         {

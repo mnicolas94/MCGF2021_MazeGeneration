@@ -82,5 +82,10 @@ namespace Character
                 eventHealed?.Invoke(effectiveHeal);
             }
         }
+
+        public void HealMax()
+        {
+            Heal(MaxHealth);
+        }
     }
 }
