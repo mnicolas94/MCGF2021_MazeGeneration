@@ -91,7 +91,10 @@ namespace Puzzles.ScatteredCode
 
         private void ShowInteractionDialogue()
         {
-            GameManager.Instance.DialoguePanel.PushDialogueSequence(interactionDialogue);
+            if (!AllFragmentsPickedUp())
+            {
+                GameManager.Instance.DialoguePanel.PushDialogueSequence(interactionDialogue);
+            }
         }
 
         private string GenerateCode()

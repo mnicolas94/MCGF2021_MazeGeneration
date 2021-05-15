@@ -215,6 +215,8 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator StartLevelCoroutine()
     {
+        yield return LerpLineOfSightToTargetValue(0, 1);  // make sure LoS radius is 0
+
         // hide maze
         int playerSortingOrder = playerRenderer.sortingOrder;
         playerRenderer.sortingOrder = blackBackgroundSortingOrder;
@@ -235,7 +237,6 @@ public class GameManager : MonoBehaviour
         // retroalimentación de progreso
         
         // animación aumentar LoS
-        yield return LerpLineOfSightToTargetValue(0, 1);  // make sure LoS radius is 0
         yield return LerpLineOfSightToTargetValue(_currentLineOfSightRadius, lineOfSightLerpSpeed);
 
         // habilitar input
