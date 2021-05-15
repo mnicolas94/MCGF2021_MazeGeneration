@@ -10,18 +10,24 @@ namespace Items
 
         [SerializeField] private ItemBehaviour itemBehaviourPrefab;
 
-        private void Awake()
-        {
-            inventory.Clear();
-        }
+        [SerializeField] private Item idol;
 
-        private void Start()
+        private void Awake()
         {
             inventory.ClearEvents();
             inventory.eventItemAdded += AddItemToUi;
             inventory.eventItemRemoved += RemoveItemToUi;
             inventory.eventItemUpdated += UpdateUi;
             
+            inventory.Clear();
+            if (idol != null)
+            {
+                inventory.AddItem(idol);
+            }
+        }
+
+        private void Start()
+        {
             UpdateUi();
         }
 
