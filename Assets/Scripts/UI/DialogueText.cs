@@ -28,8 +28,12 @@ namespace UI
 
             HideHint();
             textUi.text = text;
-            _coroutine = ShowCharacterByCharacter();
-            StartCoroutine(_coroutine);
+
+            if (text != "")
+            {
+                _coroutine = ShowCharacterByCharacter();
+                StartCoroutine(_coroutine);
+            }
         }
 
         public void PutText(string text, Action onTextFinishedShowing)

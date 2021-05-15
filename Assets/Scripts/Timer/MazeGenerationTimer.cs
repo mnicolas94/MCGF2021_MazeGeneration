@@ -13,10 +13,13 @@ namespace Timer
         private bool _timerStoped;
         private float _startTime;
         private bool _soundPlaying;
-        
+
+        public bool TimerStoped => _timerStoped;
+
         private void Start()
         {
             GameManager.Instance.eventNewLevelStarted += ResetTimer;
+            GameManager.Instance.eventFinishedLevel += StopTimer;
             ResetTimer();
         }
 
@@ -53,7 +56,7 @@ namespace Timer
             }
         }
 
-        private float TimeLeft()
+        public float TimeLeft()
         {
             return TimeToGenerate() - Time.time;
         }

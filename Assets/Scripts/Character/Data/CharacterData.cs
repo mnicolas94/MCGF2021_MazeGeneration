@@ -6,6 +6,7 @@ namespace Character.Data
     public class CharacterData : ScriptableObject
     {
         [SerializeField] private string characterName;
+        [SerializeField] private Color nameColor;
         [SerializeField] private CharacterStats statistics;
         [SerializeField] private CharacterBattlesData battlesData;
 
@@ -14,5 +15,7 @@ namespace Character.Data
         public CharacterStats Statistics => statistics;
 
         public CharacterBattlesData BattlesData => battlesData;
+        
+        public Color NameColor => nameColor;
     }
 }

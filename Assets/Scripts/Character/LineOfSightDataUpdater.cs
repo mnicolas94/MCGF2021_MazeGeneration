@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Character
 {
@@ -6,7 +7,7 @@ namespace Character
     {
         [SerializeField] private LineOfSightData losData;
         [SerializeField] private Transform characterTransform;
-        
+
         private void FixedUpdate()
         {
             losData.SetCharacterPosition(characterTransform.position);

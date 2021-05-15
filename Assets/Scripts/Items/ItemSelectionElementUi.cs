@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,11 +27,18 @@ namespace Items
             itemDescriptionText.text = item.Description;
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            button.onClick.AddListener(NotifyClick);
+            yield return new WaitForSeconds(0.7f);
+            GetFocus();
         }
 
+        private void GetFocus()
+        {
+            button.Select();
+            button.onClick.AddListener(NotifyClick);
+        }
+        
         private void NotifyClick()
         {
             eventItemClicked?.Invoke(_item);
