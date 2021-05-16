@@ -4,6 +4,7 @@ using Puzzles.LeversPuzzle;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Puzzles.Combinations
@@ -14,6 +15,7 @@ namespace Puzzles.Combinations
         public static int ActivateStateHashId = Animator.StringToHash("pulled");
 
         public Action eventLeverStateChanged;
+        public UnityEvent eventOpenedOrClosed;
         
         [SerializeField] private Interactable interactable;
         [SerializeField] private ShowHidePanel panel;
@@ -32,7 +34,6 @@ namespace Puzzles.Combinations
 
         private void Start()
         {
-            Close();
             leverButton.onClick.AddListener(OnLeverClicked);
         }
 
@@ -51,14 +52,24 @@ namespace Puzzles.Combinations
 
         public void Open()
         {
-            wallAnimator.SetBool(OpenedParameterHash, true);
-            interactable.gameObject.SetActive(true);
+            bool closed = !wallAnimator.GetBool(OpenedParameterHash);
+            if (closed)
+            {
+                wallAnimator.SetBool(OpenedParameterHash, true);
+                interactable.gameObject.SetActive(true);
+                eventOpenedOrClosed?.Invoke();
+            }
         }
         
         public void Close()
         {
-            wallAnimator.SetBool(OpenedParameterHash, false);
-            interactable.gameObject.SetActive(false);
+            bool opened = wallAnimator.GetBool(OpenedParameterHash);
+            if (opened)
+            {
+                wallAnimator.SetBool(OpenedParameterHash, false);
+                interactable.gameObject.SetActive(false);
+                eventOpenedOrClosed?.Invoke();
+            }
         }
 
         public void ClosePanel()

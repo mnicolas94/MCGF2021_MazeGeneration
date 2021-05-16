@@ -17,6 +17,7 @@ namespace Puzzles.ScatteredCode
         
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private ShowHidePanel panel;
+        [SerializeField] private Interactable interactable;
 
         [Space] [SerializeField] private Inventory inventory;
         [SerializeField] private Item scatteredCodeItem;
@@ -32,7 +33,7 @@ namespace Puzzles.ScatteredCode
         {
             inputField.onValueChanged.AddListener(OnTextChanged);
             panel.eventShowed += SetInputFocus;
-            panel.eventHiden += ShowInteractionDialogue;
+            interactable.eventInteracted.AddListener(ShowInteractionDialogue);
 
             _generatedCode = GenerateCode();
 
