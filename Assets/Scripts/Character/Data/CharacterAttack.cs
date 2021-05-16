@@ -7,9 +7,12 @@ namespace Character.Data
     {
         [SerializeField] private string attackName;
         [SerializeField] private int damage;
+        [SerializeField] private AudioClip attackAudio;
 
         public string AttackName => attackName;
 
         public int Damage => damage;
+
+        public AudioClip AttackAudio => attackAudio;
     }
 }

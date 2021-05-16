@@ -2,13 +2,14 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Items
 {
     public class ItemSelectionElementUi : MonoBehaviour
     {
-        public Action<Item> eventItemClicked;
+        public UnityEvent<Item> eventItemClicked;
         
         [SerializeField] private Image itemImage;
         [SerializeField] private TextMeshProUGUI itemNameText;
