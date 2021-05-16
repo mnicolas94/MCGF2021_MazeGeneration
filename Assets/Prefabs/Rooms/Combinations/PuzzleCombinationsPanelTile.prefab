@@ -1185,15 +1185,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: 0.5
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: -0.25
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
@@ -1201,7 +1201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -0.5
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
@@ -1209,11 +1209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: -0.5
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8472312912670427363, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: -0.25
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8891834304848025574, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
       propertyPath: eventInteracted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
