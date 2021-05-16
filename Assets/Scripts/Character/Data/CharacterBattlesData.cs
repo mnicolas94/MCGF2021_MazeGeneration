@@ -11,11 +11,13 @@ namespace Character.Data
         [SerializeField] private Sprite battleSprite;
 
         [Space]
-        
+        [SerializeField] private AudioClip startBattleAudio;
         [SerializeField] private List<string> startBattleDialogues;
         [SerializeField] private List<AttackChance> attacks;
 
         public Sprite BattleSprite => battleSprite;
+
+        public AudioClip StartBattleAudio => startBattleAudio;
 
         public string GetRandomStartDialogue()
         {

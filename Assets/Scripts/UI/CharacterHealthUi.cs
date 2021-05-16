@@ -22,7 +22,7 @@ namespace UI
         
         private IEnumerator Start()
         {
-            characterHealth.eventDamaged += _ => UpdateUi();
+            characterHealth.eventDamaged.AddListener(_ => UpdateUi());
             characterHealth.eventHealed += _ => UpdateUi();
             characterHealth.eventMaxHealthChanged += (x, y) => UpdateUi();
             
