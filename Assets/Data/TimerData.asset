@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e045a5d29623c74cab2cdb36bf50275, type: 3}
   m_Name: TimerData
   m_EditorClassIdentifier: 
-  generateMazeCooldown: 240
+  generateMazeCooldown: 210

@@ -27252,7 +27252,8 @@ MonoBehaviour:
     Solar Moose</link></color>\n\n<b>Game designer</b>\n<size=60%>Javier Montenegro
     <#7f7fe6><link=\"https://twitter.com/XaviLomaprieta\">twitter</link></color></size>\n\n<b>2D
     Artists</b>\n<size=60%>Javier Montenegro</size>\n<size=60%>Alejandro Hern\xE1ndez</size>\n\n<b>Programmer</b>\n<size=60%>Miguel
-    Nicol\xE1s</size>\n "
+    Nicol\xE1s</size>\n \n<b>Music and sounds</b>\n<size=60%>Downloaded from <#7f7fe6><link=\"https://freesound.org\">freesound.org</link></color>,
+    <#7f7fe6><link=\"https://soundgator.com\">soundgator.com</link></color>, <#7f7fe6><link=\"https://freesfx.co.uk\">freesfx.co.uk</link></color></size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
   m_sharedMaterial: {fileID: -445927032717951022, guid: 2646ba27ba961934189e7d7e86ac26f8, type: 2}
@@ -27279,8 +27280,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -27348,7 +27349,6 @@ MonoBehaviour:
   highlightedLinkColor:
     serializedVersion: 2
     rgba: 4293283920
-  mainCamera: {fileID: 0}
 --- !u!114 &1809488805 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1154921311917661898, guid: e6f6698cb12ff1042bb9999a6176a83f, type: 3}
