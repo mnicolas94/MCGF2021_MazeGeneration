@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MinotaurBattlesData
   m_EditorClassIdentifier: 
   battleSprite: {fileID: 21300000, guid: 4955c4e97a48c00428e4224e26b44ad2, type: 3}
-  nameColor: {r: 1, g: 0.1726008, b: 0, a: 1}
+  startBattleAudio: {fileID: 8300000, guid: 302f7cfa3d72aac41a19be0578a4c224, type: 3}
   startBattleDialogues:
   - I will destroy you human!!!
   - ROOOAAAAAARRRRRR!

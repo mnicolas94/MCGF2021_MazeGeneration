@@ -44,7 +44,7 @@ namespace Items
             {
                 var itemUi = Instantiate(itemPrefab, itemsContainer);
                 itemUi.SetItem(item);
-                itemUi.eventItemClicked += AddItemToInventory;
+                itemUi.eventItemClicked.AddListener(AddItemToInventory);
             }
         }
 

@@ -91,8 +91,9 @@ namespace Puzzles.Combinations
                 _buttonsPressOrder[1],
                 _buttonsPressOrder[2]
             );
-            CloseAllLevers();
-            OpenLever(combination);
+            var lever = GetLeverBycombination(combination);
+            CloseAllLevers(lever);
+            lever.Open();
             panel.HidePanel();
         }
 
@@ -103,17 +104,20 @@ namespace Puzzles.Combinations
             button3.Reset();
         }
 
-        private void OpenLever(Vector3Int combination)
+        private CombinationLever GetLeverBycombination(Vector3Int combination)
         {
-            _levers[combination].Open();
+            return _levers[combination];
         }
 
-        private void CloseAllLevers()
+        private void CloseAllLevers(CombinationLever except)
         {
             foreach (var combination in _levers.Keys)
             {
                 var lever = _levers[combination];
-                lever.Close();
+                if (lever != except)
+                {
+                    lever.Close();
+                }
             }
         }
 

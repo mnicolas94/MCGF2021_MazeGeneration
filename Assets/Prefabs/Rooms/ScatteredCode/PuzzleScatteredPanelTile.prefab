@@ -487,6 +487,7 @@ MonoBehaviour:
   puzzle: {fileID: 11400000, guid: aa910fb891e335544b33021274a3386d, type: 2}
   inputField: {fileID: 5878251118525534673}
   panel: {fileID: 1903387014915760458}
+  interactable: {fileID: 5677207218729844915}
   inventory: {fileID: 11400000, guid: c764c5f3546d4fb448a38bba528fe0ed, type: 2}
   scatteredCodeItem: {fileID: 11400000, guid: b0388c7911fb6e9428da850b9176c5ee, type: 2}
   fragmentsItemSprites:
@@ -793,3 +794,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3389241425771280967, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
   m_PrefabInstance: {fileID: 3868409365873842005}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5677207218729844915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8891834304848025574, guid: 4b0ab36b26dd0e6468c9cd727738e0e9, type: 3}
+  m_PrefabInstance: {fileID: 3868409365873842005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42365e1bc03225488a4758043137a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

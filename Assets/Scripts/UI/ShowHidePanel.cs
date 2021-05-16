@@ -27,6 +27,7 @@ namespace UI
         private Vector3 _targetPosition;
         private float _targetLerpSpeed;
         private bool _moving;
+        
         private void Start()
         {
             _originalPosition = panel.localPosition;
