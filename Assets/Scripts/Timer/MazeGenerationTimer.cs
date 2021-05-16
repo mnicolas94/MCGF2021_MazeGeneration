@@ -18,7 +18,7 @@ namespace Timer
 
         private void Start()
         {
-            GameManager.Instance.eventNewLevelStarted += ResetTimer;
+            GameManager.Instance.eventNewLevelStarted.AddListener(ResetTimer);
             GameManager.Instance.eventFinishedLevel += StopTimer;
             ResetTimer();
         }

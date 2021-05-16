@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Axe slash
   damage: 2
+  attackAudio: {fileID: 8300000, guid: 891bdf293f6ddd540a2a72b17f5323e7, type: 3}

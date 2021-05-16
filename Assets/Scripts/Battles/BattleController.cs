@@ -37,7 +37,7 @@ namespace Battles
         public BattleStep NextBattleStep()
         {
             var attack = _nextPlayerToAttack.BattlesData.GetRandomAttack();
-            bool missAttack = Random.value < _nextPlayerToAttack.Statistics.HitChance;
+            bool missAttack = Random.value > _nextPlayerToAttack.Statistics.HitChance;
             
             var battleStep = new BattleStep
             {

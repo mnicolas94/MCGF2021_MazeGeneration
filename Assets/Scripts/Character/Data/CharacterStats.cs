@@ -35,5 +35,10 @@ namespace Character.Data
             _maxHealthRuntime = maxHealth;
             _hitChanceRuntime = hitChance;
         }
+
+        private void OnEnable()
+        {
+            ResetData();
+        }
     }
 }

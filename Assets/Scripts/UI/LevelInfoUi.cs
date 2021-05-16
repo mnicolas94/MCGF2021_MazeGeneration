@@ -14,7 +14,7 @@ namespace UI
 
         private void Start()
         {
-            GameManager.Instance.eventNewLevelStarted += OnNewLevelStarted;
+            GameManager.Instance.eventNewLevelStarted.AddListener(OnNewLevelStarted);
             HideTime();
         }
 

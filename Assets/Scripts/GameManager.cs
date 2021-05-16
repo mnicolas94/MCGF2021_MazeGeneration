@@ -9,12 +9,13 @@ using Items;
 using MazeGeneration;
 using Puzzles;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public Action eventNewLevelStarted;
+    public UnityEvent eventNewLevelStarted;
     public Action eventFinishedLevel;
 
     public Action eventGameStarted;
