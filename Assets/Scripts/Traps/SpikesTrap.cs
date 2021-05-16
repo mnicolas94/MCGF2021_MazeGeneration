@@ -7,6 +7,10 @@ namespace Traps
         public static int AnimationStateId = Animator.StringToHash("showing");
         
         [SerializeField] private Animator animator;
+
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip clip;
+        
         [Space]
         [SerializeField] private float timeDown;
         [SerializeField] private float timeUp;
@@ -34,6 +38,11 @@ namespace Traps
         {
             _currentlyUp = !_currentlyUp;
             animator.SetBool(AnimationStateId, _currentlyUp);
+        }
+
+        public void PlaySound()
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Scratch
   damage: 1
+  attackAudio: {fileID: 8300000, guid: 91793dc4e946a614398289652deaecc3, type: 3}

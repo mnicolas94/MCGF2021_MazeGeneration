@@ -21,6 +21,8 @@ namespace Battles
         [SerializeField] private Image playerImage;
         [SerializeField] private Image enemyImage;
 
+        [SerializeField] private AudioSource audioSource;
+
         [SerializeField] private CharacterHealthUi enemyHealthUiPrefab;
         [SerializeField] private RectTransform enemyHealthContainer;
 
@@ -96,6 +98,9 @@ namespace Battles
 
             // mostrar mensaje de comienzo de batalla
             ShowBattleStartMessage(playerData, enemyData);
+            
+            // play audio del enemigo
+            audioSource.PlayOneShot(enemyData.BattlesData.StartBattleAudio);
         }
 
         public void EndBattle()
@@ -180,17 +185,18 @@ namespace Battles
             {
                 var battleStep = _controller.NextBattleStep();
                 string description = GetBattleStepDescription(battleStep);
-                text.PutText(description, () => HandleBattleStepDamage(battleStep));
+                text.PutText(description, () => HandleBattleStep(battleStep));
             }
         }
 
-        private void HandleBattleStepDamage(BattleStep battleStep)
+        private void HandleBattleStep(BattleStep battleStep)
         {
             if (!battleStep.missAttack)
             {
                 var healthReceivingDamage = GetCharacterHealth(battleStep.target);
                 healthReceivingDamage.DoDamage(battleStep.attack.Damage);
             }
+            audioSource.PlayOneShot(battleStep.attack.AttackAudio);
         }
 
         private void HandleCharacterDeath(CharacterData deadCharacter)

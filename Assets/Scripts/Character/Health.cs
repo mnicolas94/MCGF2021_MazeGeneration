@@ -1,13 +1,14 @@
 ﻿using System;
 using Character.Data;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Character
 {
     public class Health : MonoBehaviour
     {
         public Action<int, int> eventMaxHealthChanged;
-        public Action<int> eventDamaged;
+        public UnityEvent<int> eventDamaged;
         public Action<int> eventHealed;
         public Action eventDied;
   

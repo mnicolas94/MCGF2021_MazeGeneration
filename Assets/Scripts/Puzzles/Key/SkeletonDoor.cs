@@ -17,6 +17,9 @@ namespace Puzzles.Key
         [SerializeField] private Item keyItem;
         [SerializeField] private Inventory inventory;
         [SerializeField] private Interactable doorInteractable;
+
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip clip;
         
         private SkeletonKey _skeletonKey;
 
@@ -36,6 +39,7 @@ namespace Puzzles.Key
             if (inventory.HasItem(keyItem))
             {
                 inventory.RemoveItem(keyItem);
+                audioSource.PlayOneShot(clip);
                 GameManager.Instance.NotifyPuzzleSolved(puzzle);
             }
             else
