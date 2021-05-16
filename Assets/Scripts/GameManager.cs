@@ -143,7 +143,6 @@ public class GameManager : MonoBehaviour
             FinishLevelCoroutine(),
             ActionCoroutine(eventGameLoosed),
             WaitTimeCoroutine(3),
-//            ActionCoroutine(StartGame),
             ActionCoroutine(() =>
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -162,7 +161,12 @@ public class GameManager : MonoBehaviour
             {
                 FinishLevelCoroutine(),
                 // diálogo final
-                ActionCoroutine(eventGameCompleted)
+                ActionCoroutine(eventGameCompleted),
+                WaitTimeCoroutine(5f),
+                ActionCoroutine(() =>
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }),
             }));
             print("me gané el juego");
         }
