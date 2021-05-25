@@ -47,6 +47,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
           CHANNEL: windows-dev
-          ITCH_GAME: mcgf2021-mazegeneration
+          ITCH_GAME: romb-taider
           ITCH_USER: the-solar-moose
           PACKAGE: build
