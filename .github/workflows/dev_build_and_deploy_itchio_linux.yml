@@ -1,4 +1,4 @@
-name: Build and deploy on Itch.io (Linux)
+name: (Dev) Build and deploy on Itch.io (Linux)
 
 on:
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
-          CHANNEL: linux
-          ITCH_GAME: mcgf2021-mazegeneration
+          CHANNEL: dev-linux
+          ITCH_GAME: romb-taider
           ITCH_USER: the-solar-moose
           PACKAGE: build
