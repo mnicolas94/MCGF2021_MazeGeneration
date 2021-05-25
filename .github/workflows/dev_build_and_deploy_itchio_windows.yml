@@ -1,4 +1,4 @@
-name: [Dev] Build and deploy on Itch.io (Windows) 
+name: (Dev) Build and deploy on Itch.io (Windows) 
 
 on:
   workflow_dispatch:
