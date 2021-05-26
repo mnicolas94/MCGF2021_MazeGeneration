@@ -48,7 +48,6 @@ jobs:
           PACKAGE: build
           VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
       - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
-      - name: send photo message
       - uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO_MIGUEL }}
