@@ -46,3 +46,4 @@ jobs:
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: build
           VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
+      - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
