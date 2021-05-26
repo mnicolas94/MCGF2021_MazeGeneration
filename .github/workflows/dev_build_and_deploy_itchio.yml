@@ -57,7 +57,7 @@ jobs:
           dest: ${{ steps.zipName.outputs.zipName }}
       - uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_TO_MIGUEL }}
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: Build of ${{ secrets.UNITY_PROJECT_NAME }} for ${{ matrix.itch_channel }} completed
           document: ${{ steps.zipName.outputs.zipName }}
