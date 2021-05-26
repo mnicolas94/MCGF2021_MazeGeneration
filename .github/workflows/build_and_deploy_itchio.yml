@@ -1,0 +1,49 @@
+name: Build and deploy on Itch.io 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildAndTestForSomePlatforms:
+    name: Build for ${{ matrix.targetPlatform }} with itchio channel ${{ matrix.itch_channel }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - targetPlatform: StandaloneWindows64   # Build a Windows 64-bit standal
+            itch_channel: windows
+          - targetPlatform: StandaloneLinux64 # Build a Windows 64-bit standal
+            itch_channel: linux
+          - targetPlatform: StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+            itch_channel: mac
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+      - uses: game-ci/unity-builder@v2
+        id: BuildStep
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          versioning: Semantic
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+      - uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
+          CHANNEL: ${{ matrix.itch_channel }}
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          PACKAGE: build
+          VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
+      - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
