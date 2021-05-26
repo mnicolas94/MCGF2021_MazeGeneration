@@ -32,6 +32,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          buildName: ${{ secrets.UNITY_PROJECT_NAME}}
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
       - uses: actions/upload-artifact@v2
@@ -47,3 +48,11 @@ jobs:
           PACKAGE: build
           VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
       - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
+      - name: send photo message
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_MIGUEL }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Build of {{ secrets.}}
+          photo: tests/github.png
+          document: tests/gophercolor.png
