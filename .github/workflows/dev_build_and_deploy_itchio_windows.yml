@@ -3,22 +3,13 @@ name: (Dev) Build and deploy on Itch.io (Windows)
 on:
   workflow_dispatch:
 
-env:
-  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-
 jobs:
   buildAndTestForSomePlatforms:
-    name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        projectPath:
-          - ./
-        unityVersion:
-          - 2020.3.2f1
-        projectName:
-          - MCGF21_Maze
         targetPlatform:
           - StandaloneWindows64   # Build a Windows 64-bit standal
     steps:
@@ -26,20 +17,19 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/cache@v1.1.0
+      - uses: actions/cache@v2
         with:
-          path: ${{ matrix.projectPath }}/Library
-          key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
-          restore-keys: |
-            Library-${{ matrix.projectPath }}-
-            Library-
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
       - uses: game-ci/unity-builder@v2
+        id: BuildStep
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          projectPath: ${{ matrix.projectPath }}
-          buildName: ${{ matrix.projectName }}
-          unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
-      - uses: actions/upload-artifact@v1
+          versioning: Semantic
+      - uses: actions/upload-artifact@v2
         with:
           name: Build
           path: build
@@ -47,6 +37,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
           CHANNEL: dev-windows
-          ITCH_GAME: romb-taider
-          ITCH_USER: the-solar-moose
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: build
+          VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
