@@ -48,9 +48,16 @@ jobs:
           PACKAGE: build
           VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
       - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
+      - name: Set zip name
+        id: zipName
+        run: echo '::set-output name=zipName::${{ secrets.UNITY_PROJECT_NAME }}-${{ matrix.itch_channel }}-${{ steps.BuildStep.outputs.buildVersion }}.zip'
+      - uses: papeloto/action-zip@v1
+        with:
+          files: build
+          dest: ${{ steps.zipName.outputs.zipName }}
       - uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO_MIGUEL }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Build of {{ secrets.UNITY_PROJECT_NAME }} for {{ matrix.itch_channel }} completed
-          document: build
+          message: Build of ${{ secrets.UNITY_PROJECT_NAME }} for ${{ matrix.itch_channel }} completed
+          document: ${{ steps.zipName.outputs.zipName }}
