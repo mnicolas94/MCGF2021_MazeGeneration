@@ -57,15 +57,13 @@ jobs:
           buildName: ${{ secrets.UNITY_PROJECT_NAME}}
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
-      #- uses: actions/upload-artifact@v2
-       # with:
-        #  name: Build
-         # path: build
       - name: Rename game folder
+        id: renaming
         run: |
           mkdir renamed
           cp -r build/${{ matrix.targetPlatform }} renamed
           mv renamed/${{ matrix.targetPlatform }} renamed/${{ secrets.UNITY_PROJECT_NAME }}
+          echo echo "::set-output name=zipName::${{ secrets.UNITY_PROJECT_NAME }}-${{ matrix.itch_channel }}-${{ steps.BuildStep.outputs.buildVersion }}.zip"
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
@@ -76,18 +74,15 @@ jobs:
           VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
       - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
       - uses: papeloto/action-zip@v1
-        env:
-          zipName: ${{ secrets.UNITY_PROJECT_NAME }}-${{ matrix.itch_channel }}-${{ steps.BuildStep.outputs.buildVersion }}.zip
         with:
           files: renamed
-          dest: ${{ env.zipName }}
-      - run: echo ${{ env.zipName }}
+          dest: ${{ steps.renaming.outputs.zipName }}
       - uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO_TSM }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: Build for ${{ matrix.itch_channel }} completed
-          document: ${{ env.zipName }}
+          document: ${{ steps.renaming.outputs.zipName }}
   
   sendFinalInformation:
     name: Send final information to Telegram
