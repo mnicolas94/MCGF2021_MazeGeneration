@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Echo refs
         run:  |
-          echo asd -> ${GITHUB_REF#refs/*/}
+          echo asd -> "${GITHUB_REF#refs/*/}"
           echo ${{ github.ref }}
           git tag -l --format='%(contents:subject)' 1.0.0
