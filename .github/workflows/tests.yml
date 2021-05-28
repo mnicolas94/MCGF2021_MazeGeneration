@@ -17,7 +17,7 @@ jobs:
           mkdir renamed
           mkdir build
           mkdir build/Standalone
-          cd -r build/Standalone renamed
+          cp -r build/Standalone renamed
           cd renamed
           ls
           echo *********
