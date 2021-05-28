@@ -81,17 +81,20 @@ jobs:
         with:
           files: renamed
           dest: ${{ env.zipName }}
-      - run: |
-          ls
-          echo ***
-          cd renamed
-          ls
-          echo ***
-          cd ..
-          cd build
-          ls
+      - run: echo ${{ env.zipName }}
       - uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO_TSM }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Build for ${{ matrix.itch_channel }} completed
           document: ${{ env.zipName }}
+  
+  sendFinalInformation:
+    name: Send final information to Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: All builds completed succesfully.
