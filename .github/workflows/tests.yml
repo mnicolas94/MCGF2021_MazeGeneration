@@ -14,5 +14,19 @@ jobs:
         with:
           fetch-depth: 0
       - run: |
-          echo Important:\nqweqweqw
+          mkdir renamed
+          cp -r Assets/Sprites renamed
+          mv renamed/Sprites renamed/Qwes
+          ls
+          echo ***
+          cd Assets/Sprites
+          ls
+          echo ***
+          cd ..
+          cd renamed
+          ls
+          echo***
+          cd Qwes
+          ls
+          
         
