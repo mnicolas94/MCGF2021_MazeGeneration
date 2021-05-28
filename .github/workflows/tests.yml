@@ -18,5 +18,10 @@ jobs:
       - uses: ericcornelissen/git-tag-annotation-action@v1
         id: tag_data
       - name: Echo tag annotation
-        run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
       - run: echo ${{ github.ref }}
+      - name: Echo tag if tag exists
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
+      - name: Echo asd if is main branch
+        if: startsWith(github.ref, 'refs/branch/main')
+        run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
