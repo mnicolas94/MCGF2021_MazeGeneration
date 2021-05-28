@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildAndTestForSomePlatforms:
+  buildForSomePlatforms:
     name: Build for ${{ matrix.targetPlatform }} with itchio channel ${{ matrix.itch_channel }}
     runs-on: ubuntu-latest
     strategy:
@@ -35,10 +35,10 @@ jobs:
           buildName: ${{ secrets.UNITY_PROJECT_NAME}}
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
+      #- uses: actions/upload-artifact@v2
+       # with:
+        #  name: Build
+         # path: build
       - name: Rename game folder
         run: |
           mv build/${{ matrix.targetPlatform }} build/${{ secrets.UNITY_PROJECT_NAME}}
@@ -63,3 +63,16 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: Build of ${{ secrets.UNITY_PROJECT_NAME }} for ${{ matrix.itch_channel }} completed
           document: ${{ env.zipName }}
+          
+  sendTagAnnotations:
+    name: Send tag annotations if tag exists
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: ericcornelissen/git-tag-annotation-action@v1
+        id: tag_data
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Important changes:\n${{ steps.tag_data.outputs.git-tag-annotation }}
