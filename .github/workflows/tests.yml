@@ -22,6 +22,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
       - name: Echo asd if is main branch
-        if: startsWith(github.ref, 'refs/branch/main')
+        if: startsWith(github.ref, 'refs/b')
         run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
         
