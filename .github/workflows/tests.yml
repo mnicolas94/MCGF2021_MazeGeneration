@@ -15,18 +15,16 @@ jobs:
           fetch-depth: 0
       - run: |
           mkdir renamed
-          cp -r Assets/Sprites renamed
-          mv renamed/Sprites renamed/Qwes
-          ls
-          echo ***
-          cd Assets/Sprites
-          ls
-          echo ***
-          cd ..
+          mkdir build
+          mkdir build/Standalone
+          cd -r build/Standalone renamed
           cd renamed
           ls
-          echo***
-          cd Qwes
+          echo *********
+          cd ..
+          mv renamed/Standalone renamed/RombTaider
+          cd renamed
           ls
+          
           
         
