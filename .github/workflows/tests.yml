@@ -18,7 +18,7 @@ jobs:
           ls -als
       - name: Rename folder
         run: |
-          git mv test renamed
+          mv test renamed
       - name: List files again
         run: |
           ls -als
