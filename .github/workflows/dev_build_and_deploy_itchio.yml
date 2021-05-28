@@ -41,21 +41,22 @@ jobs:
          # path: build
       - name: Rename game folder
         run: |
-          mv build/${{ matrix.targetPlatform }} build/RombTaider
+          mkdir renamed
+          copy build/${{ matrix.targetPlatform }} renamed/${{ secrets.UNITY_PROJECT_NAME }}
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
           CHANNEL: dev-${{ matrix.itch_channel }}
           ITCH_GAME: ${{ secrets.ITCH_GAME }}
           ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build
+          PACKAGE: renamed
           VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
       - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
       - uses: papeloto/action-zip@v1
         env:
           zipName: ${{ secrets.UNITY_PROJECT_NAME }}-${{ matrix.itch_channel }}-${{ steps.BuildStep.outputs.buildVersion }}.zip
         with:
-          files: build
+          files: renamed
           dest: ${{ env.zipName }}
       - uses: appleboy/telegram-action@master
         with:
