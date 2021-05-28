@@ -4,7 +4,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildAndTestForSomePlatforms:
+  sendTagAnnotations:
+    name: Send information to Telegram
+    runs-on: ubuntu-latest
+    steps:
+      # Normal message
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: RELEASE builds of ${{ secrets.UNITY_PROJECT_NAME }} in process.
+      # tag/release message
+      - uses: ericcornelissen/git-tag-annotation-action@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: tag_data
+      - uses: appleboy/telegram-action@master
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Important changes:\n${{ steps.tag_data.outputs.git-tag-annotation }}
+          
+          
+  buildForSomePlatforms:
     name: Build for ${{ matrix.targetPlatform }} with itchio channel ${{ matrix.itch_channel }}
     runs-on: ubuntu-latest
     strategy:
@@ -32,18 +54,43 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          buildName: ${{ secrets.UNITY_PROJECT_NAME}}
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
+      - name: Rename game folder
+        id: renaming
+        run: |
+          mkdir renamed
+          cp -r build/${{ matrix.targetPlatform }} renamed
+          mv renamed/${{ matrix.targetPlatform }} renamed/${{ secrets.UNITY_PROJECT_NAME }}
+          echo echo "::set-output name=zipName::${{ secrets.UNITY_PROJECT_NAME }}-${{ matrix.itch_channel }}-${{ steps.BuildStep.outputs.buildVersion }}.zip"
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
           CHANNEL: ${{ matrix.itch_channel }}
           ITCH_GAME: ${{ secrets.ITCH_GAME }}
           ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: build
+          PACKAGE: renamed
           VERSION: ${{ steps.BuildStep.outputs.buildVersion }}
       - run: echo ${{ steps.BuildStep.outputs.buildVersion }}
+      - uses: papeloto/action-zip@v1
+        with:
+          files: renamed
+          dest: ${{ steps.renaming.outputs.zipName }}
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Build for ${{ matrix.itch_channel }} completed
+          document: ${{ steps.renaming.outputs.zipName }}
+  
+  sendFinalInformation:
+    name: Send final information to Telegram
+    needs: buildForSomePlatforms
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: All builds completed succesfully.
