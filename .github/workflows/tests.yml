@@ -10,6 +10,6 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Make folder
+      - name: Echo refs
         run:  |
-          echo ${{ github.refs }}
+          echo ${GITHUB_REF#refs/*/}
