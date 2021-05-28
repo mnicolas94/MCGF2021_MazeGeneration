@@ -12,13 +12,4 @@ jobs:
     steps:
       - name: Make folder
         run:  |
-          mkdir test
-      - name: List files
-        run: |
-          ls -als
-      - name: Rename folder
-        run: |
-          mv test renamed
-      - name: List files again
-        run: |
-          ls -als
+          echo ${{ github.refs }}
