@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Make folder
+        run:  |
+          git mkdir test
+      - name: List files
+        run: |
+          ls -als
+      - name: Rename folder
+        run: |
+          git mv test renamed
+      - name: List files again
+        run: |
+          ls -als
