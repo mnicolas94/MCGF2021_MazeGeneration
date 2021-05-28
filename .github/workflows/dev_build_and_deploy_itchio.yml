@@ -4,6 +4,28 @@ on:
   workflow_dispatch:
 
 jobs:
+  sendTagAnnotations:
+    name: Send information to Telegram
+    runs-on: ubuntu-latest
+    steps:
+      # Normal message
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Builds of ${{ secrets.UNITY_PROJECT_NAME }} completed.
+      # tag/release message
+      - uses: ericcornelissen/git-tag-annotation-action@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: tag_data
+      - uses: appleboy/telegram-action@master
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          to: ${{ secrets.TELEGRAM_TO_TSM }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Important changes:\n${{ steps.tag_data.outputs.git-tag-annotation }}
+          
+          
   buildForSomePlatforms:
     name: Build for ${{ matrix.targetPlatform }} with itchio channel ${{ matrix.itch_channel }}
     runs-on: ubuntu-latest
@@ -59,22 +81,17 @@ jobs:
         with:
           files: renamed
           dest: ${{ env.zipName }}
+      - run: |
+          ls
+          echo ***
+          cd renamed
+          ls
+          echo ***
+          cd ..
+          cd build
+          ls
       - uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO_TSM }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Build of ${{ secrets.UNITY_PROJECT_NAME }} for ${{ matrix.itch_channel }} completed
           document: ${{ env.zipName }}
-          
-  sendTagAnnotations:
-    name: Send tag annotations if tag exists
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
-    steps:
-      - uses: ericcornelissen/git-tag-annotation-action@v1
-        id: tag_data
-      - uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO_TSM }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Important changes:\n${{ steps.tag_data.outputs.git-tag-annotation }}
