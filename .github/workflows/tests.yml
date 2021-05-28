@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Echo refs
-        run:  |
-          echo asd -> "${GITHUB_REF#refs/*/}"
-          echo ${{ github.ref }}
+      - uses: ericcornelissen/git-tag-annotation-action@v1
+        id: tag_data
+      - name: Echo tag annotation
+        run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
