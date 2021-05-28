@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Echo refs
         run:  |
-          echo ${GITHUB_REF#refs/*/}
+          echo '${GITHUB_REF#refs/*/}'
