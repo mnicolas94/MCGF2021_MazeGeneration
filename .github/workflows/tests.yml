@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Make folder
         run:  |
-          git mkdir test
+          mkdir test
       - name: List files
         run: |
           ls -als
