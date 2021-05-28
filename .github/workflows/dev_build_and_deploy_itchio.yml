@@ -42,7 +42,8 @@ jobs:
       - name: Rename game folder
         run: |
           mkdir renamed
-          copy build/${{ matrix.targetPlatform }} renamed/${{ secrets.UNITY_PROJECT_NAME }}
+          cp -r build/${{ matrix.targetPlatform }} renamed
+          mv renamed/${{ matrix.targetPlatform }} renamed/${{ secrets.UNITY_PROJECT_NAME }}
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
