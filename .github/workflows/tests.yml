@@ -13,15 +13,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Fetch tags
-        run: git fetch --tags --force
-      - uses: ericcornelissen/git-tag-annotation-action@v1
-        id: tag_data
-      - run: echo ${{ github.ref }}
-      - name: Echo tag if tag exists
-        if: startsWith(github.ref, 'refs/tags/v')
-        run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
-      - name: Echo asd if is main branch
-        if: startsWith(github.ref, 'refs/b')
-        run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
+      - run: |
+          ls
+          mkdir qwe
+          ls
         
