@@ -14,4 +14,4 @@ jobs:
         run:  |
           echo asd -> ${GITHUB_REF#refs/*/}
           echo ${{ github.ref }}
-          tag -l --format='%(contents:subject)' 1.0.0
+          git tag -l --format='%(contents:subject)' 1.0.0
