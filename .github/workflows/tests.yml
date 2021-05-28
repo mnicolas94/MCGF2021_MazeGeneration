@@ -10,6 +10,9 @@ jobs:
     strategy:
       fail-fast: false
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: ericcornelissen/git-tag-annotation-action@v1
         id: tag_data
       - name: Echo tag annotation
