@@ -13,18 +13,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: |
-          mkdir renamed
-          mkdir build
-          mkdir build/Standalone
-          cp -r build/Standalone renamed
-          cd renamed
-          ls
-          echo *********
-          cd ..
-          mv renamed/Standalone renamed/RombTaider
-          cd renamed
-          ls
+      - name: env set
+        env:
+          val: 42
+        run: echo $ {{ env.val }}
+      - run: echo $ {{ env.val }} again
           
           
         
