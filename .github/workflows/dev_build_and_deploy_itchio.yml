@@ -83,6 +83,9 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: Build for ${{ matrix.itch_channel }} completed
           document: ${{ steps.renaming.outputs.zipName }}
+      - run: |
+          echo ${{ steps.renaming.outputs.zipName }}
+          ls
   
   sendFinalInformation:
     name: Send final information to Telegram
