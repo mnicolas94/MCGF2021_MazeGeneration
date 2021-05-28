@@ -13,7 +13,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO_TSM }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Builds of ${{ secrets.UNITY_PROJECT_NAME }} completed.
+          message: Builds of ${{ secrets.UNITY_PROJECT_NAME }} in process.
       # tag/release message
       - uses: ericcornelissen/git-tag-annotation-action@v1
         if: startsWith(github.ref, 'refs/tags/v')
@@ -91,6 +91,7 @@ jobs:
   
   sendFinalInformation:
     name: Send final information to Telegram
+    needs: buildForSomePlatforms
     runs-on: ubuntu-latest
     steps:
       - uses: appleboy/telegram-action@master
