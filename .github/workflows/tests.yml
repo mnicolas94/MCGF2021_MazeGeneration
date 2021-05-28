@@ -9,15 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        asd: [qwe, asd]
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: env set
-        env:
-          val: 42
-        run: echo ${{ env.val }}
-      - run: echo ${{ env.val }} again
+        id: qwe
+        run: echo "::set-output name=zipName::${{ secrets.UNITY_PROJECT_NAME }}-${{ matrix.asd }}.zip"
+      - run: echo ${{ steps.qwe.outputs.zipName }} again
           
           
         
