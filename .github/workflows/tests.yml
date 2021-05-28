@@ -19,3 +19,4 @@ jobs:
         id: tag_data
       - name: Echo tag annotation
         run: echo ${{ steps.tag_data.outputs.git-tag-annotation }}
+      - run: echo "${GITHUB_REF#refs/*/}"
