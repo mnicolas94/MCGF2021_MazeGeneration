@@ -41,7 +41,7 @@ jobs:
          # path: build
       - name: Rename game folder
         run: |
-          mv build/${{ matrix.targetPlatform }} build/${{ secrets.UNITY_PROJECT_NAME}}
+          mv build/${{ matrix.targetPlatform }} build/RombTaider
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.SOLAR_BUTLER_CREDENTIALS }}
