@@ -16,8 +16,8 @@ jobs:
       - name: env set
         env:
           val: 42
-        run: echo $ {{ env.val }}
-      - run: echo $ {{ env.val }} again
+        run: echo ${{ env.val }}
+      - run: echo ${{ env.val }} again
           
           
         
