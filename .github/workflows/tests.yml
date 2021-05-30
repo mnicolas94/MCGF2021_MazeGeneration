@@ -18,16 +18,17 @@ jobs:
         run: |
           echo "::set-output name=changes::$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s")"
           echo "::set-output name=lasttag::$(git describe --tags --abbrev=0)"
-      - uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO_TSM }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Changes since version ${{ steps.changes.outputs.lasttag }}":"
-      - uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO_TSM }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ steps.changes.outputs.changes }}
+          echo $(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s")
+#       - uses: appleboy/telegram-action@master
+#         with:
+#           to: ${{ secrets.TELEGRAM_TO_TSM }}
+#           token: ${{ secrets.TELEGRAM_TOKEN }}
+#           message: Changes since version ${{ steps.changes.outputs.lasttag }}":"
+#       - uses: appleboy/telegram-action@master
+#         with:
+#           to: ${{ secrets.TELEGRAM_TO_TSM }}
+#           token: ${{ secrets.TELEGRAM_TOKEN }}
+#           message: ${{ steps.changes.outputs.changes }}
           
           
         
