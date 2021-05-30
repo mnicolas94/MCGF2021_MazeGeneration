@@ -18,7 +18,8 @@ jobs:
         run: |
           echo "::set-output name=changes::$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s")"
           echo "::set-output name=lasttag::$(git describe --tags --abbrev=0)"
-          echo $(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s")
+      - run: |
+          echo ${{ steps.changes.outputs.changes }}
 #       - uses: appleboy/telegram-action@master
 #         with:
 #           to: ${{ secrets.TELEGRAM_TO_TSM }}
