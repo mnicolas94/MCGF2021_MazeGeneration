@@ -22,7 +22,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO_TSM }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: $(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s")
+          message: ${{ git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s" }}
           
           
         
