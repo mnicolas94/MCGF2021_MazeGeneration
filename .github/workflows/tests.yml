@@ -16,7 +16,8 @@ jobs:
       - name: Set changes variable
         id: changes
         run: |
-          echo "::set-output name=changes::$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s")"
+          changes=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"
+          echo "::set-output name=changes::changes)"
           echo "::set-output name=lasttag::$(git describe --tags --abbrev=0)"
       - run: |
           echo ${{ steps.changes.outputs.changes }}
