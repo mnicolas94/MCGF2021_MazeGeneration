@@ -19,7 +19,7 @@ jobs:
           echo "::set-output name=version::1.2.3" 
       - name: Tag
         run: |
-          version=${{ steps.versioning.outputs.version }}
+          version=${{ steps.versioning.outputs.version }}-pre
           git tag v$version
           git push origin v$version
           
