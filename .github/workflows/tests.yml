@@ -21,7 +21,7 @@ jobs:
         run: |
           version=${{ steps.versioning.outputs.version }}
           git tag v$version
-          git tag
+          git push origin v$version
           
           
         
