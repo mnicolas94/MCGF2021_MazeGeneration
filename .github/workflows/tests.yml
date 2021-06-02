@@ -16,7 +16,7 @@ jobs:
 #         with:
 #           fetch-depth: 0
       - name: output
-        if: matrix.cond == asd
+        if: matrix.cond == 'asd'
         run: echo nice
 
           
