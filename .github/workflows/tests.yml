@@ -22,6 +22,15 @@ jobs:
           version=${{ steps.versioning.outputs.version }}-pre
           git tag v$version
           git push origin v$version
-          
+    env:
+      version: ${{ steps.versioning.outputs.version }}
+      
+  out:
+    runs-on: ubuntu-latest
+    name: output variable
+    steps:
+      - name: asd
+        run: |
+          echo ${{ jobs.test.env.version }}
           
         
