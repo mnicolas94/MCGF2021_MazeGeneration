@@ -28,6 +28,7 @@ jobs:
   out:
     runs-on: ubuntu-latest
     name: output variable
+    needs: test
     steps:
       - name: asd
         run: |
