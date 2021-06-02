@@ -9,31 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        val: [asd, qwe]
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: output
-        id: versioning
-        run: |
-          echo "::set-output name=version::1.2.3" 
-      - run: echo ${{ steps.versioning.outputs.version }} > version.txt
-      - uses: actions/upload-artifact@v1
-        with:
-          name: version
-          path: version.txt
-      
-  out:
-    runs-on: ubuntu-latest
-    name: output variable
-    needs: test
-    steps:
-      - name: asd
-        uses: actions/download-artifact@v1
-        with:
-          name: version
-      - run: |
-          value=$(cat version/version.txt)
-          echo $value
+        if: ${{ matrix.val }} == asd
+        run: echo nice
+
           
         
