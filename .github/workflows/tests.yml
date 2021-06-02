@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: output
-        if: ${{ matrix.val }} == asd
+        if: matrix.val == asd
         run: echo nice
 
           
