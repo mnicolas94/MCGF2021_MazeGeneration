@@ -10,13 +10,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        val: [asd, qwe]
+        cond: [asd, qwe]
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
       - name: output
-        if: ${{ matrix.val }} == 'asd'
+        if: matrix.cond == asd
         run: echo nice
 
           
