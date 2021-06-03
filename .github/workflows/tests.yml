@@ -23,13 +23,13 @@ jobs:
           }
           describe=$(git describe --tags --long --match v[0-9]*)
           echo $describe
-          majorindex=$(strindex $describe .)
+          majorindex=$(strindex $describe ".")
           major=${describe:0:majorindex+1}
           minorsub=${describe:majorindex+1}
           minorsub=$(echo "$minorsub") | tr - .)
-          minorindex=$(strindex $minorsub .)
+          minorindex=$(strindex $minorsub ".")
           minor=${minorsub:0:minorindex+1}
-          patchindex=$(strindex $describe -)
+          patchindex=$(strindex $describe "-")
           patch=${describe:patchindex+1:-9}
           version=$major$minor$patch
           echo $version
