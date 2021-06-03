@@ -22,6 +22,7 @@ jobs:
             [[ "$x" = "$1" ]] && echo -1 || echo "${#x}"
           }
           describe=$(git describe --tags --long --match v[0-9]*)
+          echo $describe
           majorindex=$(strindex $describe .)
           major=${describe:0:majorindex+1}
           minorsub=${describe:majorindex+1}
