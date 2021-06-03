@@ -23,7 +23,7 @@ jobs:
           }
           describe=$(git describe --tags --long --match v[0-9]*)
           majorindex=$(strindex $describe .)
-          major=${describe:1:majorindex+1}
+          major=${describe:1:majorindex}
           minorsub=${describe:majorindex+1}
           minorsub=$(echo "$minorsub" | tr - .)
           minorindex=$(strindex $minorsub .)
