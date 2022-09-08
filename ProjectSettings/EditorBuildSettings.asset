@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TillemapTests.unity
     guid: 6694aaf12adebff4f89226219d536b35
+  - enabled: 0
+    path: Assets/Scenes/100Followers/100Followers.unity
+    guid: 6edf0d90f0136994a8c338563f439263
   m_configObjects: {}
