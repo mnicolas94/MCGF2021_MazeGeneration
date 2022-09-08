@@ -14,4 +14,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/100Followers/100Followers.unity
     guid: 6edf0d90f0136994a8c338563f439263
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 0600988f430921447a80b31ade94e6f3, type: 2}
