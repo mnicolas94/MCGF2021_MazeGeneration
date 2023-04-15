@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4241894631317213486}
   - component: {fileID: 2474952191852286851}
   m_Layer: 0
-  m_Name: GrayFloorTile
+  m_Name: NewFloorTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,12 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc93b3dfdffbf8344b37eef4926ad788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSprite: {fileID: 21300000, guid: 17fe661e0778b22439db1cdb27e7c5db, type: 3}
-  sprites:
-  - sprite: {fileID: 21300000, guid: 17fe661e0778b22439db1cdb27e7c5db, type: 3}
-    weight: 40
-  - sprite: {fileID: 21300000, guid: 7095e3af12b525642b0c7090b9b10855, type: 3}
-    weight: 1
+  defaultSprite: {fileID: 21300000, guid: 7f5b284ce4635bc489cda1f67362692b, type: 3}
+  sprites: []
   spriteRenderer: {fileID: 2474952191852286851}
 --- !u!212 &2474952191852286851
 SpriteRenderer:
@@ -107,7 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17fe661e0778b22439db1cdb27e7c5db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f5b284ce4635bc489cda1f67362692b, type: 3}
   m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   m_FlipX: 0
   m_FlipY: 0

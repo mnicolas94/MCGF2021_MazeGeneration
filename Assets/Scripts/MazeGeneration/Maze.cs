@@ -30,6 +30,18 @@ namespace MazeGeneration
 
         public Tilemap WallObjectsTilemap => wallObjectsTilemap;
 
+        public TileBase FloorSpriteTile
+        {
+            get => floorSpriteTile;
+            set => floorSpriteTile = value;
+        }
+
+        public TileBase WallSpriteTile
+        {
+            get => wallSpriteTile;
+            set => wallSpriteTile = value;
+        }
+
         public Tilemap GetTileMap(MazeTilemap tilemap)
         {
             switch (tilemap)

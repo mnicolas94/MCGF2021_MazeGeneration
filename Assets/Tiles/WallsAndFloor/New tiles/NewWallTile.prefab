@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8602061865135027404}
   - component: {fileID: 8602061865135027399}
-  - component: {fileID: 4241894631317213486}
-  - component: {fileID: 2474952191852286851}
+  - component: {fileID: 2638087465904883901}
+  - component: {fileID: 6618451941491242011}
   m_Layer: 0
-  m_Name: GrayFloorTile
+  m_Name: NewWallTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineOfSightData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
---- !u!114 &4241894631317213486
+--- !u!114 &2638087465904883901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,17 +56,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8602061865135027405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc93b3dfdffbf8344b37eef4926ad788, type: 3}
+  m_Script: {fileID: 11500000, guid: d3f5557ad6318964cabb548ce6fe6ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSprite: {fileID: 21300000, guid: 17fe661e0778b22439db1cdb27e7c5db, type: 3}
-  sprites:
-  - sprite: {fileID: 21300000, guid: 17fe661e0778b22439db1cdb27e7c5db, type: 3}
-    weight: 40
-  - sprite: {fileID: 21300000, guid: 7095e3af12b525642b0c7090b9b10855, type: 3}
-    weight: 1
-  spriteRenderer: {fileID: 2474952191852286851}
---- !u!212 &2474952191852286851
+  lineOfSightData: {fileID: 11400000, guid: 6781f83dd91750047be475bda45e6fbe, type: 2}
+  radius: 1
+  playerPositionOffset: {x: 0, y: -0.5}
+  maxVerticalDisplacement: 0.25
+--- !u!212 &6618451941491242011
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +104,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17fe661e0778b22439db1cdb27e7c5db, type: 3}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 452829de4dbebc94e9877ee902fd79da, type: 3}
+  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
